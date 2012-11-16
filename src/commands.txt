@@ -1,0 +1,4 @@
+insert AAGG
+print
+remove AAGG
+print
