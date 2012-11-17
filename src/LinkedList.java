@@ -125,7 +125,6 @@ public class LinkedList<E>
 			System.out.println(item);
 			if (current.next != tail)
 			{
-				System.out.println(tail + ": " + current);
 				current = current.next;
 			}
 			else
@@ -172,7 +171,6 @@ public class LinkedList<E>
 		@Override
 		public void add(E item)
 		{
-
 			Node<E> next = current.next;
 			if (next == tail)
 			{
@@ -189,18 +187,6 @@ public class LinkedList<E>
 			//{
 				current = newNode;
 			//}
-			/*
-			 Node<E> newNode = new Node<>(item);
-			 Node<E> oldFirst = sentinel.next;
-			 sentinel.next = newNode;
-			 newNode.next = oldFirst;
-			 oldFirst.prev = newNode;
-			 newNode.prev = sentinel;
-			 size++;
-			 index++;
-			 lastAccessed = null;
-			 //current = newNode;
-			 */
 		}
 	}
 
