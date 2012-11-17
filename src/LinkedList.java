@@ -23,7 +23,6 @@ public class LinkedList<E>
 	 * The tail of this list.
 	 */
 	private Node<E> tail;
-	private Node<E> current;
 
 	/**
 	 * Creates a new {@code LinkedList} initialized to size {@code s}. The list
@@ -35,54 +34,11 @@ public class LinkedList<E>
 	{
 		head = new Node<>(null);
 		tail = new Node<>(null);
-		current = head;
 		tail.prev = head;
+		tail.next = head;
 		head.next = tail;
+		head.prev = tail;
 		size = 0;
-	}
-
-	public void append(E item)
-	{
-		Node<E> newNode = new Node<>(item);
-		Node<E> previous = tail.prev;
-		tail.prev = newNode;
-		newNode.next = tail;
-		previous.next = newNode;
-		newNode.prev = previous;
-		size++;
-	}
-
-	public void insert(E item)
-	{
-		Node<E> newNode = new Node<>(item);
-		Node<E> next = current.next;
-		current.next = newNode;
-		newNode.prev = current;
-		newNode.next = next;
-		next.prev = newNode;
-		size++;
-	}
-
-	/**
-	 * Removes the next element relative to {@code current}. For example, if the
-	 * current list is 1<-->2<-->3<-->4 and {@code current} is currently at
-	 * {@code 2}, the node containing {@code 3} will be removed and 2 and 4 will
-	 * be linked together.
-	 * <p/>
-	 * @return
-	 */
-	public E remove()
-	{
-		if (current.next == tail)
-		{
-			return null;
-		}
-		E ret = current.next.value;
-		Node<E> next = current.next.next;
-		current.next = next;
-		next.prev = current;
-		size--;
-		return ret;
 	}
 
 	@Override
@@ -133,10 +89,6 @@ public class LinkedList<E>
 		 */
 		private Node<E> current = head.next;
 		/**
-		 * Last accessed node.
-		 */
-		private Node<E> lastAccessed = null;
-		/**
 		 * Current iteration index within this list.
 		 */
 		private int index = 0;
@@ -144,6 +96,7 @@ public class LinkedList<E>
 		@Override
 		public boolean hasNext()
 		{
+			System.out.println(index + ", " + size);
 			return index < size;
 		}
 
@@ -168,10 +121,11 @@ public class LinkedList<E>
 		@Override
 		public E next()
 		{
-			lastAccessed = current;
 			E item = current.value;
+			System.out.println(item);
 			if (current.next != tail)
 			{
+				System.out.println(tail + ": " + current);
 				current = current.next;
 			}
 			else
@@ -187,21 +141,20 @@ public class LinkedList<E>
 		{
 			current = current.prev;
 			index--;
-			lastAccessed = current;
 			return current.value;
 		}
 
 		@Override
 		public void set(E item)
 		{
-			lastAccessed.value = item;
+			current.value = item;
 		}
 
 		@Override
 		public void remove()
 		{
-			Node<E> previous = lastAccessed.prev;
-			Node<E> next = lastAccessed.next;
+			Node<E> previous = current.prev;
+			Node<E> next = current.next;
 			previous.next = next;
 			next.prev = previous;
 			size--;
@@ -214,7 +167,6 @@ public class LinkedList<E>
 			{
 				current = head.next;
 			}
-			lastAccessed = null;
 		}
 
 		@Override
@@ -227,18 +179,16 @@ public class LinkedList<E>
 				next = head.next;
 			}
 			Node<E> newNode = new Node<>(item);
-			Node<E> curr = current;
 			next.prev = newNode;
-			newNode.prev = curr;
-			curr.next = newNode;
+			newNode.prev = current;
+			current.next = newNode;
 			newNode.next = next;
 			size++;
-			index++;
-			lastAccessed = null;
-			if (size == 1)
-			{
+			//index++;
+			//if (size == 1)
+			//{
 				current = newNode;
-			}
+			//}
 			/*
 			 Node<E> newNode = new Node<>(item);
 			 Node<E> oldFirst = sentinel.next;
