@@ -145,6 +145,15 @@ public class DNASequence
 			sequence = sequence.substring(0, sequence.length() - 1);
 		}
 	}
+	
+	/**
+	 * Restores {@code current} to the original state of {@code sequence}. This
+	 * allows a sequence to be recycled for other operations.
+	 */
+	public void restore()
+	{
+		current = sequence;
+	}
 
 	/**
 	 * Returns the length of {@code current}.

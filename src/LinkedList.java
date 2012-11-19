@@ -46,9 +46,11 @@ public class LinkedList<E>
 	{
 		ListIterator<E> iter = iterator();
 		String result = "";
-		while (iter.hasNext())
+		int i = 0;
+		while (i < 6)
 		{
-			result += iter.next().toString() + "\n";
+			result += iter.next() + "\n";
+			i++;
 		}
 
 		return result;
@@ -96,7 +98,6 @@ public class LinkedList<E>
 		@Override
 		public boolean hasNext()
 		{
-			System.out.println(index + ", " + size);
 			return index < size;
 		}
 
@@ -122,7 +123,6 @@ public class LinkedList<E>
 		public E next()
 		{
 			E item = current.value;
-			System.out.println(item);
 			if (current.next != tail)
 			{
 				current = current.next;
@@ -158,11 +158,11 @@ public class LinkedList<E>
 			next.prev = previous;
 			size--;
 			index--;
-			if (current.next != tail)
+			if (size == 0)
 			{
-				current = current.next;
+				current = head;
 			}
-			else
+			else if (current.next == tail)
 			{
 				current = head.next;
 			}
@@ -171,22 +171,29 @@ public class LinkedList<E>
 		@Override
 		public void add(E item)
 		{
+			Node<E> newNode = new Node<>(item);
+			//System.out.println(head + ": " + head.next + ": " + current + ": " + tail + ": " + tail.next + ": " + head.prev);
 			Node<E> next = current.next;
-			if (next == tail)
+			if (size == 0)
+			{
+				next = tail;
+				current = head;
+			}
+			else if (next == tail)
 			{
 				next = head.next;
 			}
-			Node<E> newNode = new Node<>(item);
 			next.prev = newNode;
 			newNode.prev = current;
 			current.next = newNode;
 			newNode.next = next;
 			size++;
-			//index++;
+			index++;
 			//if (size == 1)
 			//{
-				current = newNode;
+			current = newNode;
 			//}
+			//System.out.println(head + ": " + head.next + ": " + current + ": " + tail + ": " + tail.next + ": " + head.prev);
 		}
 	}
 

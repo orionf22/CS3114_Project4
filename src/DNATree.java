@@ -75,7 +75,7 @@ public class DNATree
 		output = new PrintWriter(System.out, true);
 		input = new BufferedReader(new FileReader(inputFile));
 		String line;
-		controller = new Controller(new MemManager(10), new DNATrie());
+		controller = new Controller(new MemManager(100), new DNATrie());
 		controller.setCodec(new DNACodec());
 
 		while ((line = input.readLine()) != null)

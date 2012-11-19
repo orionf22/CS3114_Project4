@@ -92,7 +92,6 @@ public class DNATrie
 		{
 			LeafNode leaf = (LeafNode) node;
 			DNASequence seq = new DNASequence(DNATree.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength()));
-			System.out.println(seq.getSequence() + ": " + sequence.getSequence());
 			if (seq.equals(sequence, true))
 			{
 				c.add(seq.getSequence());
@@ -203,8 +202,6 @@ public class DNATrie
 	 */
 	public void remove(DNASequence sequence)
 	{
-		System.out.println("Remove method...");
-
 		sequence.terminate();
 		root = remove(root, sequence);
 	}
@@ -249,18 +246,23 @@ public class DNATrie
 			{
 				// change from node.x to node
 				case DNASequence.BASE_A:
+					//System.out.println("went to A");
 					node.A = remove(node.A, sequence.crop());
 					break;
 				case DNASequence.BASE_C:
+					//System.out.println("went to C");
 					node.C = remove(node.C, sequence.crop());
 					break;
 				case DNASequence.BASE_G:
+					//System.out.println("went to G");
 					node.G = remove(node.G, sequence.crop());
 					break;
 				case DNASequence.BASE_T:
+					//System.out.println("went to T");
 					node.T = remove(node.T, sequence.crop());
 					break;
 				case DNASequence.TERMINATOR:
+					//System.out.println("went to $");
 					node.$ = remove(node.$, sequence.crop());
 					break;
 				default:

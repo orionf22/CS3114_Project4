@@ -45,6 +45,8 @@ public class Controller
 	 * given format.
 	 */
 	private Codec codec;
+	
+	private static final int DEFAULT_STRING_CROP_LENGTH = 40;
 
 	/**
 	 * Constructs a new {@code Controller} with references to proper
@@ -100,7 +102,7 @@ public class Controller
 				if (newHandle.getAddress() < 0)
 				{
 					String display = c.getInfo() + "\"";
-					if (display.length() > 40)
+					if (display.length() > DEFAULT_STRING_CROP_LENGTH)
 					{
 						display = display.substring(0, 41) + "...\" ("
 								+ display.length() + " characters)";
@@ -113,7 +115,8 @@ public class Controller
 				{
 					tree.insert(newHandle, new DNASequence(c.getInfo()));
 					DNATree.output.println("\nSuccessfully inserted new "
-							+ "record of " + (bytes.length + 2) + " bytes ("
+							+ "record \"" + c.getInfo() + "\" of " 
+							+ (bytes.length + 2) + " bytes ("
 							+ c.getInfo().length() + " characters) starting "
 							+ "at position " + newHandle.getAddress());
 
@@ -123,7 +126,7 @@ public class Controller
 			else
 			{
 				String display = c.getInfo() + "\"";
-				if (display.length() > 40)
+				if (display.length() > DEFAULT_STRING_CROP_LENGTH)
 				{
 					display = display.substring(0, 41) + "...\" ("
 							+ display.length() + " characters)";
@@ -153,13 +156,13 @@ public class Controller
 		try
 		{
 			toRemove = tree.fetch(sequence);
+			sequence.restore();
 		}
 		catch (Exception e)
 		{
 			DNATree.output.println("Attempted to find \"" + c.getSequence()
-					+ "\"; if it is in the tree, it was inserted incorrectly. "
-					+ "This is because we could not get the insert method to "
-					+ "work in all cases, unfortunately.");
+					+ "\"; " + e.getClass().getName() + " encountered. Removal "
+					+ "failure. Debug: " + e.toString());
 		}
 		//if we got FLYWEIGHT, either an error occured or the sequence does not 
 		//exist
@@ -171,16 +174,14 @@ public class Controller
 		//else remove the sequence
 		else
 		{
-			System.out.println(toRemove);
 			LeafNode leaf = (LeafNode) toRemove;
 			int literal = leaf.getLiteralLength();
 			MemHandle remove = leaf.getHandle();
 			tree.remove(sequence); // Must remove from the tree first
 			int size = manager.remove(remove); // Then remove from the pool!
-
-			DNATree.output.println("\nDeleted old record of " + (size + 2)
-					+ " bytes (" + literal + " characters) from position "
-					+ remove.getAddress());
+			DNATree.output.println("\nDeleted old record \"" + sequence + "\" "
+					+ "of " + (size + 2) + " bytes (" + literal + " characters)"
+					+ " from position " + remove.getAddress());
 		}
 	}
 
@@ -415,7 +416,6 @@ public class Controller
 		else if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			System.out.println("Print: Handle = " + leaf.getHandle().getAddress() + ", Length = " + leaf.getLiteralLength());
 			DNASequence seq = new DNASequence(retrieve(leaf.getHandle(), leaf.getLiteralLength()));
 			builder.append(seq.getSequence()).append(" ").
 					append(seq.getStats()).append("\n");

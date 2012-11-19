@@ -92,7 +92,6 @@ public class CommandParser
 						break;
 					case "stats":
 						cmd = new PrintCommand(DNATrie.BY_STATS);
-						System.out.println("got here");
 						break;
 					case "":
 						break;

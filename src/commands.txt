@@ -1,4 +1,7 @@
 insert AAGG
+insert CGT
 print
+remove CGT
+
 remove AAGG
 print
