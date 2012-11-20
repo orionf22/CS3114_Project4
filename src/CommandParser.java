@@ -51,7 +51,7 @@ public class CommandParser
 				}
 				catch (Exception e)
 				{
-					DNATree.output.println("INSERT, line " + commandNum
+					DNAFile.output.println("INSERT, line " + commandNum
 							+ ": no DNA sequence specified; expecting String. "
 							+ "Command usage: insert <DNAString>.");
 				}
@@ -67,7 +67,7 @@ public class CommandParser
 				}
 				catch (Exception e)
 				{
-					DNATree.output.println("REMOVE, line " + commandNum
+					DNAFile.output.println("REMOVE, line " + commandNum
 							+ ": no DNA sequence specified; expecting String. "
 							+ "Command usage: remove <DNAString>.");
 				}
@@ -96,7 +96,7 @@ public class CommandParser
 					case "":
 						break;
 					default:
-						DNATree.output.println("Print request \"" + request
+						DNAFile.output.println("Print request \"" + request
 								+ "\" not recognized. Call with no request, "
 								+ "\"stats\", or \"lengths\".");
 				}
@@ -111,7 +111,7 @@ public class CommandParser
 				}
 				catch (Exception e)
 				{
-					DNATree.output.println("SEARCH, line " + commandNum + ": "
+					DNAFile.output.println("SEARCH, line " + commandNum + ": "
 							+ "no DNA sequence specified; expecting String."
 							+ "Command usage: search <sequenceDescriptor>.");
 				}
@@ -119,7 +119,7 @@ public class CommandParser
 				break;
 			//No command recognized
 			default:
-				DNATree.output.println("Command \"" + commandType
+				DNAFile.output.println("Command \"" + commandType
 						+ "\" not recognized on line " + commandNum + "\n");
 		}
 

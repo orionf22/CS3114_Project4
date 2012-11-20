@@ -91,7 +91,7 @@ public class DNATrie
 		if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			DNASequence seq = new DNASequence(DNATree.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			DNASequence seq = new DNASequence(DNAFile.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength()));
 			if (seq.equals(sequence, true))
 			{
 				c.add(seq.getSequence());
@@ -158,7 +158,7 @@ public class DNATrie
 		else if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			String seq = DNATree.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength());
+			String seq = DNAFile.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength());
 			//match
 			if (seq.equals(sequence.getSequence()))
 			{
@@ -230,7 +230,7 @@ public class DNATrie
 		else if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			String seq = DNATree.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength());
+			String seq = DNAFile.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength());
 			//sequence is here; set node to FLYWEIGHT and return
 			if (seq.equals(sequence.getSequence()))
 			{
@@ -350,6 +350,7 @@ public class DNATrie
 		//base case; insert here
 		if (node == DNATrie.FLYWEIGHT)
 		{
+			//System.out.println("flyweight");
 			size++;
 			node = new LeafNode(h, length);
 		}
@@ -357,36 +358,44 @@ public class DNATrie
 		//inserting original info
 		else if (node.isLeaf())
 		{
+			//System.out.println("leaf " + node);
 			LeafNode leaf = (LeafNode) node;
 			node = new InternalNode();
-			DNASequence seq = new DNASequence(DNATree.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			DNASequence seq = new DNASequence(DNAFile.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength()));
 			seq.terminate();
-			seq = seq.cropAt(depth);
-			node = insert(node, h, sequence, length, depth + 1);
-			node = insert(node, leaf.getHandle(), seq, leaf.getLiteralLength(), depth + 1);
+			seq.cropAt(depth);
+			//System.out.println(seq + "; " + seq.getCurrent() + ": " + sequence + "; " + sequence.getCurrent() + " - " + depth);
+			node = insert(node, h, sequence, length, depth);
+			node = insert(node, leaf.getHandle(), seq, leaf.getLiteralLength(), depth);
 		}
 		//InternalNode
 		else
 		{
+			//System.out.println("internal " + node);
 			switch (sequence.front())
 			{
 				case DNASequence.BASE_A:
+					//System.out.println("went to A");
 					node.A = insert(node.A, h, sequence.crop(), length, depth + 1);
 					break;
 				case DNASequence.BASE_C:
+					//System.out.println("went to C");
 					node.C = insert(node.C, h, sequence.crop(), length, depth + 1);
 					break;
 				case DNASequence.BASE_G:
+					//System.out.println("went to G");
 					node.G = insert(node.G, h, sequence.crop(), length, depth + 1);
 					break;
 				case DNASequence.BASE_T:
+					//System.out.println("went to T");
 					node.T = insert(node.T, h, sequence.crop(), length, depth + 1);
 					break;
 				case DNASequence.TERMINATOR:
+					//System.out.println("went to $");
 					node.$ = insert(node.$, h, sequence.crop(), length, depth + 1);
 					break;
 				default:
-					DNATree.output.println("Error during insert");
+					DNAFile.output.println("Error during insert");
 					break;
 			}
 		}
@@ -439,7 +448,7 @@ public class DNATrie
 		else if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			DNASequence seq = new DNASequence(DNATree.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			DNASequence seq = new DNASequence(DNAFile.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength()));
 			c.add(seq.getSequence());
 			return 1;
 		}

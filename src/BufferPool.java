@@ -360,4 +360,23 @@ public class BufferPool
 	{
 		return this.DISK_WRITES;
 	}
+
+	/**
+	 * Returns the number of each {@link Buffer} currently stored in the pool.
+	 * Numbers are provided in order of most recently used {@link buffer} to
+	 * least recently used.
+	 * <p/>
+	 * @return a String representation of the number of each {@link Buffer} in
+	 *            the pool
+	 */
+	public String getBlockIDs()
+	{
+		ListIterator<Buffer> iter = pool.listIterator();
+		String ret = "";
+		while (iter.hasNext())
+		{
+			ret += "";
+		}
+		return ret;
+	}
 }

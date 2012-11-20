@@ -26,7 +26,7 @@ import java.io.PrintWriter;
 // during the discussion. I have violated neither the spirit nor
 // letter of this restriction.
 /**
- * Main class for Project 2, DNATree. This driver class handles terminal
+ * Main class for Project 2, DNAFile. This driver class handles terminal
  * interfacing, command line argument parsing, and program setup tasks.
  * <p/>
  * This class should be invoked from the command line with only one parameter: a
@@ -36,7 +36,7 @@ import java.io.PrintWriter;
  * <p/>
  * @author orionf22
  */
-public class DNATree
+public class DNAFile
 {
 
 	/**
@@ -58,6 +58,15 @@ public class DNATree
 	 * for command parsing.
 	 */
 	private static BufferedReader input;
+	
+	/**
+	 * The number of {@link Buffer} objects the {@link BufferPool} will manage.
+	 */
+	private static int buffers;
+	/**
+	 * The size in bytes each {@link Buffer} will manage.
+	 */
+	private static int blockSize;
 
 	/**
 	 * @param args the command line arguments
@@ -114,6 +123,10 @@ public class DNATree
 	 */
 	private static boolean parseArgs(String[] args)
 	{
+		if (args == null || args.length < 2)
+		{
+			return false;
+		}
 		try
 		{
 			inputFile = new File(args[0]);
@@ -121,8 +134,26 @@ public class DNATree
 		}
 		catch (Exception e)
 		{
-			DNATree.output.println("command-file not found\n");
+			DNAFile.output.println("command-file \"" + args[0] + "\"not found\n");
 			printInitializationFailure();
+			return false;
+		}
+		try
+		{
+			buffers = Integer.parseInt(args[1]);
+		}
+		catch (Exception e)
+		{
+			DNAFile.output.println("Invalid buffer count of " + args[1] + "\n");
+			return false;
+		}
+		try
+		{
+			blockSize = Integer.parseInt(args[2]);
+		}
+		catch (Exception e)
+		{
+			DNAFile.output.println("Invalid block size of " + args[2] + "\n");
 			return false;
 		}
 		return true;
@@ -133,6 +164,6 @@ public class DNATree
 	 */
 	public static void printInitializationFailure()
 	{
-		DNATree.output.println("Memory Manager initialization failed.\n");
+		DNAFile.output.println("Memory Manager initialization failed.\n");
 	}
 }

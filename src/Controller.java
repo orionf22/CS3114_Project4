@@ -41,11 +41,18 @@ public class Controller
 	 */
 	private DNATrie tree;
 	/**
+	 * The {@link BufferPool} used by this {@link Controller}.
+	 */
+	private BufferPool bufferPool;
+	/**
 	 * The {@link Codec} used to translate information to and from bytes and a
 	 * given format.
 	 */
 	private Codec codec;
-	
+	/**
+	 * Default length of a printed record before remaining characters will be
+	 * cropped off. This improves output readability.
+	 */
 	private static final int DEFAULT_STRING_CROP_LENGTH = 40;
 
 	/**
@@ -87,7 +94,7 @@ public class Controller
 		//Something exists here; duplicates are forbidden
 		if (curr.isLeaf())
 		{
-			DNATree.output.println("INSERT: Cannot insert duplicate record \""
+			DNAFile.output.println("INSERT: Cannot insert duplicate record \""
 					+ c.getInfo() + "\".");
 		}
 		//This is a unique sequence, attempt to insert
@@ -107,15 +114,15 @@ public class Controller
 						display = display.substring(0, 41) + "...\" ("
 								+ display.length() + " characters)";
 					}
-					DNATree.output.println("\nUnable to insert record \""
+					DNAFile.output.println("\nUnable to insert record \""
 							+ display + " (insufficient free space)");
 				}
 				//good to go!
 				else
 				{
 					tree.insert(newHandle, new DNASequence(c.getInfo()));
-					DNATree.output.println("\nSuccessfully inserted new "
-							+ "record \"" + c.getInfo() + "\" of " 
+					DNAFile.output.println("\nSuccessfully inserted new "
+							+ "record \"" + c.getInfo() + "\" of "
 							+ (bytes.length + 2) + " bytes ("
 							+ c.getInfo().length() + " characters) starting "
 							+ "at position " + newHandle.getAddress());
@@ -131,7 +138,7 @@ public class Controller
 					display = display.substring(0, 41) + "...\" ("
 							+ display.length() + " characters)";
 				}
-				DNATree.output.println("\nUnable to insert record \"" + display
+				DNAFile.output.println("\nUnable to insert record \"" + display
 						+ " (sequence does not contain any valid DNA "
 						+ "characters)");
 			}
@@ -160,7 +167,7 @@ public class Controller
 		}
 		catch (Exception e)
 		{
-			DNATree.output.println("Attempted to find \"" + c.getSequence()
+			DNAFile.output.println("Attempted to find \"" + c.getSequence()
 					+ "\"; " + e.getClass().getName() + " encountered. Removal "
 					+ "failure. Debug: " + e.toString());
 		}
@@ -168,7 +175,7 @@ public class Controller
 		//exist
 		if (toRemove == DNATrie.FLYWEIGHT)
 		{
-			DNATree.output.println("\nUnable to remove sequence \""
+			DNAFile.output.println("\nUnable to remove sequence \""
 					+ c.getSequence() + "\"; sequence not found.");
 		}
 		//else remove the sequence
@@ -179,14 +186,14 @@ public class Controller
 			MemHandle remove = leaf.getHandle();
 			tree.remove(sequence); // Must remove from the tree first
 			int size = manager.remove(remove); // Then remove from the pool!
-			DNATree.output.println("\nDeleted old record \"" + sequence + "\" "
+			DNAFile.output.println("\nDeleted old record \"" + sequence + "\" "
 					+ "of " + (size + 2) + " bytes (" + literal + " characters)"
 					+ " from position " + remove.getAddress());
 		}
 	}
 
 	/**
-	 * Prints the status of managed memory to {@link DNATree#output}.
+	 * Prints the status of managed memory to {@link DNAFile#output}.
 	 * <p/>
 	 * @param c the {@link PrintCommand} to follow
 	 */
@@ -196,21 +203,21 @@ public class Controller
 		//No param was specified; print Trie and freelist
 		if (request == DNATrie.JUST_DO_IT_SON)
 		{
-			DNATree.output.println(printTrie(tree.getRoot(), 0));
+			DNAFile.output.println(printTrie(tree.getRoot(), 0));
 		}
 		//print Trie with lenghts info and freelist
 		else if (request == DNATrie.BY_LENGTH)
 		{
-			DNATree.output.println(printTrieByLength(tree.getRoot(), 0));
+			DNAFile.output.println(printTrieByLength(tree.getRoot(), 0));
 		}
 		//print Trie with stats info and freelist
 		else if (request == DNATrie.BY_STATS)
 		{
-			DNATree.output.println(printTrieByStats(tree.getRoot(), 0));
+			DNAFile.output.println(printTrieByStats(tree.getRoot(), 0));
 		}
 		//also print the free list status
-		DNATree.output.println("\nFreeblock list:\n" + manager.getFreeBlocks()
-				+ "\n");
+		DNAFile.output.println("\nFreeblock list:\n" + manager.getFreeBlocks()
+				+ "\nBuffer Pool:\n" + bufferPool.getBlockIDs());
 	}
 
 	/**
@@ -227,7 +234,7 @@ public class Controller
 		DNASequence sequence = new DNASequence(c.getSequence());
 		ArrayList<String> matches = new ArrayList<>();
 		int nodesVisited = tree.get(sequence, matches);
-		DNATree.output.println("\nNodes visited: " + nodesVisited);
+		DNAFile.output.println("\nNodes visited: " + nodesVisited);
 		//at least one match in the collection
 		if (!matches.isEmpty())
 		{
@@ -235,13 +242,13 @@ public class Controller
 			for (int i = 0; i < matches.size(); i++)
 			{
 				binary = matches.get(i);
-				DNATree.output.println("sequence: " + binary);
+				DNAFile.output.println("sequence: " + binary);
 			}
 		}
 		//no matches found
 		else
 		{
-			DNATree.output.println("sequence \"" + sequence.getSequence()
+			DNAFile.output.println("sequence \"" + sequence.getSequence()
 					+ "\" not found");
 		}
 

@@ -77,12 +77,12 @@ public class LinkedList<E>
 	}
 
 	@Override
-	public ListIterator<E> iterator()
+	public FreeListIterator iterator()
 	{
-		return new FreeBlockIterator();
+		return new FreeListIterator();
 	}
 
-	private class FreeBlockIterator
+	protected class FreeListIterator
 			implements ListIterator<E>
 	{
 
@@ -122,7 +122,6 @@ public class LinkedList<E>
 		@Override
 		public E next()
 		{
-			E item = current.value;
 			if (current.next != tail)
 			{
 				current = current.next;
@@ -132,7 +131,7 @@ public class LinkedList<E>
 				current = head.next;
 			}
 			index++;
-			return item;
+			return current.value;
 		}
 
 		@Override
@@ -164,7 +163,7 @@ public class LinkedList<E>
 			}
 			else if (current.next == tail)
 			{
-				current = head.next;
+				current = current.prev;
 			}
 		}
 
@@ -189,27 +188,29 @@ public class LinkedList<E>
 			newNode.next = next;
 			size++;
 			index++;
-			//if (size == 1)
-			//{
 			current = newNode;
-			//}
 			//System.out.println(head + ": " + head.next + ": " + current + ": " + tail + ": " + tail.next + ": " + head.prev);
+		}
+		
+		public E current()
+		{
+			return this.current.value;
 		}
 	}
 
 	/**
 	 * Helper class that represents a Node within a doubly-linked list.
 	 * <p/>
-	 * @param <E> the generic datatype stored by this Node
+	 * @param <Q> the generic datatype stored by this Node
 	 */
-	private class Node<E>
+	private class Node<Q>
 	{
 
-		private Node<E> next;
-		private Node<E> prev;
-		private E value;
+		private Node<Q> next;
+		private Node<Q> prev;
+		private Q value;
 
-		private Node(E val)
+		private Node(Q val)
 		{
 			this.value = val;
 		}

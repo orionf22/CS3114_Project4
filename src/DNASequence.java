@@ -101,13 +101,10 @@ public class DNASequence
 	 * front.
 	 * <p/>
 	 * @param depth the depth at which to crop
-	 * <p/>
-	 * @return the cropped iteration of {@code current}
 	 */
-	public DNASequence cropAt(int depth)
+	public void cropAt(int depth)
 	{
-		//compensate for 0-based indexing
-		int actual = depth - 1;
+		int actual = depth;
 		if (depth >= current.length())
 		{
 			actual = current.length() - 1;
@@ -117,7 +114,6 @@ public class DNASequence
 			actual = 0;
 		}
 		current = current.substring(actual, current.length());
-		return this;
 	}
 
 	/**
