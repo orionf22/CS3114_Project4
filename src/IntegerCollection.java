@@ -1,5 +1,7 @@
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -110,8 +112,16 @@ public class IntegerCollection
 			return new HeapRecord(-1, -1);
 		}
 		//bit shifting; yay!
-		int key = bytes[1] | (bytes[0] << 8);
-		int value = bytes[3] | (bytes[2] << 8);
+		//int key = bytes[1] | (bytes[0] << 8);
+		//int value = bytes[3] | (bytes[2] << 8);
+		ByteBuffer buff = ByteBuffer.allocate(4);
+		buff.order(ByteOrder.BIG_ENDIAN);
+		buff.put(bytes[0]);
+		buff.put(bytes[1]);
+		short key = buff.getShort(0);
+		buff.put(bytes[2]);
+		buff.put(bytes[3]);
+		short value = buff.getShort(2);
 		return new HeapRecord(key, value);
 	}
 

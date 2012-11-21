@@ -1,9 +1,11 @@
-
 /**
  * Source code example for "A Practical Introduction to Data Structures and
  * Algorithm Analysis, 3rd Edition (Java)" by Clifford A. Shaffer Copyright
  * 2008-2011 by Clifford A. Shaffer
  */
+import java.io.*;
+import java.util.*;
+
 /**
  * Generate a test data file. The size is a multiple of 4096 bytes. Depending on
  * the options, you can generate two types of output. With option "-a", the
@@ -11,10 +13,6 @@
  * like a series of: [space][letter][space][space]. With option "-b", the
  * records are short ints, with each record having a value less than 30,000.
  */
-import java.io.*;
-import java.util.*;
-import java.math.*;
-
 public class Genfile2
 {
 
@@ -37,7 +35,7 @@ public class Genfile2
 		if ((args.length != 3) || (args[0].charAt(0) != '-'))
 		{
 			System.out.println("Usage: Genfile2 <option> <filename> <size>"
-					+ "\nOptions ust be '-a' for ASCII, or '-b' for binary."
+					+ "\nOptions must be '-a' for ASCII, or '-b' for binary."
 					+ "\nSize is measured in blocks of 4096 bytes");
 			return;
 		}
