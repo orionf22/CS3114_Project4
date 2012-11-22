@@ -9,23 +9,34 @@ import java.util.ListIterator;
 /**
  * {@code BufferPool} objects utilize a {@link LinkedList} to manage a set
  * number of {@link Buffer} objects for the purposes of reading and writing data
- * from and to a given source file without having to make disk accesses. The
- * {@code BufferPool} allows portions of a source file to be kept in main memory
- * for faster I/O operations.
+ * from and to a given source file without having to make as many disk accesses
+ * by allowing portions of the source file to be kept in main memory for faster
+ * I&#47;O operations.
  * <p/>
- * A standard {@link LinkedList} is used to manage in-memory {@link Buffer}
- * objects. The <b>Least Recently Used</b> scheme is used to manage the pool
- * list. Source file I/O requests go through the {@code BufferPool}, which
- * supports direct reading and writing of the source using a
- * {@link RandomAccessFile} through the implementation of {@link Buffer}
- * objects.
+ * The {@code BufferPool} itself does not deviate from standard buffer pool
+ * designs; as an I&#47;O request is processed, the {@code BufferPool}
+ * determines where, in the source, the desired bytes from the request are. This
+ * location is used to determine the block number(s) containing the desired
+ * byte(s), thus determining which {@link Buffer} to access.
+ * <p/>
+ * If the desired {@link Buffer} is in the pool, it is retrieved and the request
+ * is performed to the utmost ability of the {@code BufferPool}. If the desired
+ * {@link Buffer} is not already in the pool, it is pulled in, replacing the
+ * least recently used {@link Buffer} according to the <b>Least Recently
+ * Used</b> scheme.
+ * <p/>
+ * The block&#47;{@link Buffer#number} defines an abstract mechanism that groups
+ * bytes within the source into one specific size,
+ * {@link #BLOCK_SIZE BLOCK_SIZE}, defined when the {@code BufferPool} is
+ * created. This block of bytes is then managed by a {@link Buffer}. All
+ * {@link Buffer Buffers} are of the same size, defined by {@link #BLOCK_SIZE},
+ * and use the block number as a form of identification.
  * <p/>
  * @author orionf22
  * @author rinaldi1
  */
 public class BufferPool
 {
-
 	/**
 	 * This {@code BufferPool's} {@link LinkedList}.
 	 */
@@ -60,10 +71,11 @@ public class BufferPool
 	 */
 	private int DISK_WRITES;
 	/**
-	 * The static size of blocks within the source, in bytes. For Project 3,
-	 * this is 4096.
+	 * The number of bytes each {@link Buffer} will manage from the source. It
+	 * is set once and only once in {@link #BufferPool(int, File, int)}. Once
+	 * set, this value cannot be altered.
 	 */
-	public static final int BLOCK_SIZE = 4096;
+	public final int BLOCK_SIZE;
 
 	/**
 	 * Constructs a new {@code BufferPool} with space for {@code numBuffers}
@@ -72,20 +84,23 @@ public class BufferPool
 	 * <p/>
 	 * @param numBuffers the number of {@link Buffer Buffers} this pool will
 	 *                      manage
-	 * @param file       the {@link File} from which to read and write
+	 * @param file       the {@link File} from which to read and write; all read
+	 *                      and write requests source to this file
+	 * @param blockSize  the number of bytes that each {@link Buffer} will
+	 *                      manage
 	 * <p/>
 	 * @throws FileNotFoundException
 	 */
-	public BufferPool(int numBuffers, File file) throws FileNotFoundException
+	public BufferPool(int numBuffers, File file, final int blockSize) throws FileNotFoundException
 	{
-		//heapsort.output.println("new BufferPool");
-		pool = new LinkedList<>();
-		POOL_COUNT = numBuffers;
+		this.pool = new LinkedList<>();
 		this.file = new RandomAccessFile(file, "rw");
+		POOL_COUNT = numBuffers;
 		CACHE_HITS = 0;
 		CACHE_MISSES = 0;
 		DISK_READS = 0;
 		DISK_WRITES = 0;
+		BLOCK_SIZE = blockSize;
 	}
 
 	/**
@@ -94,18 +109,21 @@ public class BufferPool
 	 * {@link IntegerCollection#RECORD_SIZE}. Bytes from the source are acquired
 	 * byte-by-byte from the right {@link Buffer}.
 	 * <p/>
-	 * @param start the location within the source from which to start reading
-	 *                 bytes
+	 * @param start       the location within the source from which to start
+	 *                       reading bytes
+	 * @param requestSize the size, in bytes, of the request; this is the amount
+	 *                       of bytes that will be allocated for the return byte
+	 *                       array
 	 * <p/>
 	 * @return a byte array containing the bytes from the source
 	 * <p/>
 	 * @throws IOException
 	 */
-	public byte[] get(int start) throws IOException
+	public byte[] get(int start, int requestSize) throws IOException
 	{
-		byte[] ret = new byte[IntegerCollection.RECORD_SIZE];
+		byte[] ret = new byte[requestSize];
 		int retIndex = 0;
-		for (int i = start; i < start + IntegerCollection.RECORD_SIZE; i++)
+		for (int i = start; i < start + requestSize; i++)
 		{
 			//determine which Buffer to look at
 			int blockNum = i / BLOCK_SIZE;

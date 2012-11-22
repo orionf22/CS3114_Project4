@@ -3,7 +3,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 
 // On my honor:
@@ -26,90 +25,115 @@ import java.io.PrintWriter;
 // during the discussion. I have violated neither the spirit nor
 // letter of this restriction.
 /**
- * Main class for Project 2, DNAFile. This driver class handles terminal
- * interfacing, command line argument parsing, and program setup tasks.
+ * This project stores DNA sequences (defined in the {@link DNASequence} class)
+ * in a {@link DNATrie} for easy sorting and finding operations. Data is
+ * introduced in the form of {@link Command commands}
  * <p/>
- * This class should be invoked from the command line with only one parameter: a
- * path of a text file containing commands to execute. Command parsing is
- * handled in the {@link CommandParser} class; command execution is handled
- * here.
+ * Up to a certain point, the more {@link Buffer Buffers} managed by the
+ * {@link BufferPool} the faster the program will execute (due to minimized disk
+ * accesses). This number is the second argument on the command line.
+ * <p/>
+ * Finally, program execution statistics are collected and stored in a new file
+ * specified by the third and final command line argument. This argument is
+ * expected to be a valid abstract pathname which will be used to create a new
+ * file.
  * <p/>
  * @author orionf22
+ * @author rinaldi1
  */
 public class DNAFile
 {
 
 	/**
-	 * The output {@link PrintWriter}. All command output is directed here where
-	 * it can be relayed to any acceptable {@link OutputStream} object.
+	 * The number of {@link Buffer Buffers} that the {@link BufferPool} is
+	 * allowed to manage.
 	 */
-	protected static PrintWriter output;
-	/**
-	 * The input {@link File} containing commands to parse and execute. This
-	 * file should be a generic {@code .txt} file.
-	 */
-	protected static File inputFile;
+	private static int buffers;
 	/**
 	 * The {@link Controller} to use.
 	 */
 	protected static Controller controller;
 	/**
+	 * The {@link BufferPool} mediating disk accesses.
+	 */
+	private static BufferPool pool;
+	/**
 	 * The {@link BufferedReader} that retrieves lines within {@code inputFile}
 	 * for command parsing.
 	 */
 	private static BufferedReader input;
-	
 	/**
-	 * The number of {@link Buffer} objects the {@link BufferPool} will manage.
+	 * A publicly available {@link PrintWriter}. All program output comes
+	 * through this writer.
 	 */
-	private static int buffers;
+	public static PrintWriter output;
 	/**
-	 * The size in bytes each {@link Buffer} will manage.
+	 * The input {@link File} containing all commands to follow during
+	 * execution.
 	 */
-	private static int blockSize;
+	public static File inputFile;
+	/**
+	 * The size, in bytes, each {@link Buffer} will manage.
+	 */
+	public static int BLOCK_SIZE;
+	/**
+	 * The {@code .dat} file containing all data necessary for execution. This
+	 * includes, but is not limited to, {@link TrieNode} contents and
+	 * {@link DNATrie} data. This file serves as the {@link MemoryPool} used by
+	 * the {@link MemManager}.
+	 */
+	public static File BIN_DAT = new File("src/p4bin.dat");
 
 	/**
 	 * @param args the command line arguments
+	 * <p/>
+	 * @throws HeapException
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		inputFile = new File("src/commands.txt");
-		//Parse arg[0]; this is expected to be the commands text file
-		//if (!parseArgs(args))
-		//{
-			//Program cannot operate without a valid commands file
-		//	System.exit(1);
-		//}
-		//Use System.out as the output
 		output = new PrintWriter(System.out, true);
-		input = new BufferedReader(new FileReader(inputFile));
-		String line;
-		controller = new Controller(new MemManager(100), new DNATrie());
+		controller = new Controller(new MemManager(10), new DNATrie());
 		controller.setCodec(new DNACodec());
-
-		while ((line = input.readLine()) != null)
+		//parse the command line arguments. the program cannot operate if any 
+		//arguments are invalid
+		if (!parseArgs(args))
 		{
-			//Get the command entered
-			Command nextCommand = CommandParser.getNextCommand(line);
-			//Checks to see what type of command was called, pointing control
-			//to the appropriate function in the Controller
+			output.println("Program initialization failed.");
+		}
+		else
+		{
+			pool = new BufferPool(buffers, BIN_DAT, BLOCK_SIZE);
+			String line;
 
-			if (nextCommand instanceof InsertCommand)
+			input = new BufferedReader(new FileReader(inputFile));
+			while ((line = input.readLine()) != null)
 			{
-				controller.insertRecord((InsertCommand) nextCommand);
+				//Get the command entered
+				Command nextCommand = CommandParser.getNextCommand(line);
+				//Checks to see what type of command was called, pointing
+				//control to the appropriate function in the Controller
+
+				if (nextCommand instanceof InsertCommand)
+				{
+					controller.insertRecord((InsertCommand) nextCommand);
+				}
+				else if (nextCommand instanceof RemoveCommand)
+				{
+					controller.removeRecord((RemoveCommand) nextCommand);
+				}
+				else if (nextCommand instanceof PrintCommand)
+				{
+					controller.print((PrintCommand) nextCommand);
+				}
+				else if (nextCommand instanceof SearchCommand)
+				{
+					controller.search((SearchCommand) nextCommand);
+				}
 			}
-			else if (nextCommand instanceof RemoveCommand)
-			{
-				controller.removeRecord((RemoveCommand) nextCommand);
-			}
-			else if (nextCommand instanceof PrintCommand)
-			{
-				controller.print((PrintCommand) nextCommand);
-			}
-			else if (nextCommand instanceof SearchCommand)
-			{
-				controller.search((SearchCommand) nextCommand);
-			}
+			//flush the pool prior to writing stats
+			pool.flush();
+			//finally, close the file stream
+			pool.closeSourceStream();
 		}
 	}
 
@@ -135,7 +159,6 @@ public class DNAFile
 		catch (Exception e)
 		{
 			DNAFile.output.println("command-file \"" + args[0] + "\"not found\n");
-			printInitializationFailure();
 			return false;
 		}
 		try
@@ -149,7 +172,7 @@ public class DNAFile
 		}
 		try
 		{
-			blockSize = Integer.parseInt(args[2]);
+			BLOCK_SIZE = Integer.parseInt(args[2]);
 		}
 		catch (Exception e)
 		{
@@ -157,13 +180,5 @@ public class DNAFile
 			return false;
 		}
 		return true;
-	}
-
-	/**
-	 * Print program initialization failure.
-	 */
-	public static void printInitializationFailure()
-	{
-		DNAFile.output.println("Memory Manager initialization failed.\n");
 	}
 }

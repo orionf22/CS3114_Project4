@@ -41,10 +41,6 @@ public class Controller
 	 */
 	private DNATrie tree;
 	/**
-	 * The {@link BufferPool} used by this {@link Controller}.
-	 */
-	private BufferPool bufferPool;
-	/**
 	 * The {@link Codec} used to translate information to and from bytes and a
 	 * given format.
 	 */
@@ -157,8 +153,6 @@ public class Controller
 	public void removeRecord(RemoveCommand c)
 	{
 		DNASequence sequence = new DNASequence(c.getSequence());
-		//ERROR! sometimes this doesn't get what we want...due to incomplete
-		//DNATrie.insert method
 		TrieNode toRemove = DNATrie.FLYWEIGHT;
 		try
 		{
@@ -216,8 +210,8 @@ public class Controller
 			DNAFile.output.println(printTrieByStats(tree.getRoot(), 0));
 		}
 		//also print the free list status
-		DNAFile.output.println("\nFreeblock list:\n" + manager.getFreeBlocks()
-				+ "\nBuffer Pool:\n" + bufferPool.getBlockIDs());
+		//DNAFile.output.println("\nFreeblock list:\n" + manager.getFreeBlocks()
+		//		+ "\nBuffer Pool:\n" + bufferPool.getBlockIDs());
 	}
 
 	/**

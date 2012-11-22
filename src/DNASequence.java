@@ -85,7 +85,7 @@ public class DNASequence
 	}
 
 	/**
-	 * Removes the first character of {@code current} by means of a substring
+	 * Strips the first character of {@code current} by means of a substring
 	 * call.
 	 * <p/>
 	 * @return the cropped iteration of {@code current}
@@ -98,12 +98,15 @@ public class DNASequence
 
 	/**
 	 * Crops {@code current} by {@code depth} many 0-based positions from the
-	 * front.
+	 * front. This function assumes the caller utilizes a zero-based indexing
+	 * system to handle these sequences so no compensation is necessary unless
+	 * utilizing any other integer-based indexing system.
 	 * <p/>
 	 * @param depth the depth at which to crop
 	 */
 	public void cropAt(int depth)
 	{
+		//IMPORTANT! Calculations based on 0-based indexing!
 		int actual = depth;
 		if (depth >= current.length())
 		{
@@ -141,7 +144,7 @@ public class DNASequence
 			sequence = sequence.substring(0, sequence.length() - 1);
 		}
 	}
-	
+
 	/**
 	 * Restores {@code current} to the original state of {@code sequence}. This
 	 * allows a sequence to be recycled for other operations.
@@ -203,14 +206,11 @@ public class DNASequence
 	}
 
 	/**
-	 * Returns a String representation of sequence base occurrences in the form of
-	 * occurrence statistics. For example, a sequence of {@code AAAAGGTC} will
-	 * return the following statistics:
-	 * <li>A(50.00)</li>
-	 * <li>C(12.50)</li>
-	 * <li>G(25.00)</li>
-	 * <li>T(12.50)</li>
-	 * 
+	 * Returns a String representation of sequence base occurrences in the form
+	 * of occurrence statistics. For example, a sequence of {@code AAAAGGTC}
+	 * will return the following statistics: <li>A(50.00)</li> <li>C(12.50)</li>
+	 * <li>G(25.00)</li> <li>T(12.50)</li>
+	 * <p/>
 	 * @return the statistics of this sequence
 	 */
 	public String getStats()

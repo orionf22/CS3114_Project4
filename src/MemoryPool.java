@@ -57,16 +57,11 @@ public class MemoryPool
 	 */
 	public void insert(byte[] stuff, int index)
 	{
-	    //System.out.println("MemoryPool: insert: index = " + index);
-	    //System.out.println("MemoryPool: insert: new byte[] s" + index);
 		byte[] s = sizeToBytes((short) stuff.length);
-		//System.out.println("MemoryPool: insert: pool[index]   = s[0]" + index);
 		pool[index] = s[0];
-		//System.out.println("MemoryPool: insert: pool[index+1] = s[1]" + index);
 		pool[index + 1] = s[1];
 		for (int i = index + 2; i < stuff.length + (index + 2); i++)
 		{
-		    //System.out.println("MemoryPool: insert: pool[i] = s[i - (index+2)]" + index);
 			pool[i] = stuff[i - (index + 2)];
 		}
 	}
@@ -82,18 +77,11 @@ public class MemoryPool
 	 */
 	public byte[] get(MemHandle h)
 	{
-	    //System.out.println("MemoryPool: get");
-	    //System.out.println("MemoryPool: index = h.getAddy");
 		int index = h.getAddress();
-		//System.out.println("MemoryPool: byte[] s = new byte[2]");
 		byte[] s = new byte[2];
-		//System.out.println("MemoryPool: s0 = pool[index]");
 		s[0] = pool[index];
-		//System.out.println("MemoryPool: s1 = pool[index+1]");
 		s[1] = pool[index + 1];
-		//System.out.println("MemoryPool: newSize = bytesToSize(s) " + bytesToSize(s));
 		int newSize = bytesToSize(s);
-		//System.out.println("MemoryPool: byte[] ret = new byte[newSize] " + newSize);
 		byte[] ret = new byte[newSize];
 
 		for (int i = index + 2; i < newSize + index + 2; i++)
@@ -146,7 +134,7 @@ public class MemoryPool
 	}
 
 	/**
-	 * Converts a {@code short} value, {@code s} to a two0byte size sequence.
+	 * Converts a {@code short} value, {@code s}, to a two-byte size sequence.
 	 * This is used as a prefix to all stored data byte arrays to denote the
 	 * actual byte length of stored data. All {@link MemHandle} references
 	 * address this two-byte sequence and higher functions use the size to
