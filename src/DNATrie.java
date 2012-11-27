@@ -4,8 +4,8 @@ import java.util.Collection;
 /**
  * {@code DNATrie} objects are 5-way branching trees that store
  * {@link MemHandle} and integer objects but are sorted by {@link DNASequence}.
- * Each node can branch into five children: <li>A</li> <li>C</li> <li>G</li>
- * <li>T</li> <li>$</li>
+ * Each node can branch into five children: <ul><li>A</li> <li>C</li> <li>G</li>
+ * <li>T</li> <li>$</li></ul>
  * <p/>
  * As a sequence is used during tree navigation, be it for inserting, removal,
  * or searching, it determines which branch to take based on the current value
@@ -32,7 +32,7 @@ public class DNATrie
 	/**
 	 * Flyweight design; all empty nodes point to this single object.
 	 */
-	protected static final TrieNode.FLYWEIGHT FLYWEIGHT = new TrieNode.FLYWEIGHT();
+	protected static final TrieNode.FLYWEIGHT FLYWEIGHT = TrieNode.FLYWEIGHT;
 	/**
 	 * The size of this tree.
 	 */

@@ -1,0 +1,26 @@
+insert A
+insert G
+insert T
+insert C
+insert AACT
+insert AAGG
+insert AACA
+insert AGGT
+insert AA
+insert AGGT
+insert AA
+remove A
+print
+remove G
+print
+remove AGGT
+print
+remove C
+print
+remove AAGG
+print
+remove AACT
+print
+remove T
+print
+

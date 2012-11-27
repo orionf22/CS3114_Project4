@@ -1,0 +1,29 @@
+          insert A
+print
+insert G
+
+
+insert T
+                insert C
+insert AACT
+          insert     AAGG
+insert AACA
+
+
+
+insert AGGT
+             insert            AA
+       print
+insert               AGGT
+print
+insert AA
+print
+insert CT
+         print
+		 remove AA
+		 print
+    remove           T
+	      search                  A
+search                                AA$	  
+print                    lengths
+           print        stats

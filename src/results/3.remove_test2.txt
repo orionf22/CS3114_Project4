@@ -1,0 +1,296 @@
+
+Successfully inserted new record "ACGT" of 3 bytes (4 characters) starting at position 0
+
+Successfully inserted new record "AAAA" of 3 bytes (4 characters) starting at position 3
+
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 6
+
+Successfully inserted new record "AAACCCCGGTGAAAACGTA" of 6 bytes (19 characters) starting at position 11
+
+Successfully inserted new record "ACTGGGAA" of 4 bytes (8 characters) starting at position 111
+
+Successfully inserted new record "AAAACCCTGCCC" of 4 bytes (12 characters) starting at position 211
+
+Successfully inserted new record "AAAACCCTGCATGC" of 5 bytes (14 characters) starting at position 311
+
+Deleted old record "ACGT" of 3 bytes (4 characters) from position 0
+I
+  I
+    I
+      I
+        I
+          E
+          I
+            E
+            I
+              E
+              I
+                E
+                E
+                E
+                I
+                  E
+                  E
+                  I
+                    E
+                    I
+                      AAAACCCTGCATGC
+                      AAAACCCTGCCC
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                  E
+                  E
+                E
+              E
+              E
+              E
+            E
+            E
+            E
+          E
+          E
+          AAAA
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      AA
+    ACTGGGAA
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+
+Successfully inserted new record "ACCTT" of 3 bytes (5 characters) starting at position 411
+
+Deleted old record "AA" of 3 bytes (2 characters) from position 6
+I
+  I
+    I
+      I
+        I
+          E
+          I
+            E
+            I
+              E
+              I
+                E
+                E
+                E
+                I
+                  E
+                  E
+                  I
+                    E
+                    I
+                      AAAACCCTGCATGC
+                      AAAACCCTGCCC
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                  E
+                  E
+                E
+              E
+              E
+              E
+            E
+            E
+            E
+          E
+          E
+          AAAA
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    I
+      E
+      ACCTT
+      E
+      ACTGGGAA
+      E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+
+Deleted old record "AAAA" of 3 bytes (4 characters) from position 3
+I
+  I
+    I
+      I
+        I
+          E
+          I
+            E
+            I
+              E
+              I
+                E
+                E
+                E
+                I
+                  E
+                  E
+                  I
+                    E
+                    I
+                      AAAACCCTGCATGC
+                      AAAACCCTGCCC
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                  E
+                  E
+                E
+              E
+              E
+              E
+            E
+            E
+            E
+          E
+          E
+          E
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    I
+      E
+      ACCTT
+      E
+      ACTGGGAA
+      E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+
+Unable to remove sequence "AAAA"; sequence not found.
+I
+  I
+    I
+      I
+        I
+          E
+          I
+            E
+            I
+              E
+              I
+                E
+                E
+                E
+                I
+                  E
+                  E
+                  I
+                    E
+                    I
+                      AAAACCCTGCATGC
+                      AAAACCCTGCCC
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                  E
+                  E
+                E
+              E
+              E
+              E
+            E
+            E
+            E
+          E
+          E
+          E
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    I
+      E
+      ACCTT
+      E
+      ACTGGGAA
+      E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+
+Deleted old record "AAAACCCTGCCC" of 4 bytes (12 characters) from position 211
+I
+  I
+    I
+      I
+        AAAACCCTGCATGC
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    I
+      E
+      ACCTT
+      E
+      ACTGGGAA
+      E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+

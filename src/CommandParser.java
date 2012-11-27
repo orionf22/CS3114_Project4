@@ -119,8 +119,11 @@ public class CommandParser
 				break;
 			//No command recognized
 			default:
-				DNAFile.output.println("Command \"" + commandType
-						+ "\" not recognized on line " + commandNum + "\n");
+				if (!commandType.equals(""))
+				{
+					DNAFile.output.println("Command \"" + commandType
+							+ "\" not recognized on line " + commandNum + "\n");
+				}
 		}
 
 		return cmd;

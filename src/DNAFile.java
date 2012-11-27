@@ -82,7 +82,7 @@ public class DNAFile
 	 * {@link DNATrie} data. This file serves as the {@link MemoryPool} used by
 	 * the {@link MemManager}.
 	 */
-	public static File BIN_DAT = new File("src/p4bin.dat");
+	public static File BIN_DAT = new File("p4bin.dat");
 
 	/**
 	 * @param args the command line arguments

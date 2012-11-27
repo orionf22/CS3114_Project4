@@ -1,0 +1,25 @@
+insert A
+print
+insert G
+insert T
+insert C
+insert AACT
+insert AAGG
+insert AACA
+insert AGGT
+insert AA
+print
+insert AGGT
+print
+insert AA
+print
+insert CT
+print
+insert ATC
+insert ATCGTT
+print 
+insert AAAACCCTGCCC
+print
+insert AAAACCCTGCATGC
+print lengths
+print stats

@@ -1,0 +1,212 @@
+
+Successfully inserted new record "A" of 3 bytes (1 characters) starting at position 0
+A
+
+
+Successfully inserted new record "G" of 3 bytes (1 characters) starting at position 3
+
+Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 6
+
+Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 11
+
+Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 111
+
+Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 211
+
+Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 311
+
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 411
+
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 511
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    E
+    A
+  C
+  G
+  T
+  E
+
+INSERT: Cannot insert duplicate record "AGGT".
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    E
+    A
+  C
+  G
+  T
+  E
+
+INSERT: Cannot insert duplicate record "AA".
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    E
+    A
+  C
+  G
+  T
+  E
+
+
+Successfully inserted new record "CT" of 3 bytes (2 characters) starting at position 611
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    E
+    A
+  I
+    E
+    E
+    E
+    CT
+    C
+  G
+  T
+  E
+
+
+Deleted old record "AA" of 3 bytes (2 characters) from position 511
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      E
+    E
+    AGGT
+    E
+    A
+  I
+    E
+    E
+    E
+    CT
+    C
+  G
+  T
+  E
+
+
+Deleted old record "T" of 3 bytes (1 characters) from position 6
+
+Nodes visited: 17
+sequence: AACA
+sequence: AACT
+sequence: AAGG
+sequence: AGGT
+sequence: A
+
+Nodes visited: 4
+sequence "AA$" not found
+I
+  I
+    I
+      E
+      I
+        AACA: length 4 
+        E
+        E
+        AACT: length 4 
+        E
+      AAGG: length 4 
+      E
+      E
+    E
+    AGGT: length 4 
+    E
+    A: length 1 
+  I
+    E
+    E
+    E
+    CT: length 2 
+    C: length 1 
+  G: length 1 
+  E
+  E
+
+I
+  I
+    I
+      E
+      I
+        AACA A(75.00), C(25.00), G(0.00), T(0.00)
+        E
+        E
+        AACT A(50.00), C(25.00), G(0.00), T(25.00)
+        E
+      AAGG A(50.00), C(0.00), G(50.00), T(0.00)
+      E
+      E
+    E
+    AGGT A(25.00), C(0.00), G(50.00), T(25.00)
+    E
+    A A(100.00), C(0.00), G(0.00), T(0.00)
+  I
+    E
+    E
+    E
+    CT A(0.00), C(50.00), G(0.00), T(50.00)
+    C A(0.00), C(100.00), G(0.00), T(0.00)
+  G A(0.00), C(0.00), G(100.00), T(0.00)
+  E
+  E
+

@@ -1,0 +1,29 @@
+search T
+search T$
+insert A
+insert G
+insert T
+insert C
+insert AACT
+insert AAGG
+insert AACA
+insert AGGT
+insert AA
+insert GTC
+search AA
+print
+search A
+search AA$
+search G
+search G$
+search GTC$
+search CT
+search AAA$
+print
+insert ATC
+insert ATCGTT 
+print
+search AT
+search AT$
+search ATC$
+

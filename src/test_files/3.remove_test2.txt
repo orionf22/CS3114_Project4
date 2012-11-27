@@ -1,0 +1,19 @@
+insert ACGT
+insert AAAA
+insert AA
+insert AAACCCCGGTGAAAACGTA
+insert ACTGGGAA
+insert AAAACCCTGCCC
+insert AAAACCCTGCATGC
+remove ACGT
+print
+insert ACCTT
+remove AA
+print
+remove AAAA
+print
+remove AAAA
+print
+remove AAAACCCTGCCC
+print
+

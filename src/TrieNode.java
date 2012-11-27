@@ -14,27 +14,30 @@
  */
 public abstract class TrieNode
 {
-
+	/**
+	 * Flyweight design; all empty nodes point to this single object.
+	 */
+	protected static TrieNode.FLYWEIGHT FLYWEIGHT = new TrieNode.FLYWEIGHT();
 	/**
 	 * The A subtree.
 	 */
-	protected TrieNode A = DNATrie.FLYWEIGHT;
+	protected TrieNode A = FLYWEIGHT;
 	/**
 	 * The C subtree.
 	 */
-	protected TrieNode C = DNATrie.FLYWEIGHT;
+	protected TrieNode C = FLYWEIGHT;
 	/**
 	 * The G subtree.
 	 */
-	protected TrieNode G = DNATrie.FLYWEIGHT;
+	protected TrieNode G = FLYWEIGHT;
 	/**
 	 * The T subtree.
 	 */
-	protected TrieNode T = DNATrie.FLYWEIGHT;
+	protected TrieNode T = FLYWEIGHT;
 	/**
 	 * The $ subtree (sequence terminator).
 	 */
-	protected TrieNode $ = DNATrie.FLYWEIGHT;
+	protected TrieNode $ = FLYWEIGHT;
 
 	/**
 	 * Denotes this {@code TrieNode} as a leaf node.
