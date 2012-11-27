@@ -8,24 +8,24 @@
  * @author rinaldi1
  * @author orionf22
  */
-public interface Codec
+public interface Codec<E>
 {
 
 	/**
-	 * Decodes {@code bytes} into a String.
+	 * Decodes {@code bytes} into an {@code E} object.
 	 * <p/>
 	 * @param bytes the bytes to decode
 	 * <p/>
-	 * @return the decoded bytes as a String
+	 * @return the decoded bytes as {@code E}
 	 */
-	public String decode(byte[] bytes);
+	public E decode(byte[] bytes);
 
 	/**
 	 * Encodes {@code stuff} as a byte array.
 	 * <p/>
-	 * @param stuff the String to encode
+	 * @param stuff the object to encode
 	 * <p/>
-	 * @return the encoded String as a byte array
+	 * @return the encoded object as a byte array
 	 */
-	public byte[] encode(String stuff);
+	public byte[] encode(E stuff);
 }

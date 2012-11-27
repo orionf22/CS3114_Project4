@@ -5,17 +5,17 @@ Successfully inserted new record "G" of 3 bytes (1 characters) starting at posit
 
 Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 6
 
-Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 11
+Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 9
 
-Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 111
+Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 12
 
-Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 211
+Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 15
 
-Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 311
+Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 18
 
-Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 411
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 21
 
-Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 511
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 24
 INSERT: Cannot insert duplicate record "AGGT".
 INSERT: Cannot insert duplicate record "AA".
 
@@ -67,7 +67,7 @@ I
   E
 
 
-Deleted old record "AGGT" of 3 bytes (4 characters) from position 411
+Deleted old record "AGGT" of 3 bytes (4 characters) from position 21
 I
   I
     I
@@ -91,7 +91,7 @@ I
   E
 
 
-Deleted old record "C" of 3 bytes (1 characters) from position 11
+Deleted old record "C" of 3 bytes (1 characters) from position 9
 I
   I
     I
@@ -115,7 +115,7 @@ I
   E
 
 
-Deleted old record "AAGG" of 3 bytes (4 characters) from position 211
+Deleted old record "AAGG" of 3 bytes (4 characters) from position 15
 I
   I
     I
@@ -139,7 +139,7 @@ I
   E
 
 
-Deleted old record "AACT" of 3 bytes (4 characters) from position 111
+Deleted old record "AACT" of 3 bytes (4 characters) from position 12
 I
   I
     I

@@ -7,17 +7,17 @@ Successfully inserted new record "G" of 3 bytes (1 characters) starting at posit
 
 Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 6
 
-Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 11
+Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 9
 
-Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 111
+Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 12
 
-Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 211
+Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 15
 
-Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 311
+Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 18
 
-Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 411
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 21
 
-Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 511
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 24
 I
   I
     I
@@ -87,7 +87,7 @@ I
   E
 
 
-Successfully inserted new record "CT" of 3 bytes (2 characters) starting at position 611
+Successfully inserted new record "CT" of 3 bytes (2 characters) starting at position 27
 I
   I
     I
@@ -116,7 +116,7 @@ I
   E
 
 
-Deleted old record "AA" of 3 bytes (2 characters) from position 511
+Deleted old record "AA" of 3 bytes (2 characters) from position 24
 I
   I
     I

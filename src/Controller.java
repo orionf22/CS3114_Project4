@@ -44,7 +44,7 @@ public class Controller
 	 * The {@link Codec} used to translate information to and from bytes and a
 	 * given format.
 	 */
-	private Codec codec;
+	private Codec<DNASequence> codec;
 	/**
 	 * Default length of a printed record before remaining characters will be
 	 * cropped off. This improves output readability.
@@ -69,7 +69,7 @@ public class Controller
 	 * <p/>
 	 * @param c the {@link Codec} to use
 	 */
-	public void setCodec(Codec c)
+	public void setCodec(Codec<DNASequence> c)
 	{
 		this.codec = c;
 	}
@@ -84,9 +84,10 @@ public class Controller
 	 */
 	public void insertRecord(InsertCommand c)
 	{
+		DNASequence insertMe = new DNASequence(c.getInfo());
 		//Attempt to find this sequence first. If it is found, this new sequence
 		//is a duplicate and is not to be inserted
-		TrieNode curr = tree.fetch(new DNASequence(c.getInfo()));
+		TrieNode curr = tree.fetch(insertMe);
 		//Something exists here; duplicates are forbidden
 		if (curr.isLeaf())
 		{
@@ -96,7 +97,8 @@ public class Controller
 		//This is a unique sequence, attempt to insert
 		else
 		{
-			byte[] bytes = codec.encode(c.getInfo());
+			insertMe.restore();
+			byte[] bytes = codec.encode(insertMe);
 			//if bytes is null sequence did not contain any of A, C, G, or T
 			if (bytes != null)
 			{
@@ -116,7 +118,7 @@ public class Controller
 				//good to go!
 				else
 				{
-					tree.insert(newHandle, new DNASequence(c.getInfo()));
+					tree.insert(newHandle, insertMe);
 					DNAFile.output.println("\nSuccessfully inserted new "
 							+ "record \"" + c.getInfo() + "\" of "
 							+ (bytes.length + 2) + " bytes ("
@@ -262,7 +264,7 @@ public class Controller
 		//if got is null, no sequence exists in memory referenced by h
 		if (got != null)
 		{
-			String seq = codec.decode(got);
+			String seq = codec.decode(got).getSequence();
 			return verifyDecode(seq, length);
 		}
 		return "";

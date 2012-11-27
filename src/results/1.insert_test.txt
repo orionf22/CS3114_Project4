@@ -7,17 +7,17 @@ Successfully inserted new record "G" of 3 bytes (1 characters) starting at posit
 
 Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 6
 
-Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 11
+Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 9
 
-Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 111
+Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 12
 
-Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 211
+Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 15
 
-Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 311
+Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 18
 
-Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 411
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 21
 
-Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 511
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 24
 I
   I
     I
@@ -87,7 +87,7 @@ I
   E
 
 
-Successfully inserted new record "CT" of 3 bytes (2 characters) starting at position 611
+Successfully inserted new record "CT" of 3 bytes (2 characters) starting at position 27
 I
   I
     I
@@ -116,9 +116,9 @@ I
   E
 
 
-Successfully inserted new record "ATC" of 3 bytes (3 characters) starting at position 711
+Successfully inserted new record "ATC" of 3 bytes (3 characters) starting at position 30
 
-Successfully inserted new record "ATCGTT" of 4 bytes (6 characters) starting at position 811
+Successfully inserted new record "ATCGTT" of 4 bytes (6 characters) starting at position 33
 I
   I
     I
@@ -157,7 +157,7 @@ I
   E
 
 
-Successfully inserted new record "AAAACCCTGCCC" of 4 bytes (12 characters) starting at position 911
+Successfully inserted new record "AAAACCCTGCCC" of 4 bytes (12 characters) starting at position 37
 I
   I
     I
@@ -196,7 +196,7 @@ I
   E
 
 
-Successfully inserted new record "AAAACCCTGCATGC" of 5 bytes (14 characters) starting at position 1011
+Successfully inserted new record "AAAACCCTGCATGC" of 5 bytes (14 characters) starting at position 41
 I
   I
     I

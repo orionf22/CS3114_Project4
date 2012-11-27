@@ -1,3 +1,4 @@
+
 import java.math.BigInteger;
 
 /**
@@ -11,19 +12,20 @@ import java.math.BigInteger;
  * @author orionf22
  */
 public class DNACodec
-		implements Codec
+		implements Codec<DNASequence>
 {
 
 	@Override
-	public String decode(byte[] bytes)
+	public DNASequence decode(byte[] bytes)
 	{
 		BigInteger string = new BigInteger(bytes);
-		return string.toString(2);
+		return new DNASequence(string.toString(2));
 	}
 
 	@Override
-	public byte[] encode(String DNAString)
+	public byte[] encode(DNASequence seq)
 	{
+		String DNAString = seq.getSequence();
 		String binaryString = "";
 		for (int i = 0; i < DNAString.length(); i++)
 		{
@@ -58,10 +60,7 @@ public class DNACodec
 			return bits.toByteArray();
 		}
 		//nothing in the string pertains to a valid DNA sequence, so return null
-		else
-		{
-			return null;
-		}
+		return null;
 	}
 
 	/**

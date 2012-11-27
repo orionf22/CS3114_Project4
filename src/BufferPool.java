@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * {@code BufferPool} objects utilize a {@link LinkedList} to manage a set
@@ -88,13 +90,18 @@ public class BufferPool
 	 *                      and write requests source to this file
 	 * @param blockSize  the number of bytes that each {@link Buffer} will
 	 *                      manage
-	 * <p/>
-	 * @throws FileNotFoundException
 	 */
-	public BufferPool(int numBuffers, File file, final int blockSize) throws FileNotFoundException
+	public BufferPool(int numBuffers, File file, final int blockSize)
 	{
 		this.pool = new LinkedList<>();
-		this.file = new RandomAccessFile(file, "rw");
+		try
+		{
+			this.file = new RandomAccessFile(file, "rw");
+		}
+		catch (FileNotFoundException ex)
+		{
+			Logger.getLogger(BufferPool.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		POOL_COUNT = numBuffers;
 		CACHE_HITS = 0;
 		CACHE_MISSES = 0;

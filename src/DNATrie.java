@@ -29,10 +29,19 @@ public class DNATrie
 	 * The root node of this tree.
 	 */
 	private TrieNode root;
+	
+	private MemHandle rootHandle;
 	/**
 	 * Flyweight design; all empty nodes point to this single object.
 	 */
 	protected static final TrieNode.FLYWEIGHT FLYWEIGHT = TrieNode.FLYWEIGHT;
+	/**
+	 * Anything not currently in use by the tree is stored on disk via a
+	 * {@link MemManager}.
+	 */
+	private MemManager manager;
+	
+	private NodeCodec codec;
 	/**
 	 * The size of this tree.
 	 */
@@ -53,10 +62,16 @@ public class DNATrie
 	/**
 	 * Initializes this {@code DNATrie} with a {@code root} pointing to
 	 * {@link #FLYWEIGHT}.
+	 * <p/>
+	 * @param manager the {@link MemManager} to use to store and retrieve data
+	 *                   to and from disk
 	 */
-	public DNATrie()
+	public DNATrie(MemManager manager)
 	{
 		root = FLYWEIGHT;
+		this.manager = manager;
+		this.codec = new NodeCodec();
+		rootHandle = manager.insert(codec.encode(root));
 	}
 
 	/**

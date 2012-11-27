@@ -92,7 +92,8 @@ public class DNAFile
 	public static void main(String[] args) throws IOException
 	{
 		output = new PrintWriter(System.out, true);
-		controller = new Controller(new MemManager(10), new DNATrie());
+		MemManager manager = new MemManager(0, BLOCK_SIZE, buffers, BIN_DAT);
+		controller = new Controller(manager, new DNATrie(manager));
 		controller.setCodec(new DNACodec());
 		//parse the command line arguments. the program cannot operate if any 
 		//arguments are invalid

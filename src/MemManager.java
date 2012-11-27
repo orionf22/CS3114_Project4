@@ -1,4 +1,7 @@
 
+import java.io.File;
+
+
 /**
  * The {@code MemManager} class controls how information is stored in memory.
  * They make use of a {@link MemoryPool} that stores the actual bytes of
@@ -26,6 +29,8 @@ public class MemManager
 	 * stored here.
 	 */
 	private MemoryPool pool;
+	
+	private BufferPool bufferPool;
 	/**
 	 * The {@link FreeBlockList} managed by this {@code MemManager}. Free space
 	 * is monitored here.
@@ -37,9 +42,10 @@ public class MemManager
 	 * <p/>
 	 * @param poolSize the size in bytes of this {@code MemManager}
 	 */
-	public MemManager(int poolSize)
+	public MemManager(int poolSize, int blockSize, int buffers, File file)
 	{
 		this.pool = new MemoryPool(poolSize);
+		this.bufferPool = new BufferPool(buffers, file, blockSize);
 		this.freeBlocks = new FreeBlockList(poolSize);
 	}
 
@@ -84,8 +90,11 @@ public class MemManager
 			newPool.copyPoolFrom(pool);
 			//Set pool to be the new pool
 			pool = newPool;
-			//Add the additional space to the FreeBlockList
-			freeBlocks.reclaimSpace(new MemHandle(oldSize + 1), increaseSize);
+			//Add the additional space to the FreeBlockList; important to NOT 
+			//add 1 to the space request as the size (oldSize) is NOT zero-based 
+			//but the freelist and pool ARe zero-based, thus making the +1 
+			//unnecessary and incorrect
+			freeBlocks.reclaimSpace(new MemHandle(oldSize), increaseSize);
 			//Size increased; recursively call insert again till sufficient space
 			return insert(stuff);
 		}

@@ -5,13 +5,13 @@ Successfully inserted new record "AAAA" of 3 bytes (4 characters) starting at po
 
 Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 6
 
-Successfully inserted new record "AAACCCCGGTGAAAACGTA" of 6 bytes (19 characters) starting at position 11
+Successfully inserted new record "AAACCCCGGTGAAAACGTA" of 6 bytes (19 characters) starting at position 9
 
-Successfully inserted new record "ACTGGGAA" of 4 bytes (8 characters) starting at position 111
+Successfully inserted new record "ACTGGGAA" of 4 bytes (8 characters) starting at position 15
 
-Successfully inserted new record "AAAACCCTGCCC" of 4 bytes (12 characters) starting at position 211
+Successfully inserted new record "AAAACCCTGCCC" of 4 bytes (12 characters) starting at position 19
 
-Successfully inserted new record "AAAACCCTGCATGC" of 5 bytes (14 characters) starting at position 311
+Successfully inserted new record "AAAACCCTGCATGC" of 5 bytes (14 characters) starting at position 23
 
 Deleted old record "ACGT" of 3 bytes (4 characters) from position 0
 I
@@ -72,7 +72,7 @@ I
   E
 
 
-Successfully inserted new record "ACCTT" of 3 bytes (5 characters) starting at position 411
+Successfully inserted new record "ACCTT" of 3 bytes (5 characters) starting at position 28
 
 Deleted old record "AA" of 3 bytes (2 characters) from position 6
 I
@@ -266,7 +266,7 @@ I
   E
 
 
-Deleted old record "AAAACCCTGCCC" of 4 bytes (12 characters) from position 211
+Deleted old record "AAAACCCTGCCC" of 4 bytes (12 characters) from position 19
 I
   I
     I
