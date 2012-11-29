@@ -1,4 +1,5 @@
 
+import java.nio.ByteBuffer;
 import java.util.Collection;
 
 /**
@@ -28,19 +29,16 @@ public class DNATrie
 	/**
 	 * The root node of this tree.
 	 */
-	private TrieNode root;
-	
-	private MemHandle rootHandle;
+	private MemHandle root;
 	/**
 	 * Flyweight design; all empty nodes point to this single object.
 	 */
-	protected static final TrieNode.FLYWEIGHT FLYWEIGHT = TrieNode.FLYWEIGHT;
+	final MemHandle FLYWEIGHT;
 	/**
 	 * Anything not currently in use by the tree is stored on disk via a
 	 * {@link MemManager}.
 	 */
 	private MemManager manager;
-	
 	private NodeCodec codec;
 	/**
 	 * The size of this tree.
@@ -68,10 +66,10 @@ public class DNATrie
 	 */
 	public DNATrie(MemManager manager)
 	{
-		root = FLYWEIGHT;
 		this.manager = manager;
 		this.codec = new NodeCodec();
-		rootHandle = manager.insert(codec.encode(root));
+		FLYWEIGHT = manager.insert(codec.encode(new FLYWEIGHT()));
+		root = FLYWEIGHT;
 	}
 
 	/**
@@ -86,7 +84,10 @@ public class DNATrie
 	 */
 	public int get(DNASequence sequence, Collection<String> c)
 	{
-		return get(root, sequence, c);
+		TrieNode rt = loadNode(root);
+		int ret = get(rt, sequence, c);
+		root = saveNode(rt);
+		return ret;
 	}
 
 	/**
@@ -116,18 +117,19 @@ public class DNATrie
 		//continue searching
 		else if (sequence.length() > 0 && !node.isFlyweight())
 		{
+			InternalNode internal = (InternalNode) node;
 			switch (sequence.front())
 			{
 				case DNASequence.BASE_A:
-					return 1 + get(node.A, sequence.crop(), c);
+					return 1 + get(internal.getA(), sequence.crop(), c);
 				case DNASequence.BASE_C:
-					return 1 + get(node.C, sequence.crop(), c);
+					return 1 + get(internal.getC(), sequence.crop(), c);
 				case DNASequence.BASE_G:
-					return 1 + get(node.G, sequence.crop(), c);
+					return 1 + get(internal.getG(), sequence.crop(), c);
 				case DNASequence.BASE_T:
-					return 1 + get(node.T, sequence.crop(), c);
+					return 1 + get(internal.getT(), sequence.crop(), c);
 				case DNASequence.TERMINATOR:
-					return 1 + get(node.$, sequence.crop(), c);
+					return 1 + get(internal.get$(), sequence.crop(), c);
 				default:
 					return 1;
 			}
@@ -148,7 +150,10 @@ public class DNATrie
 	public TrieNode fetch(DNASequence sequence)
 	{
 		sequence.terminate();
-		return fetch(root, sequence);
+		TrieNode rt = loadNode(root);
+		TrieNode got = fetch(rt, sequence);
+		root = saveNode(rt);
+		return got;
 	}
 
 	/**
@@ -165,7 +170,7 @@ public class DNATrie
 	private TrieNode fetch(TrieNode node, DNASequence sequence)
 	{
 		//match not found
-		if (node == DNATrie.FLYWEIGHT)
+		if (node.isFlyweight())
 		{
 			return node;
 		}
@@ -179,26 +184,27 @@ public class DNATrie
 			{
 				return leaf;
 			}
-			return DNATrie.FLYWEIGHT;
+			return loadNode(FLYWEIGHT);
 		}
 		//InternalNode
 		else
 		{
+			InternalNode internal = (InternalNode) node;
 			switch (sequence.front())
 			{
 				case DNASequence.BASE_A:
-					return fetch(node.A, sequence.crop());
+					return fetch(internal.getA(), sequence.crop());
 				case DNASequence.BASE_C:
-					return fetch(node.C, sequence.crop());
+					return fetch(internal.getC(), sequence.crop());
 				case DNASequence.BASE_G:
-					return fetch(node.G, sequence.crop());
+					return fetch(internal.getG(), sequence.crop());
 				case DNASequence.BASE_T:
-					return fetch(node.T, sequence.crop());
+					return fetch(internal.getT(), sequence.crop());
 				case DNASequence.TERMINATOR:
-					return fetch(node.$, sequence.crop());
+					return fetch(internal.get$(), sequence.crop());
 				default:
 					System.out.println("Error: getsize");
-					return DNATrie.FLYWEIGHT;
+					return loadNode(FLYWEIGHT);
 			}
 		}
 	}
@@ -218,7 +224,9 @@ public class DNATrie
 	public void remove(DNASequence sequence)
 	{
 		sequence.terminate();
-		root = remove(root, sequence);
+		TrieNode rt = loadNode(root);
+		rt = remove(rt, sequence);
+		root = saveNode(rt);
 	}
 
 	/**
@@ -237,7 +245,7 @@ public class DNATrie
 	private TrieNode remove(TrieNode node, DNASequence sequence)
 	{
 		//sequence does not exist
-		if (node == DNATrie.FLYWEIGHT)
+		if (node.isFlyweight())
 		{
 			return node;
 		}
@@ -249,7 +257,7 @@ public class DNATrie
 			//sequence is here; set node to FLYWEIGHT and return
 			if (seq.equals(sequence.getSequence()))
 			{
-				node = DNATrie.FLYWEIGHT;
+				node = loadNode(FLYWEIGHT);
 				size--;
 				return node;
 			}
@@ -257,28 +265,29 @@ public class DNATrie
 		//InternalNode; recurse through tree
 		else
 		{
+			InternalNode internal = (InternalNode) node;
 			switch (sequence.front())
 			{
 				// change from node.x to node
 				case DNASequence.BASE_A:
 					//System.out.println("went to A");
-					node.A = remove(node.A, sequence.crop());
+					internal.setA(remove(internal.getA(), sequence.crop()));
 					break;
 				case DNASequence.BASE_C:
 					//System.out.println("went to C");
-					node.C = remove(node.C, sequence.crop());
+					internal.setC(remove(internal.getC(), sequence.crop()));
 					break;
 				case DNASequence.BASE_G:
 					//System.out.println("went to G");
-					node.G = remove(node.G, sequence.crop());
+					internal.setG(remove(internal.getG(), sequence.crop()));
 					break;
 				case DNASequence.BASE_T:
 					//System.out.println("went to T");
-					node.T = remove(node.T, sequence.crop());
+					internal.setT(remove(internal.getT(), sequence.crop()));
 					break;
 				case DNASequence.TERMINATOR:
 					//System.out.println("went to $");
-					node.$ = remove(node.$, sequence.crop());
+					internal.set$(remove(internal.get$(), sequence.crop()));
 					break;
 				default:
 					break;
@@ -286,30 +295,30 @@ public class DNATrie
 			//These if blocks determine if collpasing should occur. Nodes should
 			//collapse iff there is only one LeafNode linked to node. If there
 			//is more than one leaf, no collpasing occurs.
-			if (node.A.isLeaf() && node.C.isFlyweight() && node.G.isFlyweight()
-					&& node.T.isFlyweight() && node.$.isFlyweight())
+			if (internal.getA().isLeaf() && internal.getC().isFlyweight() && internal.getG().isFlyweight()
+					&& internal.getT().isFlyweight() && internal.get$().isFlyweight())
 			{
-				node = node.A;
+				node = internal.getA();
 			}
-			else if (node.C.isLeaf() && node.A.isFlyweight() && node.G.isFlyweight()
-					&& node.T.isFlyweight() && node.$.isFlyweight())
+			else if (internal.getC().isLeaf() && internal.getA().isFlyweight() && internal.getG().isFlyweight()
+					&& internal.getT().isFlyweight() && internal.get$().isFlyweight())
 			{
-				node = node.C;
+				node = internal.getC();
 			}
-			else if (node.G.isLeaf() && node.A.isFlyweight() && node.C.isFlyweight()
-					&& node.T.isFlyweight() && node.$.isFlyweight())
+			else if (internal.getG().isLeaf() && internal.getA().isFlyweight() && internal.getC().isFlyweight()
+					&& internal.getT().isFlyweight() && internal.get$().isFlyweight())
 			{
-				node = node.G;
+				node = internal.getG();
 			}
-			else if (node.T.isLeaf() && node.A.isFlyweight() && node.C.isFlyweight()
-					&& node.G.isFlyweight() && node.$.isFlyweight())
+			else if (internal.getT().isLeaf() && internal.getA().isFlyweight() && internal.getC().isFlyweight()
+					&& internal.getG().isFlyweight() && internal.get$().isFlyweight())
 			{
-				node = node.T;
+				node = internal.getT();
 			}
-			else if (node.$.isLeaf() && node.A.isFlyweight() && node.C.isFlyweight()
-					&& node.G.isFlyweight() && node.T.isFlyweight())
+			else if (internal.get$().isLeaf() && internal.getA().isFlyweight() && internal.getC().isFlyweight()
+					&& internal.getG().isFlyweight() && internal.getT().isFlyweight())
 			{
-				node = node.$;
+				node = internal.get$();
 			}
 		}
 		return node;
@@ -328,7 +337,9 @@ public class DNATrie
 		//for easier insertion, append a $ to the end of the sequence to easily
 		//identify sequence termination
 		sequence.terminate();
-		root = insert(root, h, sequence, sequence.literalLength(), 0);
+		TrieNode rt = codec.decode(manager.get(root));
+		rt = insert(rt, h, sequence, sequence.literalLength(), 0);
+		root = manager.insert(codec.encode(rt));
 	}
 
 	/**
@@ -363,7 +374,7 @@ public class DNATrie
 	private TrieNode insert(TrieNode node, MemHandle h, DNASequence sequence, int length, int depth)
 	{
 		//base case; insert here
-		if (node == DNATrie.FLYWEIGHT)
+		if (node.isFlyweight())
 		{
 			//System.out.println("flyweight");
 			size++;
@@ -386,28 +397,39 @@ public class DNATrie
 		//InternalNode
 		else
 		{
+			InternalNode internal = (InternalNode) node;
 			//System.out.println("internal " + node);
 			switch (sequence.front())
 			{
 				case DNASequence.BASE_A:
 					//System.out.println("went to A");
-					node.A = insert(node.A, h, sequence.crop(), length, depth + 1);
+					TrieNode ATree = internal.getA();
+					ATree = insert(ATree, h, sequence.crop(), length, depth + 1);
+					internal.setA(ATree);
 					break;
 				case DNASequence.BASE_C:
 					//System.out.println("went to C");
-					node.C = insert(node.C, h, sequence.crop(), length, depth + 1);
+					TrieNode CTree = internal.getC();
+					CTree = insert(CTree, h, sequence.crop(), length, depth + 1);
+					internal.setC(CTree);
 					break;
 				case DNASequence.BASE_G:
 					//System.out.println("went to G");
-					node.G = insert(node.G, h, sequence.crop(), length, depth + 1);
+					TrieNode GTree = internal.getG();
+					GTree = insert(GTree, h, sequence.crop(), length, depth + 1);
+					internal.setG(GTree);
 					break;
 				case DNASequence.BASE_T:
 					//System.out.println("went to T");
-					node.T = insert(node.T, h, sequence.crop(), length, depth + 1);
+					TrieNode TTree = internal.getT();
+					TTree = insert(TTree, h, sequence.crop(), length, depth + 1);
+					internal.setT(TTree);
 					break;
 				case DNASequence.TERMINATOR:
 					//System.out.println("went to $");
-					node.$ = insert(node.$, h, sequence.crop(), length, depth + 1);
+					TrieNode $Tree = internal.get$();
+					$Tree = insert($Tree, h, sequence.crop(), length, depth + 1);
+					internal.set$($Tree);
 					break;
 				default:
 					DNAFile.output.println("Error during insert");
@@ -427,14 +449,14 @@ public class DNATrie
 		return this.size;
 	}
 
-	/**
-	 * Gets the {@code root} node of this tree.
-	 * <p/>
-	 * @return the root of this tree
-	 */
-	public TrieNode getRoot()
+	private TrieNode loadNode(MemHandle h)
 	{
-		return this.root;
+		return codec.decode(manager.get(h));
+	}
+	
+	private MemHandle saveNode(TrieNode node)
+	{
+		return manager.insert(codec.encode(node));
 	}
 
 	/**
@@ -455,7 +477,7 @@ public class DNATrie
 	private int loadPrefixes(TrieNode node, Collection<String> c)
 	{
 		//nothing here
-		if (node == DNATrie.FLYWEIGHT)
+		if (node.isFlyweight())
 		{
 			return 1;
 		}
@@ -469,9 +491,307 @@ public class DNATrie
 		}
 		else
 		{
-			return 1 + loadPrefixes(node.A, c) + loadPrefixes(node.C, c)
-					+ loadPrefixes(node.G, c) + loadPrefixes(node.T, c)
-					+ loadPrefixes(node.$, c);
+			InternalNode internal = (InternalNode) node;
+			return 1 + loadPrefixes(internal.getA(), c) + loadPrefixes(internal.getC(), c)
+					+ loadPrefixes(internal.getG(), c) + loadPrefixes(internal.getT(), c)
+					+ loadPrefixes(internal.get$(), c);
+		}
+	}
+
+	/**
+	 * The {@code TrieNode} abstract class marks an implementing subclass a node
+	 * to operate upon in a {@link DNATrie}. Any class implementing this super
+	 * class must be able to distinguish leaf nodes.
+	 * <p/>
+	 * To avoid wasting precious space with useless empty nodes, or to preclude
+	 * forcing {@code null} checks, any node that should be empty or
+	 * {@code null} is instead directed to {@link #FLYWEIGHT}. This means one,
+	 * easy check can be made to determine if a node is empty or not.
+	 * <p/>
+	 * @author orionf22
+	 * @author rinaldi1
+	 */
+	public abstract class TrieNode
+	{
+
+		/**
+		 * Denotes this {@code TrieNode} as a leaf node.
+		 * <p/>
+		 * @return {@code true} if this {@code TrieNode} is a leaf node,
+		 *               {@code false} otherwise
+		 */
+		public abstract boolean isLeaf();
+
+		/**
+		 * Denotes this {@code TrieNode} as the {@link DNATrie#FLYWEIGHT}.
+		 * <p/>
+		 * @return {@code true} if this {@code TrieNode} is the
+		 *               {@link DNATrie#FLYWEIGHT}, {@code false} otherwise
+		 */
+		public abstract boolean isFlyweight();
+	}
+
+	/**
+	 * Flyweight design; all empty (and thus {@code null}) nodes point to a
+	 * single {@code FLYWEIGHT} node, {@link DNATrie#FLYWEIGHT}.
+	 */
+	private class FLYWEIGHT
+			extends TrieNode
+	{
+
+		@Override
+		public boolean isLeaf()
+		{
+			return false;
+		}
+
+		@Override
+		public boolean isFlyweight()
+		{
+			return true;
+		}
+	}
+
+	/**
+	 * {@code InternalNode} objects represent an internal node within a tree
+	 * structure. They are not {@link LeafNode} objects, nor are they
+	 * {@link TrieNode.FLYWEIGHT} objects. Instead, {@code InternalNode} objects
+	 * have five children that could be any of the three types of
+	 * {@link TrieNode}.
+	 * <p/>
+	 * @author orionf22
+	 * @author rinaldi1
+	 */
+	private class InternalNode
+			extends TrieNode
+	{
+
+		/**
+		 * The A subtree.
+		 */
+		private MemHandle A = FLYWEIGHT;
+		/**
+		 * The C subtree.
+		 */
+		private MemHandle C = FLYWEIGHT;
+		/**
+		 * The G subtree.
+		 */
+		private MemHandle G = FLYWEIGHT;
+		/**
+		 * The T subtree.
+		 */
+		private MemHandle T = FLYWEIGHT;
+		/**
+		 * The $ subtree (sequence terminator).
+		 */
+		private MemHandle $ = FLYWEIGHT;
+
+		public TrieNode getA()
+		{
+			return codec.decode(manager.get(A));
+		}
+		
+		public void setA(TrieNode node)
+		{
+			this.A = manager.insert(codec.encode(node));
+		}
+		
+		public TrieNode getC()
+		{
+			return codec.decode(manager.get(C));
+		}
+		
+		public void setC(TrieNode node)
+		{
+			this.C = manager.insert(codec.encode(node));
+		}
+		
+		public TrieNode getG()
+		{
+			return codec.decode(manager.get(G));
+		}
+		
+		public void setG(TrieNode node)
+		{
+			this.G = manager.insert(codec.encode(node));
+		}
+		
+		public TrieNode getT()
+		{
+			return codec.decode(manager.get(T));
+		}
+		
+		public void setT(TrieNode node)
+		{
+			this.T = manager.insert(codec.encode(node));
+		}
+		
+		public TrieNode get$()
+		{
+			return codec.decode(manager.get($));
+		}
+		
+		public void set$(TrieNode node)
+		{
+			this.$ = manager.insert(codec.encode(node));
+		}
+		
+		@Override
+		public boolean isLeaf()
+		{
+			return false;
+		}
+
+		@Override
+		public boolean isFlyweight()
+		{
+			return false;
+		}
+	}
+
+	/**
+	 * {@code LeafNode} objects store a {@link MemHandle} and integer value.
+	 * Both are used to retrieve a stored piece of information from a memory
+	 * pool.
+	 * <p/>
+	 * @author orionf22
+	 * @author rinaldi1
+	 */
+	private class LeafNode
+			extends TrieNode
+	{
+
+		/**
+		 * The stored {@link MemHandle}.
+		 */
+		private MemHandle handle;
+		/**
+		 * The true length of the stored information referenced by
+		 * {@code handle}.
+		 */
+		private int length;
+
+		/**
+		 * Constructs a new {@code LeafNode} from {2code h} and {@code l}.
+		 * <p/>
+		 * @param h the {@link MemHandle} to use
+		 * @param l the true length of the stored information
+		 */
+		private LeafNode(MemHandle h, int l)
+		{
+			this.handle = h;
+			this.length = l;
+		}
+
+		/**
+		 * Returns the stored {@link MemHandle}.
+		 * <p/>
+		 * @return the {@link MemHandle}
+		 */
+		public MemHandle getHandle()
+		{
+			return this.handle;
+		}
+
+		/**
+		 * Returns the stored true length of information.
+		 * <p/>
+		 * @return the true length of stored information.
+		 */
+		public int getLiteralLength()
+		{
+			return this.length;
+		}
+
+		@Override
+		public boolean isLeaf()
+		{
+			return true;
+		}
+
+		@Override
+		public boolean isFlyweight()
+		{
+			return false;
+		}
+	}
+
+	/**
+	 * The {@code NodeCodec} class encodes and decodes {@link TrieNode} objects.
+	 * <p/>
+	 * @author orionf22
+	 * @author rinaldi1
+	 */
+	public class NodeCodec
+			implements Codec<DNATrie.TrieNode>
+	{
+
+		@Override
+		public DNATrie.TrieNode decode(byte[] bytes)
+		{
+			throw new UnsupportedOperationException("Not supported yet.");
+		}
+
+		@Override
+		public byte[] encode(DNATrie.TrieNode stuff)
+		{
+			byte[] ret;
+			ByteBuffer buff;
+			if (stuff.isLeaf())
+			{
+				LeafNode leaf = (LeafNode) stuff;
+				ret = new byte[7];
+				buff = ByteBuffer.allocate(4);
+				ret[0] = 1;
+				int length = leaf.getLiteralLength();
+				buff.putShort((short)length);
+				ret[1] = buff.get(0);
+				ret[2] = buff.get(1);
+				buff.putInt(0, leaf.getHandle().getAddress());
+				ret[3] = buff.get(0);
+				ret[4] = buff.get(1);
+				ret[5] = buff.get(2);
+				ret[6] = buff.get(3);
+			}
+			else if (stuff.isFlyweight())
+			{
+				ret = new byte[1];
+				ret[0] = -2;
+			}
+			else
+			{
+				InternalNode internal = (InternalNode) stuff;
+				ret = new byte[21];
+				buff = ByteBuffer.allocate(4);
+				ret[0] = 0;
+				buff.putInt(internal.A.getAddress());
+				ret[1] = buff.get(0);
+				ret[2] = buff.get(1);
+				ret[3] = buff.get(2);
+				ret[4] = buff.get(3);
+				buff.putInt(0, internal.C.getAddress());
+				ret[5] = buff.get(0);
+				ret[6] = buff.get(1);
+				ret[7] = buff.get(2);
+				ret[8] = buff.get(3);
+				buff.putInt(0, internal.G.getAddress());
+				ret[9] = buff.get(0);
+				ret[10] = buff.get(1);
+				ret[11] = buff.get(2);
+				ret[12] = buff.get(3);
+				buff.putInt(0, internal.T.getAddress());
+				ret[13] = buff.get(0);
+				ret[14] = buff.get(1);
+				ret[15] = buff.get(2);
+				ret[16] = buff.get(3);
+				buff.putInt(0, internal.$.getAddress());
+				ret[17] = buff.get(0);
+				ret[18] = buff.get(1);
+				ret[19] = buff.get(2);
+				ret[20] = buff.get(3);
+			}
+			return ret;
 		}
 	}
 }

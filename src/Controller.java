@@ -87,7 +87,7 @@ public class Controller
 		DNASequence insertMe = new DNASequence(c.getInfo());
 		//Attempt to find this sequence first. If it is found, this new sequence
 		//is a duplicate and is not to be inserted
-		TrieNode curr = tree.fetch(insertMe);
+		boolean isDuplicate = tree.fetch(insertMe);
 		//Something exists here; duplicates are forbidden
 		if (curr.isLeaf())
 		{
