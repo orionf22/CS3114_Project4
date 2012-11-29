@@ -31,11 +31,6 @@ import java.util.ArrayList;
  */
 public class Controller
 {
-
-	/**
-	 * The {@link MemManager} owned by this {@code Controller}.
-	 */
-	private MemManager manager;
 	/**
 	 * The {@link DNATrie} owned by this {@code Controller}.
 	 */
@@ -45,11 +40,6 @@ public class Controller
 	 * given format.
 	 */
 	private Codec<DNASequence> codec;
-	/**
-	 * Default length of a printed record before remaining characters will be
-	 * cropped off. This improves output readability.
-	 */
-	private static final int DEFAULT_STRING_CROP_LENGTH = 40;
 
 	/**
 	 * Constructs a new {@code Controller} with references to proper
@@ -58,9 +48,8 @@ public class Controller
 	 * @param m the {@link MemManager} to use
 	 * @param t the {@link DNATrie} to use
 	 */
-	public Controller(MemManager m, DNATrie t)
+	public Controller(DNATrie t)
 	{
-		this.manager = m;
 		this.tree = t;
 	}
 
@@ -84,63 +73,7 @@ public class Controller
 	 */
 	public void insertRecord(InsertCommand c)
 	{
-		DNASequence insertMe = new DNASequence(c.getInfo());
-		//Attempt to find this sequence first. If it is found, this new sequence
-		//is a duplicate and is not to be inserted
-		boolean isDuplicate = tree.fetch(insertMe);
-		//Something exists here; duplicates are forbidden
-		if (curr.isLeaf())
-		{
-			DNAFile.output.println("INSERT: Cannot insert duplicate record \""
-					+ c.getInfo() + "\".");
-		}
-		//This is a unique sequence, attempt to insert
-		else
-		{
-			insertMe.restore();
-			byte[] bytes = codec.encode(insertMe);
-			//if bytes is null sequence did not contain any of A, C, G, or T
-			if (bytes != null)
-			{
-				MemHandle newHandle = manager.insert(bytes);
-				//error inserting into the pool
-				if (newHandle.getAddress() < 0)
-				{
-					String display = c.getInfo() + "\"";
-					if (display.length() > DEFAULT_STRING_CROP_LENGTH)
-					{
-						display = display.substring(0, 41) + "...\" ("
-								+ display.length() + " characters)";
-					}
-					DNAFile.output.println("\nUnable to insert record \""
-							+ display + " (insufficient free space)");
-				}
-				//good to go!
-				else
-				{
-					tree.insert(newHandle, insertMe);
-					DNAFile.output.println("\nSuccessfully inserted new "
-							+ "record \"" + c.getInfo() + "\" of "
-							+ (bytes.length + 2) + " bytes ("
-							+ c.getInfo().length() + " characters) starting "
-							+ "at position " + newHandle.getAddress());
-
-				}
-			}
-			//invalid DNA sequence (no A, C, G, or T)
-			else
-			{
-				String display = c.getInfo() + "\"";
-				if (display.length() > DEFAULT_STRING_CROP_LENGTH)
-				{
-					display = display.substring(0, 41) + "...\" ("
-							+ display.length() + " characters)";
-				}
-				DNAFile.output.println("\nUnable to insert record \"" + display
-						+ " (sequence does not contain any valid DNA "
-						+ "characters)");
-			}
-		}
+		tree.insert(new DNASequence(c.getInfo()));
 	}
 
 	/**
@@ -155,37 +88,7 @@ public class Controller
 	public void removeRecord(RemoveCommand c)
 	{
 		DNASequence sequence = new DNASequence(c.getSequence());
-		TrieNode toRemove = DNATrie.FLYWEIGHT;
-		try
-		{
-			toRemove = tree.fetch(sequence);
-			sequence.restore();
-		}
-		catch (Exception e)
-		{
-			DNAFile.output.println("Attempted to find \"" + c.getSequence()
-					+ "\"; " + e.getClass().getName() + " encountered. Removal "
-					+ "failure. Debug: " + e.toString());
-		}
-		//if we got FLYWEIGHT, either an error occured or the sequence does not 
-		//exist
-		if (toRemove == DNATrie.FLYWEIGHT)
-		{
-			DNAFile.output.println("\nUnable to remove sequence \""
-					+ c.getSequence() + "\"; sequence not found.");
-		}
-		//else remove the sequence
-		else
-		{
-			LeafNode leaf = (LeafNode) toRemove;
-			int literal = leaf.getLiteralLength();
-			MemHandle remove = leaf.getHandle();
-			tree.remove(sequence); // Must remove from the tree first
-			int size = manager.remove(remove); // Then remove from the pool!
-			DNAFile.output.println("\nDeleted old record \"" + sequence + "\" "
-					+ "of " + (size + 2) + " bytes (" + literal + " characters)"
-					+ " from position " + remove.getAddress());
-		}
+		tree.remove(sequence);
 	}
 
 	/**
@@ -195,23 +98,8 @@ public class Controller
 	 */
 	public void print(PrintCommand c)
 	{
-		int request = c.getRequest();
-		//No param was specified; print Trie and freelist
-		if (request == DNATrie.JUST_DO_IT_SON)
-		{
-			DNAFile.output.println(printTrie(tree.getRoot(), 0));
-		}
-		//print Trie with lenghts info and freelist
-		else if (request == DNATrie.BY_LENGTH)
-		{
-			DNAFile.output.println(printTrieByLength(tree.getRoot(), 0));
-		}
-		//print Trie with stats info and freelist
-		else if (request == DNATrie.BY_STATS)
-		{
-			DNAFile.output.println(printTrieByStats(tree.getRoot(), 0));
-		}
-		//also print the free list status
+		DNAFile.output.println(tree.printTrie(c.getRequest()));
+		//also print the free list and BufferPool status
 		//DNAFile.output.println("\nFreeblock list:\n" + manager.getFreeBlocks()
 		//		+ "\nBuffer Pool:\n" + bufferPool.getBlockIDs());
 	}
@@ -247,191 +135,5 @@ public class Controller
 			DNAFile.output.println("sequence \"" + sequence.getSequence()
 					+ "\" not found");
 		}
-
-	}
-
-	/**
-	 * Retrieves a String representing a {@code DNASequence} from memory.
-	 * <p/>
-	 * @param h      the {@link MemHandle} referencing the sequence in the pool
-	 * @param length the literal (true) length of the expected sequence
-	 * <p/>
-	 * @return the sequence
-	 */
-	public String retrieve(MemHandle h, int length)
-	{
-		byte[] got = manager.get(h);
-		//if got is null, no sequence exists in memory referenced by h
-		if (got != null)
-		{
-			String seq = codec.decode(got).getSequence();
-			return verifyDecode(seq, length);
-		}
-		return "";
-	}
-
-	/**
-	 * Verifies the decoding operation by ensuring that A's and C's are inserted
-	 * properly. Because the encoding operation trims leading zero's, this
-	 * operation restores leading zeros up to the nearest full byte then only
-	 * examines the bits that are relevant ({@code size} determines this).
-	 * <p/>
-	 * @param s    the partially decoded binary String
-	 * @param size the expected size (in String characters) of the String
-	 * <p/>
-	 * @return the fully decoded String
-	 */
-	private String verifyDecode(String s, int size)
-	{
-		String keep = "";
-		//determines how many zeros need to be restored
-		int dif = size * 2 - s.length();
-		for (int i = 0; i < dif; i++)
-		{
-			keep += "0";
-		}
-		keep += s;
-		String ret = "";
-		for (int i = 0; i < keep.length(); i += 2)
-		{
-			int next = i + 2;
-			String curr = keep.substring(i, next);
-			if (curr.equals("00"))
-			{
-				ret += "A";
-			}
-			if (curr.equals("01"))
-			{
-				ret += "C";
-			}
-			if (curr.equals("10"))
-			{
-				ret += "G";
-			}
-			if (curr.equals("11"))
-			{
-				ret += "T";
-			}
-		}
-		return ret;
-	}
-
-	/**
-	 * Prints the entire contents of {@code tree} with no extra information.
-	 * <p/>
-	 * @param node  the {@link TrieNode} to examine
-	 * @param depth the current depth within the tree; used to determine how
-	 *                 many spaces are needed
-	 * <p/>
-	 * @return a String representation of {@code tree}
-	 */
-	private String printTrie(TrieNode node, int depth)
-	{
-		StringBuilder builder = new StringBuilder();
-		int numSpaces = 2 * depth;
-		//append spaces based on tree depth
-		for (int i = 0; i < numSpaces; i++)
-		{
-			builder.append(" ");
-		}
-		//FLYWEIGHTS are printed as E
-		if (node == DNATrie.FLYWEIGHT)
-		{
-			builder.append("E\n");
-		}
-		//LeafNodes are printed as their sequence
-		else if (node.isLeaf())
-		{
-			LeafNode leaf = (LeafNode) node;
-			builder.append(retrieve(leaf.getHandle(),
-					leaf.getLiteralLength())).append("\n");
-		}
-		//InternalNodes are printed as I and have their nodes examined via DFS
-		else
-		{
-			builder.append("I\n").append(printTrie(node.A, depth + 1)).append(
-					printTrie(node.C, depth + 1)).append(
-					printTrie(node.G, depth + 1)).append(
-					printTrie(node.T, depth + 1)).append(
-					printTrie(node.$, depth + 1));
-		}
-		return builder.toString();
-	}
-
-	/**
-	 * Prints the entire contents of {@code tree} with information about the
-	 * length of each {@link DNASequence}.
-	 * <p/>
-	 * @param node  the {@link TrieNode} to examine
-	 * @param depth the current depth within the tree; used to determine how
-	 *                 many spaces are needed
-	 * <p/>
-	 * @return a String representation of {@code tree} with lenght information
-	 */
-	private String printTrieByLength(TrieNode node, int depth)
-	{
-		StringBuilder builder = new StringBuilder();
-		int numSpaces = 2 * depth;
-		//append spaces based on tree depth
-		for (int i = 0; i < numSpaces; i++)
-		{
-			builder.append(" ");
-		}
-		//FLYWEIGHTS are printed as E
-		if (node == DNATrie.FLYWEIGHT)
-		{
-			builder.append("E\n");
-		}
-		//LeafNodes are printed as their sequence
-		else if (node.isLeaf())
-		{
-			LeafNode leaf = (LeafNode) node;
-			int literal = leaf.getLiteralLength();
-			builder.append(retrieve(leaf.getHandle(), literal)).append(": length ").append(literal).append(" \n");
-		}
-		//InternalNodes are printed as I and have their nodes examined via DFS
-		else
-		{
-			builder.append("I\n").append(printTrieByLength(node.A, depth + 1)).append(
-					printTrieByLength(node.C, depth + 1)).append(
-					printTrieByLength(node.G, depth + 1)).append(
-					printTrieByLength(node.T, depth + 1)).append(
-					printTrieByLength(node.$, depth + 1));
-		}
-		return builder.toString();
-	}
-
-	private String printTrieByStats(TrieNode node, int depth)
-	{
-		StringBuilder builder = new StringBuilder();
-		int numSpaces = 2 * depth;
-		//append spaces based on tree depth
-		for (int i = 0; i < numSpaces; i++)
-		{
-			builder.append(" ");
-		}
-		//FLYWEIGHTS are printed as E
-		if (node == DNATrie.FLYWEIGHT)
-		{
-			builder.append("E\n");
-		}
-		//LeafNodes are printed as their sequence
-		else if (node.isLeaf())
-		{
-			LeafNode leaf = (LeafNode) node;
-			DNASequence seq = new DNASequence(retrieve(leaf.getHandle(), leaf.getLiteralLength()));
-			builder.append(seq.getSequence()).append(" ").
-					append(seq.getStats()).append("\n");
-		}
-		//InternalNodes are printed as I and have their nodes examined via DFS
-		else
-		{
-			builder.append("I\n").append(printTrieByStats(node.A, depth + 1)).append(
-					printTrieByStats(node.C, depth + 1)).append(
-					printTrieByStats(node.G, depth + 1)).append(
-					printTrieByStats(node.T, depth + 1)).append(
-					printTrieByStats(node.$, depth + 1));
-		}
-		return builder.toString();
 	}
 }

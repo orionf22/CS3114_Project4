@@ -40,6 +40,7 @@ public class DNATrie
 	 */
 	private MemManager manager;
 	private NodeCodec codec;
+	private DNACodec DNACodec;
 	/**
 	 * The size of this tree.
 	 */
@@ -56,6 +57,11 @@ public class DNATrie
 	 * Print according to occurrence statistics.
 	 */
 	public static final int BY_STATS = 2;
+	/**
+	 * Default length of a printed record before remaining characters will be
+	 * cropped off. This improves output readability.
+	 */
+	private static final int DEFAULT_STRING_CROP_LENGTH = 40;
 
 	/**
 	 * Initializes this {@code DNATrie} with a {@code root} pointing to
@@ -107,7 +113,7 @@ public class DNATrie
 		if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			DNASequence seq = new DNASequence(DNAFile.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			DNASequence seq = new DNASequence(retrieve(leaf.getHandle(), leaf.getLiteralLength()));
 			if (seq.equals(sequence, true))
 			{
 				c.add(seq.getSequence());
@@ -147,13 +153,17 @@ public class DNATrie
 	 *            {@code sequence} exists, otherwise {@link DNATrie#FLYWEIGHT} if
 	 *            the sequence does not exist
 	 */
-	public TrieNode fetch(DNASequence sequence)
+	public boolean fetch(DNASequence sequence)
 	{
 		sequence.terminate();
 		TrieNode rt = loadNode(root);
 		TrieNode got = fetch(rt, sequence);
 		root = saveNode(rt);
-		return got;
+		if (got.isLeaf())
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -178,7 +188,7 @@ public class DNATrie
 		else if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			String seq = DNAFile.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength());
+			String seq = retrieve(leaf.getHandle(), leaf.getLiteralLength());
 			//match
 			if (seq.equals(sequence.getSequence()))
 			{
@@ -247,18 +257,24 @@ public class DNATrie
 		//sequence does not exist
 		if (node.isFlyweight())
 		{
+
 			return node;
 		}
 		//sequence could be here
 		else if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			String seq = DNAFile.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength());
+			String seq = retrieve(leaf.getHandle(), leaf.getLiteralLength());
 			//sequence is here; set node to FLYWEIGHT and return
 			if (seq.equals(sequence.getSequence()))
 			{
 				node = loadNode(FLYWEIGHT);
 				size--;
+
+				int s = manager.remove(leaf.getHandle()); //remove from pool
+				DNAFile.output.println("\nDeleted old record \"" + sequence + "\" "
+						+ "of " + (s + 2) + " bytes (" + leaf.getLiteralLength() + " characters)"
+						+ " from position " + leaf.getHandle().getAddress());
 				return node;
 			}
 		}
@@ -329,17 +345,57 @@ public class DNATrie
 	 * where in the tree {@code h} must be placed in order to preserve Trie
 	 * properties.
 	 * <p/>
-	 * @param h        the {@link MemHandle} to insert
 	 * @param sequence the {@code DNASequence} to use to map
 	 */
-	public void insert(MemHandle h, DNASequence sequence)
+	public void insert(DNASequence sequence)
 	{
 		//for easier insertion, append a $ to the end of the sequence to easily
 		//identify sequence termination
 		sequence.terminate();
-		TrieNode rt = codec.decode(manager.get(root));
-		rt = insert(rt, h, sequence, sequence.literalLength(), 0);
-		root = manager.insert(codec.encode(rt));
+		byte[] bytes = DNACodec.encode(sequence);
+		//if bytes is null sequence did not contain any of A, C, G, or T
+		if (bytes != null)
+		{
+			MemHandle newHandle = manager.insert(bytes);
+			//error inserting into the pool
+			if (newHandle.getAddress() < 0)
+			{
+				String display = sequence.getSequence() + "\"";
+				if (display.length() > DEFAULT_STRING_CROP_LENGTH)
+				{
+					display = display.substring(0, 41) + "...\" ("
+							+ display.length() + " characters)";
+				}
+				DNAFile.output.println("\nUnable to insert record \""
+						+ display + " (insufficient free space)");
+			}
+			//good to go!
+			else
+			{
+				TrieNode rt = codec.decode(manager.get(root));
+				rt = insert(rt, newHandle, sequence, sequence.literalLength(), 0);
+				root = manager.insert(codec.encode(rt));
+				DNAFile.output.println("\nSuccessfully inserted new "
+						+ "record \"" + sequence + "\" of "
+						+ (bytes.length + 2) + " bytes ("
+						+ sequence.literalLength() + " characters) starting "
+						+ "at position " + newHandle.getAddress());
+
+			}
+		}
+		//invalid DNA sequence (no A, C, G, or T)
+		else
+		{
+			String display = sequence + "\"";
+			if (display.length() > DEFAULT_STRING_CROP_LENGTH)
+			{
+				display = display.substring(0, 41) + "...\" ("
+						+ display.length() + " characters)";
+			}
+			DNAFile.output.println("\nUnable to insert record \"" + display
+					+ " (sequence does not contain any valid DNA "
+					+ "characters)");
+		}
 	}
 
 	/**
@@ -387,7 +443,12 @@ public class DNATrie
 			//System.out.println("leaf " + node);
 			LeafNode leaf = (LeafNode) node;
 			node = new InternalNode();
-			DNASequence seq = new DNASequence(DNAFile.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			DNASequence seq = new DNASequence(retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			if (seq.equals(sequence))
+			{
+				DNAFile.output.println("INSERT: Cannot insert duplicate record \""
+						+ sequence + "\".");
+			}
 			seq.terminate();
 			seq.cropAt(depth);
 			//System.out.println(seq + "; " + seq.getCurrent() + ": " + sequence + "; " + sequence.getCurrent() + " - " + depth);
@@ -440,6 +501,236 @@ public class DNATrie
 	}
 
 	/**
+	 * Returns a String representation of this {@code trie}. Depending upon the
+	 * value of {@code request}, various information can be appended to the
+	 * basic String representation, including {@code length} for printing the
+	 * number of characters in each discovered {@link DNASequence} and
+	 * statistics for each occurring character in each discovered
+	 * )@link DNASequence}.
+	 * <p/>
+	 * @param request the type of print desired, either
+	 *                   {@link #JUST_DO_IT_SON}, {@link #BY_LENGTH}, or
+	 *                   {@link #BY_STATS}
+	 * <p/>
+	 * @return a String representation of this {@code trie} based on the value
+	 *            of {@code request}
+	 */
+	public String printTrie(int request)
+	{
+		if (request == JUST_DO_IT_SON)
+		{
+			return printTrie(loadNode(root), 0);
+		}
+		else if (request == BY_LENGTH)
+		{
+			return printTrieByLength(loadNode(root), 0);
+		}
+		else if (request == BY_STATS)
+		{
+			return printTrieByStats(loadNode(root), 0);
+		}
+		return "";
+	}
+
+	/**
+	 * Prints the entire contents of {@code tree} with no extra information.
+	 * <p/>
+	 * @param node  the {@link TrieNode} to examine
+	 * @param depth the current depth within the tree; used to determine how
+	 *                 many spaces are needed
+	 * <p/>
+	 * @return a String representation of {@code tree}
+	 */
+	private String printTrie(TrieNode node, int depth)
+	{
+		StringBuilder builder = new StringBuilder();
+		int numSpaces = 2 * depth;
+		//append spaces based on tree depth
+		for (int i = 0; i < numSpaces; i++)
+		{
+			builder.append(" ");
+		}
+		//FLYWEIGHTS are printed as E
+		if (node.isFlyweight())
+		{
+			builder.append("E\n");
+		}
+		//LeafNodes are printed as their sequence
+		else if (node.isLeaf())
+		{
+			LeafNode leaf = (LeafNode) node;
+			builder.append(retrieve(leaf.getHandle(),
+					leaf.getLiteralLength())).append("\n");
+		}
+		//InternalNodes are printed as I and have their nodes examined via DFS
+		else
+		{
+			InternalNode internal = (InternalNode) node;
+			builder.append("I\n").append(printTrie(internal.getA(), depth + 1)).append(
+					printTrie(internal.getC(), depth + 1)).append(
+					printTrie(internal.getG(), depth + 1)).append(
+					printTrie(internal.getT(), depth + 1)).append(
+					printTrie(internal.get$(), depth + 1));
+		}
+		return builder.toString();
+	}
+
+	/**
+	 * Prints the entire contents of {@code tree} with information about the
+	 * length of each {@link DNASequence}.
+	 * <p/>
+	 * @param node  the {@link TrieNode} to examine
+	 * @param depth the current depth within the tree; used to determine how
+	 *                 many spaces are needed
+	 * <p/>
+	 * @return a String representation of {@code tree} with length information
+	 */
+	private String printTrieByLength(TrieNode node, int depth)
+	{
+		StringBuilder builder = new StringBuilder();
+		int numSpaces = 2 * depth;
+		//append spaces based on tree depth
+		for (int i = 0; i < numSpaces; i++)
+		{
+			builder.append(" ");
+		}
+		//FLYWEIGHTS are printed as E
+		if (node.isFlyweight())
+		{
+			builder.append("E\n");
+		}
+		//LeafNodes are printed as their sequence
+		else if (node.isLeaf())
+		{
+			LeafNode leaf = (LeafNode) node;
+			int literal = leaf.getLiteralLength();
+			builder.append(retrieve(leaf.getHandle(), literal)).append(": length ").append(literal).append(" \n");
+		}
+		//InternalNodes are printed as I and have their nodes examined via DFS
+		else
+		{
+			InternalNode internal = (InternalNode) node;
+			builder.append("I\n").append(printTrieByLength(internal.getA(), depth + 1)).append(
+					printTrieByLength(internal.getC(), depth + 1)).append(
+					printTrieByLength(internal.getG(), depth + 1)).append(
+					printTrieByLength(internal.getT(), depth + 1)).append(
+					printTrieByLength(internal.get$(), depth + 1));
+		}
+		return builder.toString();
+	}
+
+	/**
+	 * Prints the entire contents of {@code tree} with statistics of each
+	 * character occurring in the {@link DNASequence}.
+	 * <p/>
+	 * @param node  the {@link TrieNode} to examine
+	 * @param depth the current depth within the tree; used to determine how
+	 *                 many spaces are needed
+	 * <p/>
+	 * @return a String representation of {@code tree} with statistics
+	 */
+	private String printTrieByStats(TrieNode node, int depth)
+	{
+		StringBuilder builder = new StringBuilder();
+		int numSpaces = 2 * depth;
+		//append spaces based on tree depth
+		for (int i = 0; i < numSpaces; i++)
+		{
+			builder.append(" ");
+		}
+		//FLYWEIGHTS are printed as E
+		if (node.isFlyweight())
+		{
+			builder.append("E\n");
+		}
+		//LeafNodes are printed as their sequence
+		else if (node.isLeaf())
+		{
+			LeafNode leaf = (LeafNode) node;
+			DNASequence seq = new DNASequence(retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			builder.append(seq.getSequence()).append(" ").
+					append(seq.getStats()).append("\n");
+		}
+		//InternalNodes are printed as I and have their nodes examined via DFS
+		else
+		{
+			InternalNode internal = (InternalNode) node;
+			builder.append("I\n").append(printTrieByStats(internal.getA(), depth + 1)).append(
+					printTrieByStats(internal.getC(), depth + 1)).append(
+					printTrieByStats(internal.getG(), depth + 1)).append(
+					printTrieByStats(internal.getT(), depth + 1)).append(
+					printTrieByStats(internal.get$(), depth + 1));
+		}
+		return builder.toString();
+	}
+
+	/**
+	 * Retrieves a String representing a {@code DNASequence} from memory.
+	 * <p/>
+	 * @param h      the {@link MemHandle} referencing the sequence in the pool
+	 * @param length the literal (true) length of the expected sequence
+	 * <p/>
+	 * @return the sequence
+	 */
+	public String retrieve(MemHandle h, int length)
+	{
+		byte[] got = manager.get(h);
+		//if got is null, no sequence exists in memory referenced by h
+		if (got != null)
+		{
+			String seq = DNACodec.decode(got).getSequence();
+			return verifyDecode(seq, length);
+		}
+		return "";
+	}
+
+	/**
+	 * Verifies the decoding operation by ensuring that A's and C's are inserted
+	 * properly. Because the encoding operation trims leading zero's, this
+	 * operation restores leading zeros up to the nearest full byte then only
+	 * examines the bits that are relevant ({@code size} determines this).
+	 * <p/>
+	 * @param s    the partially decoded binary String
+	 * @param size the expected size (in String characters) of the String
+	 * <p/>
+	 * @return the fully decoded String
+	 */
+	private String verifyDecode(String s, int size)
+	{
+		String keep = "";
+		//determines how many zeros need to be restored
+		int dif = size * 2 - s.length();
+		for (int i = 0; i < dif; i++)
+		{
+			keep += "0";
+		}
+		keep += s;
+		String ret = "";
+		for (int i = 0; i < keep.length(); i += 2)
+		{
+			int next = i + 2;
+			String curr = keep.substring(i, next);
+			if (curr.equals("00"))
+			{
+				ret += "A";
+			}
+			if (curr.equals("01"))
+			{
+				ret += "C";
+			}
+			if (curr.equals("10"))
+			{
+				ret += "G";
+			}
+			if (curr.equals("11"))
+			{
+				ret += "T";
+			}
+		}
+		return ret;
+	}
+
+	/**
 	 * Returns the size of this {@code DNATrie}.
 	 * <p/>
 	 * @return the size of this tree
@@ -453,7 +744,7 @@ public class DNATrie
 	{
 		return codec.decode(manager.get(h));
 	}
-	
+
 	private MemHandle saveNode(TrieNode node)
 	{
 		return manager.insert(codec.encode(node));
@@ -485,7 +776,7 @@ public class DNATrie
 		else if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			DNASequence seq = new DNASequence(DNAFile.controller.retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			DNASequence seq = new DNASequence(retrieve(leaf.getHandle(), leaf.getLiteralLength()));
 			c.add(seq.getSequence());
 			return 1;
 		}
@@ -511,7 +802,7 @@ public class DNATrie
 	 * @author orionf22
 	 * @author rinaldi1
 	 */
-	public abstract class TrieNode
+	public interface TrieNode
 	{
 
 		/**
@@ -536,7 +827,7 @@ public class DNATrie
 	 * single {@code FLYWEIGHT} node, {@link DNATrie#FLYWEIGHT}.
 	 */
 	private class FLYWEIGHT
-			extends TrieNode
+			implements TrieNode
 	{
 
 		@Override
@@ -563,7 +854,7 @@ public class DNATrie
 	 * @author rinaldi1
 	 */
 	private class InternalNode
-			extends TrieNode
+			implements TrieNode
 	{
 
 		/**
@@ -591,52 +882,52 @@ public class DNATrie
 		{
 			return codec.decode(manager.get(A));
 		}
-		
+
 		public void setA(TrieNode node)
 		{
 			this.A = manager.insert(codec.encode(node));
 		}
-		
+
 		public TrieNode getC()
 		{
 			return codec.decode(manager.get(C));
 		}
-		
+
 		public void setC(TrieNode node)
 		{
 			this.C = manager.insert(codec.encode(node));
 		}
-		
+
 		public TrieNode getG()
 		{
 			return codec.decode(manager.get(G));
 		}
-		
+
 		public void setG(TrieNode node)
 		{
 			this.G = manager.insert(codec.encode(node));
 		}
-		
+
 		public TrieNode getT()
 		{
 			return codec.decode(manager.get(T));
 		}
-		
+
 		public void setT(TrieNode node)
 		{
 			this.T = manager.insert(codec.encode(node));
 		}
-		
+
 		public TrieNode get$()
 		{
 			return codec.decode(manager.get($));
 		}
-		
+
 		public void set$(TrieNode node)
 		{
 			this.$ = manager.insert(codec.encode(node));
 		}
-		
+
 		@Override
 		public boolean isLeaf()
 		{
@@ -659,7 +950,7 @@ public class DNATrie
 	 * @author rinaldi1
 	 */
 	private class LeafNode
-			extends TrieNode
+			implements TrieNode
 	{
 
 		/**
@@ -730,7 +1021,24 @@ public class DNATrie
 		@Override
 		public DNATrie.TrieNode decode(byte[] bytes)
 		{
-			throw new UnsupportedOperationException("Not supported yet.");
+			TrieNode ret = null;
+			ByteBuffer buff = ByteBuffer.allocate(bytes.length);
+			buff.put(bytes);
+			byte first = buff.get(0);
+			//InternalNode
+			if (first == 0)
+			{
+				ret = new InternalNode();
+				
+			}
+			//LeafNode
+			else if (first == 1)
+			{
+			}
+			else if (first == -2)
+			{
+			}
+			return ret;
 		}
 
 		@Override
@@ -745,7 +1053,7 @@ public class DNATrie
 				buff = ByteBuffer.allocate(4);
 				ret[0] = 1;
 				int length = leaf.getLiteralLength();
-				buff.putShort((short)length);
+				buff.putShort((short) length);
 				ret[1] = buff.get(0);
 				ret[2] = buff.get(1);
 				buff.putInt(0, leaf.getHandle().getAddress());
