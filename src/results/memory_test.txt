@@ -1,0 +1,1608 @@
+E
+
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT" of 3 bytes (51 characters) starting at position 6
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATT" of 3 bytes (52 characters) starting at position 27
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTT" of 3 bytes (53 characters) starting at position 1726
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTT" of 4 bytes (54 characters) starting at position 2989
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTT" of 4 bytes (55 characters) starting at position 4276
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTT" of 4 bytes (56 characters) starting at position 5586
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTT" of 4 bytes (57 characters) starting at position 6919
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTT" of 5 bytes (58 characters) starting at position 8275
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTT" of 5 bytes (59 characters) starting at position 9655
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTT" of 5 bytes (60 characters) starting at position 11058
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTT" of 5 bytes (61 characters) starting at position 12484
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTT" of 6 bytes (62 characters) starting at position 13933
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTT" of 6 bytes (63 characters) starting at position 15406
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTT" of 6 bytes (64 characters) starting at position 16902
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTT" of 6 bytes (65 characters) starting at position 18421
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTT" of 7 bytes (66 characters) starting at position 19963
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTT" of 7 bytes (67 characters) starting at position 21529
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTT" of 7 bytes (68 characters) starting at position 23118
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTT" of 7 bytes (69 characters) starting at position 24730
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTT" of 8 bytes (70 characters) starting at position 26365
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTT" of 8 bytes (71 characters) starting at position 28024
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTT" of 8 bytes (72 characters) starting at position 29706
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTT" of 8 bytes (73 characters) starting at position 31411
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTT" of 9 bytes (74 characters) starting at position 33139
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTT" of 9 bytes (75 characters) starting at position 34891
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTT" of 9 bytes (76 characters) starting at position 36666
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTT" of 9 bytes (77 characters) starting at position 38464
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 10 bytes (78 characters) starting at position 40285
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 10 bytes (79 characters) starting at position 42130
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 10 bytes (80 characters) starting at position 43998
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 10 bytes (81 characters) starting at position 45889
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 11 bytes (82 characters) starting at position 47803
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 11 bytes (83 characters) starting at position 49741
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 11 bytes (84 characters) starting at position 51702
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 11 bytes (85 characters) starting at position 53686
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 12 bytes (86 characters) starting at position 55693
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 12 bytes (87 characters) starting at position 57724
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 12 bytes (88 characters) starting at position 59778
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 12 bytes (89 characters) starting at position 61855
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 13 bytes (90 characters) starting at position 63955
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 13 bytes (91 characters) starting at position 66079
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 13 bytes (92 characters) starting at position 68226
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 13 bytes (93 characters) starting at position 70396
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 14 bytes (94 characters) starting at position 72589
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 14 bytes (95 characters) starting at position 74806
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 14 bytes (96 characters) starting at position 77046
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 14 bytes (97 characters) starting at position 79309
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 15 bytes (98 characters) starting at position 81595
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 15 bytes (99 characters) starting at position 83905
+
+Successfully inserted new record "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" of 15 bytes (100 characters) starting at position 86238
+I
+  I
+    I
+      I
+        I
+          I
+            I
+              I
+                I
+                  I
+                    I
+                      I
+                        I
+                          I
+                            I
+                              I
+                                I
+                                  I
+                                    I
+                                      I
+                                        I
+                                          I
+                                            I
+                                              I
+                                                I
+                                                  I
+                                                    I
+                                                      I
+                                                        I
+                                                          I
+                                                            I
+                                                              I
+                                                                I
+                                                                  I
+                                                                    I
+                                                                      I
+                                                                        I
+                                                                          I
+                                                                            I
+                                                                              I
+                                                                                I
+                                                                                  I
+                                                                                    I
+                                                                                      I
+                                                                                        I
+                                                                                          I
+                                                                                            I
+                                                                                              I
+                                                                                                I
+                                                                                                  I
+                                                                                                    I
+                                                                                                      E
+                                                                                                      E
+                                                                                                      E
+                                                                                                      I
+                                                                                                        E
+                                                                                                        E
+                                                                                                        E
+                                                                                                        I
+                                                                                                          E
+                                                                                                          E
+                                                                                                          E
+                                                                                                          I
+                                                                                                            E
+                                                                                                            E
+                                                                                                            E
+                                                                                                            I
+                                                                                                              E
+                                                                                                              E
+                                                                                                              E
+                                                                                                              I
+                                                                                                                E
+                                                                                                                E
+                                                                                                                E
+                                                                                                                I
+                                                                                                                  E
+                                                                                                                  E
+                                                                                                                  E
+                                                                                                                  I
+                                                                                                                    E
+                                                                                                                    E
+                                                                                                                    E
+                                                                                                                    I
+                                                                                                                      E
+                                                                                                                      E
+                                                                                                                      E
+                                                                                                                      I
+                                                                                                                        E
+                                                                                                                        E
+                                                                                                                        E
+                                                                                                                        I
+                                                                                                                          E
+                                                                                                                          E
+                                                                                                                          E
+                                                                                                                          I
+                                                                                                                            E
+                                                                                                                            E
+                                                                                                                            E
+                                                                                                                            I
+                                                                                                                              E
+                                                                                                                              E
+                                                                                                                              E
+                                                                                                                              I
+                                                                                                                                E
+                                                                                                                                E
+                                                                                                                                E
+                                                                                                                                I
+                                                                                                                                  E
+                                                                                                                                  E
+                                                                                                                                  E
+                                                                                                                                  I
+                                                                                                                                    E
+                                                                                                                                    E
+                                                                                                                                    E
+                                                                                                                                    I
+                                                                                                                                      E
+                                                                                                                                      E
+                                                                                                                                      E
+                                                                                                                                      I
+                                                                                                                                        E
+                                                                                                                                        E
+                                                                                                                                        E
+                                                                                                                                        I
+                                                                                                                                          E
+                                                                                                                                          E
+                                                                                                                                          E
+                                                                                                                                          I
+                                                                                                                                            E
+                                                                                                                                            E
+                                                                                                                                            E
+                                                                                                                                            I
+                                                                                                                                              E
+                                                                                                                                              E
+                                                                                                                                              E
+                                                                                                                                              I
+                                                                                                                                                E
+                                                                                                                                                E
+                                                                                                                                                E
+                                                                                                                                                I
+                                                                                                                                                  E
+                                                                                                                                                  E
+                                                                                                                                                  E
+                                                                                                                                                  I
+                                                                                                                                                    E
+                                                                                                                                                    E
+                                                                                                                                                    E
+                                                                                                                                                    I
+                                                                                                                                                      E
+                                                                                                                                                      E
+                                                                                                                                                      E
+                                                                                                                                                      I
+                                                                                                                                                        E
+                                                                                                                                                        E
+                                                                                                                                                        E
+                                                                                                                                                        I
+                                                                                                                                                          E
+                                                                                                                                                          E
+                                                                                                                                                          E
+                                                                                                                                                          I
+                                                                                                                                                            E
+                                                                                                                                                            E
+                                                                                                                                                            E
+                                                                                                                                                            I
+                                                                                                                                                              E
+                                                                                                                                                              E
+                                                                                                                                                              E
+                                                                                                                                                              I
+                                                                                                                                                                E
+                                                                                                                                                                E
+                                                                                                                                                                E
+                                                                                                                                                                I
+                                                                                                                                                                  E
+                                                                                                                                                                  E
+                                                                                                                                                                  E
+                                                                                                                                                                  I
+                                                                                                                                                                    E
+                                                                                                                                                                    E
+                                                                                                                                                                    E
+                                                                                                                                                                    I
+                                                                                                                                                                      E
+                                                                                                                                                                      E
+                                                                                                                                                                      E
+                                                                                                                                                                      I
+                                                                                                                                                                        E
+                                                                                                                                                                        E
+                                                                                                                                                                        E
+                                                                                                                                                                        I
+                                                                                                                                                                          E
+                                                                                                                                                                          E
+                                                                                                                                                                          E
+                                                                                                                                                                          I
+                                                                                                                                                                            E
+                                                                                                                                                                            E
+                                                                                                                                                                            E
+                                                                                                                                                                            I
+                                                                                                                                                                              E
+                                                                                                                                                                              E
+                                                                                                                                                                              E
+                                                                                                                                                                              I
+                                                                                                                                                                                E
+                                                                                                                                                                                E
+                                                                                                                                                                                E
+                                                                                                                                                                                I
+                                                                                                                                                                                  E
+                                                                                                                                                                                  E
+                                                                                                                                                                                  E
+                                                                                                                                                                                  I
+                                                                                                                                                                                    E
+                                                                                                                                                                                    E
+                                                                                                                                                                                    E
+                                                                                                                                                                                    I
+                                                                                                                                                                                      E
+                                                                                                                                                                                      E
+                                                                                                                                                                                      E
+                                                                                                                                                                                      I
+                                                                                                                                                                                        E
+                                                                                                                                                                                        E
+                                                                                                                                                                                        E
+                                                                                                                                                                                        I
+                                                                                                                                                                                          E
+                                                                                                                                                                                          E
+                                                                                                                                                                                          E
+                                                                                                                                                                                          I
+                                                                                                                                                                                            E
+                                                                                                                                                                                            E
+                                                                                                                                                                                            E
+                                                                                                                                                                                            I
+                                                                                                                                                                                              E
+                                                                                                                                                                                              E
+                                                                                                                                                                                              E
+                                                                                                                                                                                              I
+                                                                                                                                                                                                E
+                                                                                                                                                                                                E
+                                                                                                                                                                                                E
+                                                                                                                                                                                                I
+                                                                                                                                                                                                  E
+                                                                                                                                                                                                  E
+                                                                                                                                                                                                  E
+                                                                                                                                                                                                  I
+                                                                                                                                                                                                    E
+                                                                                                                                                                                                    E
+                                                                                                                                                                                                    E
+                                                                                                                                                                                                    I
+                                                                                                                                                                                                      E
+                                                                                                                                                                                                      E
+                                                                                                                                                                                                      E
+                                                                                                                                                                                                      I
+                                                                                                                                                                                                        E
+                                                                                                                                                                                                        E
+                                                                                                                                                                                                        E
+                                                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTT
+                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTT
+                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTT
+                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTT
+                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTT
+                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTT
+                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTT
+                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTT
+                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTT
+                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTT
+                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTT
+                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTT
+                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTT
+                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTT
+                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTT
+                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTT
+                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTT
+                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTT
+                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTT
+                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATT
+                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT
+                                                                                                      E
+                                                                                                    E
+                                                                                                    E
+                                                                                                    E
+                                                                                                    E
+                                                                                                  E
+                                                                                                  E
+                                                                                                  E
+                                                                                                  E
+                                                                                                E
+                                                                                                E
+                                                                                                E
+                                                                                                E
+                                                                                              E
+                                                                                              E
+                                                                                              E
+                                                                                              E
+                                                                                            E
+                                                                                            E
+                                                                                            E
+                                                                                            E
+                                                                                          E
+                                                                                          E
+                                                                                          E
+                                                                                          E
+                                                                                        E
+                                                                                        E
+                                                                                        E
+                                                                                        E
+                                                                                      E
+                                                                                      E
+                                                                                      E
+                                                                                      E
+                                                                                    E
+                                                                                    E
+                                                                                    E
+                                                                                    E
+                                                                                  E
+                                                                                  E
+                                                                                  E
+                                                                                  E
+                                                                                E
+                                                                                E
+                                                                                E
+                                                                                E
+                                                                              E
+                                                                              E
+                                                                              E
+                                                                              E
+                                                                            E
+                                                                            E
+                                                                            E
+                                                                            E
+                                                                          E
+                                                                          E
+                                                                          E
+                                                                          E
+                                                                        E
+                                                                        E
+                                                                        E
+                                                                        E
+                                                                      E
+                                                                      E
+                                                                      E
+                                                                      E
+                                                                    E
+                                                                    E
+                                                                    E
+                                                                    E
+                                                                  E
+                                                                  E
+                                                                  E
+                                                                  E
+                                                                E
+                                                                E
+                                                                E
+                                                                E
+                                                              E
+                                                              E
+                                                              E
+                                                              E
+                                                            E
+                                                            E
+                                                            E
+                                                            E
+                                                          E
+                                                          E
+                                                          E
+                                                          E
+                                                        E
+                                                        E
+                                                        E
+                                                        E
+                                                      E
+                                                      E
+                                                      E
+                                                      E
+                                                    E
+                                                    E
+                                                    E
+                                                    E
+                                                  E
+                                                  E
+                                                  E
+                                                  E
+                                                E
+                                                E
+                                                E
+                                                E
+                                              E
+                                              E
+                                              E
+                                              E
+                                            E
+                                            E
+                                            E
+                                            E
+                                          E
+                                          E
+                                          E
+                                          E
+                                        E
+                                        E
+                                        E
+                                        E
+                                      E
+                                      E
+                                      E
+                                      E
+                                    E
+                                    E
+                                    E
+                                    E
+                                  E
+                                  E
+                                  E
+                                  E
+                                E
+                                E
+                                E
+                                E
+                              E
+                              E
+                              E
+                              E
+                            E
+                            E
+                            E
+                            E
+                          E
+                          E
+                          E
+                          E
+                        E
+                        E
+                        E
+                        E
+                      E
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                    E
+                  E
+                  E
+                  E
+                  E
+                E
+                E
+                E
+                E
+              E
+              E
+              E
+              E
+            E
+            E
+            E
+            E
+          E
+          E
+          E
+          E
+        E
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+I
+  I
+    I
+      I
+        I
+          I
+            I
+              I
+                I
+                  I
+                    I
+                      I
+                        I
+                          I
+                            I
+                              I
+                                I
+                                  I
+                                    I
+                                      I
+                                        I
+                                          I
+                                            I
+                                              I
+                                                I
+                                                  I
+                                                    I
+                                                      I
+                                                        I
+                                                          I
+                                                            I
+                                                              I
+                                                                I
+                                                                  I
+                                                                    I
+                                                                      I
+                                                                        I
+                                                                          I
+                                                                            I
+                                                                              I
+                                                                                I
+                                                                                  I
+                                                                                    I
+                                                                                      I
+                                                                                        I
+                                                                                          I
+                                                                                            I
+                                                                                              I
+                                                                                                I
+                                                                                                  I
+                                                                                                    I
+                                                                                                      E
+                                                                                                      E
+                                                                                                      E
+                                                                                                      I
+                                                                                                        E
+                                                                                                        E
+                                                                                                        E
+                                                                                                        I
+                                                                                                          E
+                                                                                                          E
+                                                                                                          E
+                                                                                                          I
+                                                                                                            E
+                                                                                                            E
+                                                                                                            E
+                                                                                                            I
+                                                                                                              E
+                                                                                                              E
+                                                                                                              E
+                                                                                                              I
+                                                                                                                E
+                                                                                                                E
+                                                                                                                E
+                                                                                                                I
+                                                                                                                  E
+                                                                                                                  E
+                                                                                                                  E
+                                                                                                                  I
+                                                                                                                    E
+                                                                                                                    E
+                                                                                                                    E
+                                                                                                                    I
+                                                                                                                      E
+                                                                                                                      E
+                                                                                                                      E
+                                                                                                                      I
+                                                                                                                        E
+                                                                                                                        E
+                                                                                                                        E
+                                                                                                                        I
+                                                                                                                          E
+                                                                                                                          E
+                                                                                                                          E
+                                                                                                                          I
+                                                                                                                            E
+                                                                                                                            E
+                                                                                                                            E
+                                                                                                                            I
+                                                                                                                              E
+                                                                                                                              E
+                                                                                                                              E
+                                                                                                                              I
+                                                                                                                                E
+                                                                                                                                E
+                                                                                                                                E
+                                                                                                                                I
+                                                                                                                                  E
+                                                                                                                                  E
+                                                                                                                                  E
+                                                                                                                                  I
+                                                                                                                                    E
+                                                                                                                                    E
+                                                                                                                                    E
+                                                                                                                                    I
+                                                                                                                                      E
+                                                                                                                                      E
+                                                                                                                                      E
+                                                                                                                                      I
+                                                                                                                                        E
+                                                                                                                                        E
+                                                                                                                                        E
+                                                                                                                                        I
+                                                                                                                                          E
+                                                                                                                                          E
+                                                                                                                                          E
+                                                                                                                                          I
+                                                                                                                                            E
+                                                                                                                                            E
+                                                                                                                                            E
+                                                                                                                                            I
+                                                                                                                                              E
+                                                                                                                                              E
+                                                                                                                                              E
+                                                                                                                                              I
+                                                                                                                                                E
+                                                                                                                                                E
+                                                                                                                                                E
+                                                                                                                                                I
+                                                                                                                                                  E
+                                                                                                                                                  E
+                                                                                                                                                  E
+                                                                                                                                                  I
+                                                                                                                                                    E
+                                                                                                                                                    E
+                                                                                                                                                    E
+                                                                                                                                                    I
+                                                                                                                                                      E
+                                                                                                                                                      E
+                                                                                                                                                      E
+                                                                                                                                                      I
+                                                                                                                                                        E
+                                                                                                                                                        E
+                                                                                                                                                        E
+                                                                                                                                                        I
+                                                                                                                                                          E
+                                                                                                                                                          E
+                                                                                                                                                          E
+                                                                                                                                                          I
+                                                                                                                                                            E
+                                                                                                                                                            E
+                                                                                                                                                            E
+                                                                                                                                                            I
+                                                                                                                                                              E
+                                                                                                                                                              E
+                                                                                                                                                              E
+                                                                                                                                                              I
+                                                                                                                                                                E
+                                                                                                                                                                E
+                                                                                                                                                                E
+                                                                                                                                                                I
+                                                                                                                                                                  E
+                                                                                                                                                                  E
+                                                                                                                                                                  E
+                                                                                                                                                                  I
+                                                                                                                                                                    E
+                                                                                                                                                                    E
+                                                                                                                                                                    E
+                                                                                                                                                                    I
+                                                                                                                                                                      E
+                                                                                                                                                                      E
+                                                                                                                                                                      E
+                                                                                                                                                                      I
+                                                                                                                                                                        E
+                                                                                                                                                                        E
+                                                                                                                                                                        E
+                                                                                                                                                                        I
+                                                                                                                                                                          E
+                                                                                                                                                                          E
+                                                                                                                                                                          E
+                                                                                                                                                                          I
+                                                                                                                                                                            E
+                                                                                                                                                                            E
+                                                                                                                                                                            E
+                                                                                                                                                                            I
+                                                                                                                                                                              E
+                                                                                                                                                                              E
+                                                                                                                                                                              E
+                                                                                                                                                                              I
+                                                                                                                                                                                E
+                                                                                                                                                                                E
+                                                                                                                                                                                E
+                                                                                                                                                                                I
+                                                                                                                                                                                  E
+                                                                                                                                                                                  E
+                                                                                                                                                                                  E
+                                                                                                                                                                                  I
+                                                                                                                                                                                    E
+                                                                                                                                                                                    E
+                                                                                                                                                                                    E
+                                                                                                                                                                                    I
+                                                                                                                                                                                      E
+                                                                                                                                                                                      E
+                                                                                                                                                                                      E
+                                                                                                                                                                                      I
+                                                                                                                                                                                        E
+                                                                                                                                                                                        E
+                                                                                                                                                                                        E
+                                                                                                                                                                                        I
+                                                                                                                                                                                          E
+                                                                                                                                                                                          E
+                                                                                                                                                                                          E
+                                                                                                                                                                                          I
+                                                                                                                                                                                            E
+                                                                                                                                                                                            E
+                                                                                                                                                                                            E
+                                                                                                                                                                                            I
+                                                                                                                                                                                              E
+                                                                                                                                                                                              E
+                                                                                                                                                                                              E
+                                                                                                                                                                                              I
+                                                                                                                                                                                                E
+                                                                                                                                                                                                E
+                                                                                                                                                                                                E
+                                                                                                                                                                                                I
+                                                                                                                                                                                                  E
+                                                                                                                                                                                                  E
+                                                                                                                                                                                                  E
+                                                                                                                                                                                                  I
+                                                                                                                                                                                                    E
+                                                                                                                                                                                                    E
+                                                                                                                                                                                                    E
+                                                                                                                                                                                                    I
+                                                                                                                                                                                                      E
+                                                                                                                                                                                                      E
+                                                                                                                                                                                                      E
+                                                                                                                                                                                                      I
+                                                                                                                                                                                                        E
+                                                                                                                                                                                                        E
+                                                                                                                                                                                                        E
+                                                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 100 
+                                                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 99 
+                                                                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 98 
+                                                                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 97 
+                                                                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 96 
+                                                                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 95 
+                                                                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 94 
+                                                                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 93 
+                                                                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 92 
+                                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 91 
+                                                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 90 
+                                                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 89 
+                                                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 88 
+                                                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 87 
+                                                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 86 
+                                                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 85 
+                                                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 84 
+                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 83 
+                                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 82 
+                                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 81 
+                                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 80 
+                                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 79 
+                                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTT: length 78 
+                                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTT: length 77 
+                                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTT: length 76 
+                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTT: length 75 
+                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTT: length 74 
+                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTT: length 73 
+                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTT: length 72 
+                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTT: length 71 
+                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTT: length 70 
+                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTT: length 69 
+                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTT: length 68 
+                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTT: length 67 
+                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTT: length 66 
+                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTT: length 65 
+                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTT: length 64 
+                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTT: length 63 
+                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTT: length 62 
+                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTT: length 61 
+                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTT: length 60 
+                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTT: length 59 
+                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTT: length 58 
+                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTT: length 57 
+                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTT: length 56 
+                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTT: length 55 
+                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTT: length 54 
+                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTT: length 53 
+                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATT: length 52 
+                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT: length 51 
+                                                                                                      E
+                                                                                                    E
+                                                                                                    E
+                                                                                                    E
+                                                                                                    E
+                                                                                                  E
+                                                                                                  E
+                                                                                                  E
+                                                                                                  E
+                                                                                                E
+                                                                                                E
+                                                                                                E
+                                                                                                E
+                                                                                              E
+                                                                                              E
+                                                                                              E
+                                                                                              E
+                                                                                            E
+                                                                                            E
+                                                                                            E
+                                                                                            E
+                                                                                          E
+                                                                                          E
+                                                                                          E
+                                                                                          E
+                                                                                        E
+                                                                                        E
+                                                                                        E
+                                                                                        E
+                                                                                      E
+                                                                                      E
+                                                                                      E
+                                                                                      E
+                                                                                    E
+                                                                                    E
+                                                                                    E
+                                                                                    E
+                                                                                  E
+                                                                                  E
+                                                                                  E
+                                                                                  E
+                                                                                E
+                                                                                E
+                                                                                E
+                                                                                E
+                                                                              E
+                                                                              E
+                                                                              E
+                                                                              E
+                                                                            E
+                                                                            E
+                                                                            E
+                                                                            E
+                                                                          E
+                                                                          E
+                                                                          E
+                                                                          E
+                                                                        E
+                                                                        E
+                                                                        E
+                                                                        E
+                                                                      E
+                                                                      E
+                                                                      E
+                                                                      E
+                                                                    E
+                                                                    E
+                                                                    E
+                                                                    E
+                                                                  E
+                                                                  E
+                                                                  E
+                                                                  E
+                                                                E
+                                                                E
+                                                                E
+                                                                E
+                                                              E
+                                                              E
+                                                              E
+                                                              E
+                                                            E
+                                                            E
+                                                            E
+                                                            E
+                                                          E
+                                                          E
+                                                          E
+                                                          E
+                                                        E
+                                                        E
+                                                        E
+                                                        E
+                                                      E
+                                                      E
+                                                      E
+                                                      E
+                                                    E
+                                                    E
+                                                    E
+                                                    E
+                                                  E
+                                                  E
+                                                  E
+                                                  E
+                                                E
+                                                E
+                                                E
+                                                E
+                                              E
+                                              E
+                                              E
+                                              E
+                                            E
+                                            E
+                                            E
+                                            E
+                                          E
+                                          E
+                                          E
+                                          E
+                                        E
+                                        E
+                                        E
+                                        E
+                                      E
+                                      E
+                                      E
+                                      E
+                                    E
+                                    E
+                                    E
+                                    E
+                                  E
+                                  E
+                                  E
+                                  E
+                                E
+                                E
+                                E
+                                E
+                              E
+                              E
+                              E
+                              E
+                            E
+                            E
+                            E
+                            E
+                          E
+                          E
+                          E
+                          E
+                        E
+                        E
+                        E
+                        E
+                      E
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                    E
+                  E
+                  E
+                  E
+                  E
+                E
+                E
+                E
+                E
+              E
+              E
+              E
+              E
+            E
+            E
+            E
+            E
+          E
+          E
+          E
+          E
+        E
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+I
+  I
+    I
+      I
+        I
+          I
+            I
+              I
+                I
+                  I
+                    I
+                      I
+                        I
+                          I
+                            I
+                              I
+                                I
+                                  I
+                                    I
+                                      I
+                                        I
+                                          I
+                                            I
+                                              I
+                                                I
+                                                  I
+                                                    I
+                                                      I
+                                                        I
+                                                          I
+                                                            I
+                                                              I
+                                                                I
+                                                                  I
+                                                                    I
+                                                                      I
+                                                                        I
+                                                                          I
+                                                                            I
+                                                                              I
+                                                                                I
+                                                                                  I
+                                                                                    I
+                                                                                      I
+                                                                                        I
+                                                                                          I
+                                                                                            I
+                                                                                              I
+                                                                                                I
+                                                                                                  I
+                                                                                                    I
+                                                                                                      E
+                                                                                                      E
+                                                                                                      E
+                                                                                                      I
+                                                                                                        E
+                                                                                                        E
+                                                                                                        E
+                                                                                                        I
+                                                                                                          E
+                                                                                                          E
+                                                                                                          E
+                                                                                                          I
+                                                                                                            E
+                                                                                                            E
+                                                                                                            E
+                                                                                                            I
+                                                                                                              E
+                                                                                                              E
+                                                                                                              E
+                                                                                                              I
+                                                                                                                E
+                                                                                                                E
+                                                                                                                E
+                                                                                                                I
+                                                                                                                  E
+                                                                                                                  E
+                                                                                                                  E
+                                                                                                                  I
+                                                                                                                    E
+                                                                                                                    E
+                                                                                                                    E
+                                                                                                                    I
+                                                                                                                      E
+                                                                                                                      E
+                                                                                                                      E
+                                                                                                                      I
+                                                                                                                        E
+                                                                                                                        E
+                                                                                                                        E
+                                                                                                                        I
+                                                                                                                          E
+                                                                                                                          E
+                                                                                                                          E
+                                                                                                                          I
+                                                                                                                            E
+                                                                                                                            E
+                                                                                                                            E
+                                                                                                                            I
+                                                                                                                              E
+                                                                                                                              E
+                                                                                                                              E
+                                                                                                                              I
+                                                                                                                                E
+                                                                                                                                E
+                                                                                                                                E
+                                                                                                                                I
+                                                                                                                                  E
+                                                                                                                                  E
+                                                                                                                                  E
+                                                                                                                                  I
+                                                                                                                                    E
+                                                                                                                                    E
+                                                                                                                                    E
+                                                                                                                                    I
+                                                                                                                                      E
+                                                                                                                                      E
+                                                                                                                                      E
+                                                                                                                                      I
+                                                                                                                                        E
+                                                                                                                                        E
+                                                                                                                                        E
+                                                                                                                                        I
+                                                                                                                                          E
+                                                                                                                                          E
+                                                                                                                                          E
+                                                                                                                                          I
+                                                                                                                                            E
+                                                                                                                                            E
+                                                                                                                                            E
+                                                                                                                                            I
+                                                                                                                                              E
+                                                                                                                                              E
+                                                                                                                                              E
+                                                                                                                                              I
+                                                                                                                                                E
+                                                                                                                                                E
+                                                                                                                                                E
+                                                                                                                                                I
+                                                                                                                                                  E
+                                                                                                                                                  E
+                                                                                                                                                  E
+                                                                                                                                                  I
+                                                                                                                                                    E
+                                                                                                                                                    E
+                                                                                                                                                    E
+                                                                                                                                                    I
+                                                                                                                                                      E
+                                                                                                                                                      E
+                                                                                                                                                      E
+                                                                                                                                                      I
+                                                                                                                                                        E
+                                                                                                                                                        E
+                                                                                                                                                        E
+                                                                                                                                                        I
+                                                                                                                                                          E
+                                                                                                                                                          E
+                                                                                                                                                          E
+                                                                                                                                                          I
+                                                                                                                                                            E
+                                                                                                                                                            E
+                                                                                                                                                            E
+                                                                                                                                                            I
+                                                                                                                                                              E
+                                                                                                                                                              E
+                                                                                                                                                              E
+                                                                                                                                                              I
+                                                                                                                                                                E
+                                                                                                                                                                E
+                                                                                                                                                                E
+                                                                                                                                                                I
+                                                                                                                                                                  E
+                                                                                                                                                                  E
+                                                                                                                                                                  E
+                                                                                                                                                                  I
+                                                                                                                                                                    E
+                                                                                                                                                                    E
+                                                                                                                                                                    E
+                                                                                                                                                                    I
+                                                                                                                                                                      E
+                                                                                                                                                                      E
+                                                                                                                                                                      E
+                                                                                                                                                                      I
+                                                                                                                                                                        E
+                                                                                                                                                                        E
+                                                                                                                                                                        E
+                                                                                                                                                                        I
+                                                                                                                                                                          E
+                                                                                                                                                                          E
+                                                                                                                                                                          E
+                                                                                                                                                                          I
+                                                                                                                                                                            E
+                                                                                                                                                                            E
+                                                                                                                                                                            E
+                                                                                                                                                                            I
+                                                                                                                                                                              E
+                                                                                                                                                                              E
+                                                                                                                                                                              E
+                                                                                                                                                                              I
+                                                                                                                                                                                E
+                                                                                                                                                                                E
+                                                                                                                                                                                E
+                                                                                                                                                                                I
+                                                                                                                                                                                  E
+                                                                                                                                                                                  E
+                                                                                                                                                                                  E
+                                                                                                                                                                                  I
+                                                                                                                                                                                    E
+                                                                                                                                                                                    E
+                                                                                                                                                                                    E
+                                                                                                                                                                                    I
+                                                                                                                                                                                      E
+                                                                                                                                                                                      E
+                                                                                                                                                                                      E
+                                                                                                                                                                                      I
+                                                                                                                                                                                        E
+                                                                                                                                                                                        E
+                                                                                                                                                                                        E
+                                                                                                                                                                                        I
+                                                                                                                                                                                          E
+                                                                                                                                                                                          E
+                                                                                                                                                                                          E
+                                                                                                                                                                                          I
+                                                                                                                                                                                            E
+                                                                                                                                                                                            E
+                                                                                                                                                                                            E
+                                                                                                                                                                                            I
+                                                                                                                                                                                              E
+                                                                                                                                                                                              E
+                                                                                                                                                                                              E
+                                                                                                                                                                                              I
+                                                                                                                                                                                                E
+                                                                                                                                                                                                E
+                                                                                                                                                                                                E
+                                                                                                                                                                                                I
+                                                                                                                                                                                                  E
+                                                                                                                                                                                                  E
+                                                                                                                                                                                                  E
+                                                                                                                                                                                                  I
+                                                                                                                                                                                                    E
+                                                                                                                                                                                                    E
+                                                                                                                                                                                                    E
+                                                                                                                                                                                                    I
+                                                                                                                                                                                                      E
+                                                                                                                                                                                                      E
+                                                                                                                                                                                                      E
+                                                                                                                                                                                                      I
+                                                                                                                                                                                                        E
+                                                                                                                                                                                                        E
+                                                                                                                                                                                                        E
+                                                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(50.00), C(0.00), G(0.00), T(50.00)
+                                                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(50.51), C(0.00), G(0.00), T(49.49)
+                                                                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(51.02), C(0.00), G(0.00), T(48.98)
+                                                                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(51.55), C(0.00), G(0.00), T(48.45)
+                                                                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(52.08), C(0.00), G(0.00), T(47.92)
+                                                                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(52.63), C(0.00), G(0.00), T(47.37)
+                                                                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(53.19), C(0.00), G(0.00), T(46.81)
+                                                                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(53.76), C(0.00), G(0.00), T(46.24)
+                                                                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(54.35), C(0.00), G(0.00), T(45.65)
+                                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(54.95), C(0.00), G(0.00), T(45.05)
+                                                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(55.56), C(0.00), G(0.00), T(44.44)
+                                                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(56.18), C(0.00), G(0.00), T(43.82)
+                                                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(56.82), C(0.00), G(0.00), T(43.18)
+                                                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(57.47), C(0.00), G(0.00), T(42.53)
+                                                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(58.14), C(0.00), G(0.00), T(41.86)
+                                                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(58.82), C(0.00), G(0.00), T(41.18)
+                                                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(59.52), C(0.00), G(0.00), T(40.48)
+                                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(60.24), C(0.00), G(0.00), T(39.76)
+                                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(60.98), C(0.00), G(0.00), T(39.02)
+                                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(61.73), C(0.00), G(0.00), T(38.27)
+                                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(62.50), C(0.00), G(0.00), T(37.50)
+                                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTT A(63.29), C(0.00), G(0.00), T(36.71)
+                                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTT A(64.10), C(0.00), G(0.00), T(35.90)
+                                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTT A(64.94), C(0.00), G(0.00), T(35.06)
+                                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTT A(65.79), C(0.00), G(0.00), T(34.21)
+                                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTT A(66.67), C(0.00), G(0.00), T(33.33)
+                                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTT A(67.57), C(0.00), G(0.00), T(32.43)
+                                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTT A(68.49), C(0.00), G(0.00), T(31.51)
+                                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTT A(69.44), C(0.00), G(0.00), T(30.56)
+                                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTT A(70.42), C(0.00), G(0.00), T(29.58)
+                                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTT A(71.43), C(0.00), G(0.00), T(28.57)
+                                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTT A(72.46), C(0.00), G(0.00), T(27.54)
+                                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTT A(73.53), C(0.00), G(0.00), T(26.47)
+                                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTT A(74.63), C(0.00), G(0.00), T(25.37)
+                                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTT A(75.76), C(0.00), G(0.00), T(24.24)
+                                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTT A(76.92), C(0.00), G(0.00), T(23.08)
+                                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTT A(78.13), C(0.00), G(0.00), T(21.88)
+                                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTT A(79.37), C(0.00), G(0.00), T(20.63)
+                                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTT A(80.65), C(0.00), G(0.00), T(19.35)
+                                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTT A(81.97), C(0.00), G(0.00), T(18.03)
+                                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTT A(83.33), C(0.00), G(0.00), T(16.67)
+                                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTT A(84.75), C(0.00), G(0.00), T(15.25)
+                                                                                                                      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTT A(86.21), C(0.00), G(0.00), T(13.79)
+                                                                                                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTT A(87.72), C(0.00), G(0.00), T(12.28)
+                                                                                                                  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTT A(89.29), C(0.00), G(0.00), T(10.71)
+                                                                                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTT A(90.91), C(0.00), G(0.00), T(9.09)
+                                                                                                              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTT A(92.59), C(0.00), G(0.00), T(7.41)
+                                                                                                            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTT A(94.34), C(0.00), G(0.00), T(5.66)
+                                                                                                          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATT A(96.15), C(0.00), G(0.00), T(3.85)
+                                                                                                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT A(98.04), C(0.00), G(0.00), T(1.96)
+                                                                                                      E
+                                                                                                    E
+                                                                                                    E
+                                                                                                    E
+                                                                                                    E
+                                                                                                  E
+                                                                                                  E
+                                                                                                  E
+                                                                                                  E
+                                                                                                E
+                                                                                                E
+                                                                                                E
+                                                                                                E
+                                                                                              E
+                                                                                              E
+                                                                                              E
+                                                                                              E
+                                                                                            E
+                                                                                            E
+                                                                                            E
+                                                                                            E
+                                                                                          E
+                                                                                          E
+                                                                                          E
+                                                                                          E
+                                                                                        E
+                                                                                        E
+                                                                                        E
+                                                                                        E
+                                                                                      E
+                                                                                      E
+                                                                                      E
+                                                                                      E
+                                                                                    E
+                                                                                    E
+                                                                                    E
+                                                                                    E
+                                                                                  E
+                                                                                  E
+                                                                                  E
+                                                                                  E
+                                                                                E
+                                                                                E
+                                                                                E
+                                                                                E
+                                                                              E
+                                                                              E
+                                                                              E
+                                                                              E
+                                                                            E
+                                                                            E
+                                                                            E
+                                                                            E
+                                                                          E
+                                                                          E
+                                                                          E
+                                                                          E
+                                                                        E
+                                                                        E
+                                                                        E
+                                                                        E
+                                                                      E
+                                                                      E
+                                                                      E
+                                                                      E
+                                                                    E
+                                                                    E
+                                                                    E
+                                                                    E
+                                                                  E
+                                                                  E
+                                                                  E
+                                                                  E
+                                                                E
+                                                                E
+                                                                E
+                                                                E
+                                                              E
+                                                              E
+                                                              E
+                                                              E
+                                                            E
+                                                            E
+                                                            E
+                                                            E
+                                                          E
+                                                          E
+                                                          E
+                                                          E
+                                                        E
+                                                        E
+                                                        E
+                                                        E
+                                                      E
+                                                      E
+                                                      E
+                                                      E
+                                                    E
+                                                    E
+                                                    E
+                                                    E
+                                                  E
+                                                  E
+                                                  E
+                                                  E
+                                                E
+                                                E
+                                                E
+                                                E
+                                              E
+                                              E
+                                              E
+                                              E
+                                            E
+                                            E
+                                            E
+                                            E
+                                          E
+                                          E
+                                          E
+                                          E
+                                        E
+                                        E
+                                        E
+                                        E
+                                      E
+                                      E
+                                      E
+                                      E
+                                    E
+                                    E
+                                    E
+                                    E
+                                  E
+                                  E
+                                  E
+                                  E
+                                E
+                                E
+                                E
+                                E
+                              E
+                              E
+                              E
+                              E
+                            E
+                            E
+                            E
+                            E
+                          E
+                          E
+                          E
+                          E
+                        E
+                        E
+                        E
+                        E
+                      E
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                    E
+                  E
+                  E
+                  E
+                  E
+                E
+                E
+                E
+                E
+              E
+              E
+              E
+              E
+            E
+            E
+            E
+            E
+          E
+          E
+          E
+          E
+        E
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+

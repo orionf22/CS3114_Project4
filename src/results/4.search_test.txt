@@ -1,0 +1,164 @@
+
+Nodes visited: 1
+sequence "T" not found
+
+Nodes visited: 1
+sequence "T$" not found
+
+Successfully inserted new record "A" of 3 bytes (1 characters) starting at position 12
+
+Successfully inserted new record "G" of 3 bytes (1 characters) starting at position 33
+
+Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 100
+
+Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 158
+
+Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 216
+
+Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 306
+
+Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 419
+
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 555
+
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 636
+
+Successfully inserted new record "GTC" of 3 bytes (3 characters) starting at position 740
+
+Nodes visited: 13
+sequence: AACA
+sequence: AACT
+sequence: AAGG
+sequence: AA
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    E
+    A
+  C
+  I
+    E
+    E
+    E
+    GTC
+    G
+  T
+  E
+
+
+Nodes visited: 17
+sequence: AACA
+sequence: AACT
+sequence: AAGG
+sequence: AA
+sequence: AGGT
+sequence: A
+
+Nodes visited: 4
+sequence: AA
+
+Nodes visited: 7
+sequence: GTC
+sequence: G
+
+Nodes visited: 3
+sequence: G
+
+Nodes visited: 3
+sequence: GTC
+
+Nodes visited: 2
+sequence "CT" not found
+
+Nodes visited: 4
+sequence "AAA$" not found
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    E
+    A
+  C
+  I
+    E
+    E
+    E
+    GTC
+    G
+  T
+  E
+
+
+Successfully inserted new record "ATC" of 3 bytes (3 characters) starting at position 1014
+
+Successfully inserted new record "ATCGTT" of 4 bytes (6 characters) starting at position 1095
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    I
+      E
+      I
+        E
+        E
+        ATCGTT
+        E
+        ATC
+      E
+      E
+      E
+    A
+  C
+  I
+    E
+    E
+    E
+    GTC
+    G
+  T
+  E
+
+
+Nodes visited: 13
+sequence: ATCGTT
+sequence: ATC
+
+Nodes visited: 4
+sequence "AT$" not found
+
+Nodes visited: 5
+sequence: ATC

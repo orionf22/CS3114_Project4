@@ -74,6 +74,7 @@ public class DNATrie
 	{
 		this.manager = manager;
 		this.codec = new NodeCodec();
+		this.DNACodec = new DNACodec();
 		FLYWEIGHT = manager.insert(codec.encode(new FLYWEIGHT()));
 		root = FLYWEIGHT;
 	}
@@ -352,6 +353,15 @@ public class DNATrie
 		//for easier insertion, append a $ to the end of the sequence to easily
 		//identify sequence termination
 		sequence.terminate();
+		boolean isDuplicate = fetch(sequence);
+		if (isDuplicate)
+		{
+			DNAFile.output.println("INSERT: Cannot insert duplicate record \""
+					+ sequence + "\".");
+			return;
+		}
+		sequence.restore();
+		sequence.terminate();
 		byte[] bytes = DNACodec.encode(sequence);
 		//if bytes is null sequence did not contain any of A, C, G, or T
 		if (bytes != null)
@@ -373,6 +383,7 @@ public class DNATrie
 			else
 			{
 				TrieNode rt = codec.decode(manager.get(root));
+				//System.out.println(sequence.getCurrent());
 				rt = insert(rt, newHandle, sequence, sequence.literalLength(), 0);
 				root = manager.insert(codec.encode(rt));
 				DNAFile.output.println("\nSuccessfully inserted new "
@@ -429,6 +440,7 @@ public class DNATrie
 	@SuppressWarnings("AssignmentToMethodParameter")
 	private TrieNode insert(TrieNode node, MemHandle h, DNASequence sequence, int length, int depth)
 	{
+		//System.out.println(node);
 		//base case; insert here
 		if (node.isFlyweight())
 		{
@@ -444,11 +456,6 @@ public class DNATrie
 			LeafNode leaf = (LeafNode) node;
 			node = new InternalNode();
 			DNASequence seq = new DNASequence(retrieve(leaf.getHandle(), leaf.getLiteralLength()));
-			if (seq.equals(sequence))
-			{
-				DNAFile.output.println("INSERT: Cannot insert duplicate record \""
-						+ sequence + "\".");
-			}
 			seq.terminate();
 			seq.cropAt(depth);
 			//System.out.println(seq + "; " + seq.getCurrent() + ": " + sequence + "; " + sequence.getCurrent() + " - " + depth);
@@ -831,6 +838,12 @@ public class DNATrie
 	{
 
 		@Override
+		public String toString()
+		{
+			return "FLYWEIGHT";
+		}
+		
+		@Override
 		public boolean isLeaf()
 		{
 			return false;
@@ -878,6 +891,13 @@ public class DNATrie
 		 */
 		private MemHandle $ = FLYWEIGHT;
 
+		@Override
+		public String toString()
+		{
+			return "A: " + this.getA() + " C: " + this.getC() + " G: " 
+					+ this.getG() + " T: " + this.getT() + " $: " + this.get$();
+		}
+		
 		public TrieNode getA()
 		{
 			return codec.decode(manager.get(A));
@@ -886,6 +906,11 @@ public class DNATrie
 		public void setA(TrieNode node)
 		{
 			this.A = manager.insert(codec.encode(node));
+		}
+
+		public void setA(MemHandle a)
+		{
+			this.A = a;
 		}
 
 		public TrieNode getC()
@@ -898,6 +923,11 @@ public class DNATrie
 			this.C = manager.insert(codec.encode(node));
 		}
 
+		public void setC(MemHandle c)
+		{
+			this.C = c;
+		}
+
 		public TrieNode getG()
 		{
 			return codec.decode(manager.get(G));
@@ -906,6 +936,11 @@ public class DNATrie
 		public void setG(TrieNode node)
 		{
 			this.G = manager.insert(codec.encode(node));
+		}
+
+		public void setG(MemHandle g)
+		{
+			this.G = g;
 		}
 
 		public TrieNode getT()
@@ -918,6 +953,11 @@ public class DNATrie
 			this.T = manager.insert(codec.encode(node));
 		}
 
+		public void setT(MemHandle t)
+		{
+			this.T = t;
+		}
+
 		public TrieNode get$()
 		{
 			return codec.decode(manager.get($));
@@ -926,6 +966,11 @@ public class DNATrie
 		public void set$(TrieNode node)
 		{
 			this.$ = manager.insert(codec.encode(node));
+		}
+
+		public void set$(MemHandle $)
+		{
+			this.$ = $;
 		}
 
 		@Override
@@ -973,6 +1018,12 @@ public class DNATrie
 		{
 			this.handle = h;
 			this.length = l;
+		}
+		
+		@Override
+		public String toString()
+		{
+			return "Leaf: " + this.getHandle() + "; " + this.getLiteralLength();
 		}
 
 		/**
@@ -1028,15 +1079,30 @@ public class DNATrie
 			//InternalNode
 			if (first == 0)
 			{
-				ret = new InternalNode();
-				
+				InternalNode internal = new InternalNode();
+				int a = buff.getInt(1);
+				int c = buff.getInt(5);
+				int g = buff.getInt(9);
+				int t = buff.getInt(13);
+				int $ = buff.getInt(17);
+				internal.setA(new MemHandle(a));
+				internal.setC(new MemHandle(c));
+				internal.setG(new MemHandle(g));
+				internal.setT(new MemHandle(t));
+				internal.set$(new MemHandle($));
+				ret = internal;
 			}
 			//LeafNode
 			else if (first == 1)
 			{
+				int length = buff.getShort(1);
+				int address = buff.getInt(3);
+				ret = new LeafNode(new MemHandle(address), length);
 			}
+			//FLYWEIGHT
 			else if (first == -2)
 			{
+				ret = new FLYWEIGHT();
 			}
 			return ret;
 		}
