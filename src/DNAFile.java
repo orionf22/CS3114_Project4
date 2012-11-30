@@ -55,10 +55,6 @@ public class DNAFile
 	 */
 	protected static Controller controller;
 	/**
-	 * The {@link BufferPool} mediating disk accesses.
-	 */
-	private static BufferPool pool;
-	/**
 	 * The {@link BufferedReader} that retrieves lines within {@code inputFile}
 	 * for command parsing.
 	 */
@@ -95,48 +91,41 @@ public class DNAFile
 		output = new PrintWriter(System.out, true);
 		MemManager manager = new MemManager(0, BLOCK_SIZE, buffers, BIN_DAT);
 		controller = new Controller(new DNATrie(manager));
-		controller.setCodec(new DNACodec());
 		//parse the command line arguments. the program cannot operate if any 
 		//arguments are invalid
 		if (!parseArgs(args))
 		{
 			output.println("Program initialization failed.");
+			System.exit(1);
 		}
-		else
+		String line;
+		input = new BufferedReader(new FileReader(inputFile));
+		while ((line = input.readLine()) != null)
 		{
-			pool = new BufferPool(buffers, BIN_DAT, BLOCK_SIZE);
-			String line;
+			//Get the command entered
+			Command nextCommand = CommandParser.getNextCommand(line);
+			//Checks to see what type of command was called, pointing
+			//control to the appropriate function in the Controller
 
-			input = new BufferedReader(new FileReader(inputFile));
-			while ((line = input.readLine()) != null)
+			if (nextCommand instanceof InsertCommand)
 			{
-				//Get the command entered
-				Command nextCommand = CommandParser.getNextCommand(line);
-				//Checks to see what type of command was called, pointing
-				//control to the appropriate function in the Controller
-
-				if (nextCommand instanceof InsertCommand)
-				{
-					controller.insertRecord((InsertCommand) nextCommand);
-				}
-				else if (nextCommand instanceof RemoveCommand)
-				{
-					controller.removeRecord((RemoveCommand) nextCommand);
-				}
-				else if (nextCommand instanceof PrintCommand)
-				{
-					controller.print((PrintCommand) nextCommand);
-				}
-				else if (nextCommand instanceof SearchCommand)
-				{
-					controller.search((SearchCommand) nextCommand);
-				}
+				controller.insertRecord((InsertCommand) nextCommand);
 			}
-			//flush the pool prior to writing stats
-			pool.flush();
-			//finally, close the file stream
-			pool.closeSourceStream();
+			else if (nextCommand instanceof RemoveCommand)
+			{
+				controller.removeRecord((RemoveCommand) nextCommand);
+			}
+			else if (nextCommand instanceof PrintCommand)
+			{
+				controller.print((PrintCommand) nextCommand);
+			}
+			else if (nextCommand instanceof SearchCommand)
+			{
+				controller.search((SearchCommand) nextCommand);
+			}
 		}
+		//close the controller, which will close its underlying data structures
+		controller.close();
 	}
 
 	/**
@@ -151,6 +140,8 @@ public class DNAFile
 	{
 		if (args == null || args.length < 2)
 		{
+			output.println("Invoke as DNAFile <command-file> <num-buffers> "
+					+ "<block-size>");
 			return false;
 		}
 		try

@@ -1,6 +1,6 @@
 
 import java.io.File;
-
+import java.io.IOException;
 
 /**
  * The {@code MemManager} class controls how information is stored in memory.
@@ -29,7 +29,6 @@ public class MemManager
 	 * stored here.
 	 */
 	private MemoryPool pool;
-	
 	private BufferPool bufferPool;
 	/**
 	 * The {@link FreeBlockList} managed by this {@code MemManager}. Free space
@@ -47,6 +46,20 @@ public class MemManager
 		this.pool = new MemoryPool(poolSize);
 		this.bufferPool = new BufferPool(buffers, file, blockSize);
 		this.freeBlocks = new FreeBlockList(poolSize);
+	}
+
+	/**
+	 * Flushes the {@link BufferPool} and closes its source stream. This ensures
+	 * any in-memory data is written to disk.
+	 * <p/>
+	 * @throws IOException
+	 */
+	public void close() throws IOException
+	{
+		//flush the pool prior to writing stats
+		bufferPool.flush();
+		//finally, close the file stream
+		bufferPool.closeSourceStream();
 	}
 
 	/**

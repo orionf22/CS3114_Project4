@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -31,15 +32,11 @@ import java.util.ArrayList;
  */
 public class Controller
 {
+
 	/**
 	 * The {@link DNATrie} owned by this {@code Controller}.
 	 */
 	private DNATrie tree;
-	/**
-	 * The {@link Codec} used to translate information to and from bytes and a
-	 * given format.
-	 */
-	private Codec<DNASequence> codec;
 
 	/**
 	 * Constructs a new {@code Controller} with references to proper
@@ -54,13 +51,14 @@ public class Controller
 	}
 
 	/**
-	 * Sets the {@link Codec} to use during data translation.
+	 * Closes the {@link DNATrie} {@link MemManager}. THis ensures any in-memory
+	 * data is written to disk.
 	 * <p/>
-	 * @param c the {@link Codec} to use
+	 * @throws IOException
 	 */
-	public void setCodec(Codec<DNASequence> c)
+	public void close() throws IOException
 	{
-		this.codec = c;
+		tree.getManager().close();
 	}
 
 	/**

@@ -4,9 +4,9 @@ import java.util.Collection;
 
 /**
  * {@code DNATrie} objects are 5-way branching trees that store
- * {@link MemHandle} and integer objects but are sorted by {@link DNASequence}.
- * Each node can branch into five children: <ul><li>A</li> <li>C</li> <li>G</li>
- * <li>T</li> <li>$</li></ul>
+ * {@link MemHandle} and integer objects but are sorted by {@link DNASequence}
+ * objects. Each node can branch into five children: <ul><li>A</li> <li>C</li>
+ * <li>G</li> <li>T</li> <li>$</li></ul>
  * <p/>
  * As a sequence is used during tree navigation, be it for inserting, removal,
  * or searching, it determines which branch to take based on the current value
@@ -19,6 +19,11 @@ import java.util.Collection;
  * {@code AAA} will return the first node that contains a reference to a
  * sequence whose first three characters are {@code AAA}. Because of Trie rules,
  * any node that is a child of this first node also has {@code AAA} as a prefix.
+ * <p/>
+ * A {@link MemManager} is used to store any {@link TrieNode} not currently in
+ * use in some function. This reduces the program's memory footprint at the cost
+ * of some speed by storing nodes on disk. Stored {@link DNASequence} objects
+ * are also stored on disk.
  * <p/>
  * @author orionf22
  * @author rinadli1
@@ -77,6 +82,16 @@ public class DNATrie
 		this.DNACodec = new DNACodec();
 		FLYWEIGHT = manager.insert(codec.encode(new FLYWEIGHT()));
 		root = FLYWEIGHT;
+	}
+
+	/**
+	 * Returns this tree's {@link MemManager}.
+	 * <p/>
+	 * @return the {@link MemManager}
+	 */
+	public MemManager getManager()
+	{
+		return this.manager;
 	}
 
 	/**
@@ -344,15 +359,21 @@ public class DNATrie
 	/**
 	 * Inserts {@code h} into this tree by using {@code sequence} to determine
 	 * where in the tree {@code h} must be placed in order to preserve Trie
-	 * properties.
+	 * properties. Duplicate sequences are not permitted, so the sequence if
+	 * first fetched from the Trie via {@link #fetch(DNASequence)}, which
+	 * returns a {@code boolean}. If this value is {@code true}, the sequence is
+	 * already in the Trie so inserting is not permitted. If the sequence is not
+	 * a duplicate, it is encoded and sent to {@link #manager manager} for
+	 * storage.
 	 * <p/>
-	 * @param sequence the {@code DNASequence} to use to map
+	 * @param sequence the {@code DNASequence} to insert
 	 */
 	public void insert(DNASequence sequence)
 	{
 		//for easier insertion, append a $ to the end of the sequence to easily
 		//identify sequence termination
 		sequence.terminate();
+		//determine if this sequence is already in the tree
 		boolean isDuplicate = fetch(sequence);
 		if (isDuplicate)
 		{
@@ -360,6 +381,8 @@ public class DNATrie
 					+ sequence + "\".");
 			return;
 		}
+		//restore and terminate again! failure to do so could cause errors 
+		//further in insertion
 		sequence.restore();
 		sequence.terminate();
 		byte[] bytes = DNACodec.encode(sequence);
@@ -367,7 +390,7 @@ public class DNATrie
 		if (bytes != null)
 		{
 			MemHandle newHandle = manager.insert(bytes);
-			//error inserting into the pool
+			//error inserting into the pool or no space
 			if (newHandle.getAddress() < 0)
 			{
 				String display = sequence.getSequence() + "\"";
@@ -382,9 +405,10 @@ public class DNATrie
 			//good to go!
 			else
 			{
+				//retrieve the root node from disk and insert on it
 				TrieNode rt = codec.decode(manager.get(root));
-				//System.out.println(sequence.getCurrent());
 				rt = insert(rt, newHandle, sequence, sequence.literalLength(), 0);
+				//return root node to disk, updating the root handle
 				root = manager.insert(codec.encode(rt));
 				DNAFile.output.println("\nSuccessfully inserted new "
 						+ "record \"" + sequence + "\" of "
@@ -412,17 +436,18 @@ public class DNATrie
 	/**
 	 * Inserts {@code h} and {@code length} into a this tree. {@code sequence}
 	 * is used to map out the position within the tree {@code h}. The function
-	 * operates on recursion; base case is when {@link #FLYWEIGHT} is reached.
-	 * This means this is the correct location for the inserting values.
+	 * operates on recursion; base case is when {@link #FLYWEIGHT FLYWEIGHT} is
+	 * reached. This means this is the correct location for the inserting
+	 * values.
 	 * <p/>
 	 * If an {@link InternalNode} is reached, branches must be examined based on
 	 * the current leading character in {@code sequence}. If a {@link LeafNode}
 	 * is reached, its existing values must be relocated and the leaf split
 	 * (converting it into a new {@link InternalNode}). To accomplish this, the
-	 * existing {@link MemHandle} and literal length are used by a
-	 * {@link Controller} to query its {@link MemManager} for the actual
-	 * sequence stored here. This sequence is then cropped based on the depth
-	 * within the tree so it can be reinserted at the current level.
+	 * existing {@link MemHandle} and literal length are used to query the
+	 * {@link MemManager} for the actual sequence stored here. This sequence is
+	 * then cropped based on the depth within the tree so it can be reinserted
+	 * at the current level.
 	 * <p/>
 	 * For example, a sequence of {@code AGCT} at depth 2 would be retrieved in
 	 * full and cropped to {@code CT} and reinserted as such. This allows the
@@ -440,11 +465,9 @@ public class DNATrie
 	@SuppressWarnings("AssignmentToMethodParameter")
 	private TrieNode insert(TrieNode node, MemHandle h, DNASequence sequence, int length, int depth)
 	{
-		//System.out.println(node);
 		//base case; insert here
 		if (node.isFlyweight())
 		{
-			//System.out.println("flyweight");
 			size++;
 			node = new LeafNode(h, length);
 		}
@@ -452,21 +475,23 @@ public class DNATrie
 		//inserting original info
 		else if (node.isLeaf())
 		{
-			//System.out.println("leaf " + node);
 			LeafNode leaf = (LeafNode) node;
 			node = new InternalNode();
-			DNASequence seq = new DNASequence(retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			DNASequence seq = new DNASequence(
+					retrieve(leaf.getHandle(), leaf.getLiteralLength()));
 			seq.terminate();
 			seq.cropAt(depth);
-			//System.out.println(seq + "; " + seq.getCurrent() + ": " + sequence + "; " + sequence.getCurrent() + " - " + depth);
 			node = insert(node, h, sequence, length, depth);
 			node = insert(node, leaf.getHandle(), seq, leaf.getLiteralLength(), depth);
 		}
 		//InternalNode
 		else
 		{
+			//cast as internal in order to get and set children
 			InternalNode internal = (InternalNode) node;
-			//System.out.println("internal " + node);
+			//when a switch is determined, the appropriate child handle is 
+			//acquired from the MemManager, loaded as a node, operated upon, and
+			//returned to the MemManager
 			switch (sequence.front())
 			{
 				case DNASequence.BASE_A:
@@ -686,7 +711,7 @@ public class DNATrie
 		if (got != null)
 		{
 			String seq = DNACodec.decode(got).getSequence();
-			return verifyDecode(seq, length);
+			return completeDecode(seq, length);
 		}
 		return "";
 	}
@@ -702,7 +727,7 @@ public class DNATrie
 	 * <p/>
 	 * @return the fully decoded String
 	 */
-	private String verifyDecode(String s, int size)
+	private String completeDecode(String s, int size)
 	{
 		String keep = "";
 		//determines how many zeros need to be restored
@@ -747,11 +772,28 @@ public class DNATrie
 		return this.size;
 	}
 
+	/**
+	 * Loads a {@link TrieNode} from the {@link MemManager} given a
+	 * {@link MemHandle} {@code h}.
+	 * <p/>
+	 * @param h the location in disk where the node is stored
+	 * <p/>
+	 * @return a complete {@Link TrieNode} object
+	 */
 	private TrieNode loadNode(MemHandle h)
 	{
 		return codec.decode(manager.get(h));
 	}
 
+	/**
+	 * Returns a {@link TrieNode} {@code node} to disk via the
+	 * {@link MemManager}.
+	 * <p/>
+	 * @param node the {@link TrieNode} to return to disk
+	 * <p/>
+	 * @return the updated {@link MemHandle} denoting the new location of
+	 *            {@code node} on disk
+	 */
 	private MemHandle saveNode(TrieNode node)
 	{
 		return manager.insert(codec.encode(node));
@@ -761,11 +803,11 @@ public class DNATrie
 	 * Returns the number of nodes visited during a search, typically a prefix
 	 * search. Any and all matches are added to {@code c}.
 	 * <p/>
-	 * This method does not need to search for a match. {@code node} is expected
-	 * to be an "umbrella" node, meaning it is the first node in a tree that
-	 * contains a prefix match. Because of Trie properties, any and all nodes
-	 * below {@code node} must also contain the prefix, so a DFS is used to add
-	 * each sequence to {@code c}.
+	 * This method does not need to search for a match. {@code node} is
+	 * eventually expected to be an "umbrella" node, meaning it is the first
+	 * node in a tree that contains a prefix match. Because of Trie properties,
+	 * any and all nodes below {@code node} must also contain the prefix, so a
+	 * DFS is used to add each sequence to {@code c}.
 	 * <p/>
 	 * @param node the node to examine
 	 * @param c    the {@link Collection} of matches
@@ -797,9 +839,9 @@ public class DNATrie
 	}
 
 	/**
-	 * The {@code TrieNode} abstract class marks an implementing subclass a node
-	 * to operate upon in a {@link DNATrie}. Any class implementing this super
-	 * class must be able to distinguish leaf nodes.
+	 * The {@code TrieNode} interface represents a basic node in a
+	 * {@link DNATrie}. Any class implementing this super class must be able to
+	 * distinguish between leaf, internal, and flyweight nodes.
 	 * <p/>
 	 * To avoid wasting precious space with useless empty nodes, or to preclude
 	 * forcing {@code null} checks, any node that should be empty or
@@ -842,7 +884,7 @@ public class DNATrie
 		{
 			return "FLYWEIGHT";
 		}
-		
+
 		@Override
 		public boolean isLeaf()
 		{
@@ -861,7 +903,10 @@ public class DNATrie
 	 * structure. They are not {@link LeafNode} objects, nor are they
 	 * {@link TrieNode.FLYWEIGHT} objects. Instead, {@code InternalNode} objects
 	 * have five children that could be any of the three types of
-	 * {@link TrieNode}.
+	 * {@link TrieNode} objects. These children are {@link MemHandle} objects
+	 * that identify a location within the {@link MemManager} where an actual
+	 * {@link TrieNode} can be acquired via
+	 * {@link DNATrie#loadNode(MemHandle) loadNode(MemHandle)}.
 	 * <p/>
 	 * @author orionf22
 	 * @author rinaldi1
@@ -894,80 +939,160 @@ public class DNATrie
 		@Override
 		public String toString()
 		{
-			return "A: " + this.getA() + " C: " + this.getC() + " G: " 
+			return "A: " + this.getA() + " C: " + this.getC() + " G: "
 					+ this.getG() + " T: " + this.getT() + " $: " + this.get$();
 		}
-		
+
+		/**
+		 * Acquires this node's A subtree from the {@link MemManager}.
+		 * <p/>
+		 * @return the A subtree
+		 */
 		public TrieNode getA()
 		{
 			return codec.decode(manager.get(A));
 		}
 
+		/**
+		 * Sets this node's A subtree to {@code node} by inserting it into the
+		 * {@link MemManager}.
+		 * <p/>
+		 * @param node the new A subtree
+		 */
 		public void setA(TrieNode node)
 		{
 			this.A = manager.insert(codec.encode(node));
 		}
 
+		/**
+		 * Sets this node's A subtree to {@code a}.
+		 * <p/>
+		 * @param a the new A subtree {@link MemHandle}
+		 */
 		public void setA(MemHandle a)
 		{
 			this.A = a;
 		}
 
+		/**
+		 * Acquires this node's C subtree from the {@link MemManager}.
+		 * <p/>
+		 * @return the C subtree
+		 */
 		public TrieNode getC()
 		{
 			return codec.decode(manager.get(C));
 		}
 
+		/**
+		 * Sets this node's C subtree to {@code node} by inserting it into the
+		 * {@link MemManager}.
+		 * <p/>
+		 * @param node the new C subtree
+		 */
 		public void setC(TrieNode node)
 		{
 			this.C = manager.insert(codec.encode(node));
 		}
 
+		/**
+		 * Sets this node's C subtree to {@code c}.
+		 * <p/>
+		 * @param c the new C subtree {@link MemHandle}
+		 */
 		public void setC(MemHandle c)
 		{
 			this.C = c;
 		}
 
+		/**
+		 * Acquires this node's G subtree from the {@link MemManager}.
+		 * <p/>
+		 * @return the G subtree
+		 */
 		public TrieNode getG()
 		{
 			return codec.decode(manager.get(G));
 		}
 
+		/**
+		 * Sets this node's G subtree to {@code node} by inserting it into the
+		 * {@link MemManager}.
+		 * <p/>
+		 * @param node the new G subtree
+		 */
 		public void setG(TrieNode node)
 		{
 			this.G = manager.insert(codec.encode(node));
 		}
 
+		/**
+		 * Sets this node's G subtree to {@code g}.
+		 * <p/>
+		 * @param g the new G subtree {@link MemHandle}
+		 */
 		public void setG(MemHandle g)
 		{
 			this.G = g;
 		}
 
+		/**
+		 * Acquires this node's T subtree from the {@link MemManager}.
+		 * <p/>
+		 * @return the T subtree
+		 */
 		public TrieNode getT()
 		{
 			return codec.decode(manager.get(T));
 		}
 
+		/**
+		 * Sets this node's T subtree to {@code node} by inserting it into the
+		 * {@link MemManager}.
+		 * <p/>
+		 * @param node the new T subtree
+		 */
 		public void setT(TrieNode node)
 		{
 			this.T = manager.insert(codec.encode(node));
 		}
 
+		/**
+		 * Sets this node's T subtree to {@code t}.
+		 * <p/>
+		 * @param t the new T subtree {@link MemHandle}
+		 */
 		public void setT(MemHandle t)
 		{
 			this.T = t;
 		}
 
+		/**
+		 * Acquires this node's $ subtree from the {@link MemManager}.
+		 * <p/>
+		 * @return the $ subtree
+		 */
 		public TrieNode get$()
 		{
 			return codec.decode(manager.get($));
 		}
 
+		/**
+		 * Sets this node's $ subtree to {@code node} by inserting it into the
+		 * {@link MemManager}.
+		 * <p/>
+		 * @param node the new $ subtree
+		 */
 		public void set$(TrieNode node)
 		{
 			this.$ = manager.insert(codec.encode(node));
 		}
 
+		/**
+		 * Sets this node's $ subtree to {@code $}.
+		 * <p/>
+		 * @param $ the new $ subtree {@link MemHandle}
+		 */
 		public void set$(MemHandle $)
 		{
 			this.$ = $;
@@ -1019,7 +1144,7 @@ public class DNATrie
 			this.handle = h;
 			this.length = l;
 		}
-		
+
 		@Override
 		public String toString()
 		{
@@ -1061,6 +1186,8 @@ public class DNATrie
 
 	/**
 	 * The {@code NodeCodec} class encodes and decodes {@link TrieNode} objects.
+	 * A {@link ByteBuffer} is used to convert information to and from bytes in
+	 * a simple fashion.
 	 * <p/>
 	 * @author orionf22
 	 * @author rinaldi1
@@ -1073,13 +1200,18 @@ public class DNATrie
 		public DNATrie.TrieNode decode(byte[] bytes)
 		{
 			TrieNode ret = null;
+			//go ahead and allocate enough space for the entire byte array
 			ByteBuffer buff = ByteBuffer.allocate(bytes.length);
+			//put them into buff
 			buff.put(bytes);
+			//the first byte identifies the type of node; this represents the 
+			//isLeaf flag
 			byte first = buff.get(0);
 			//InternalNode
 			if (first == 0)
 			{
 				InternalNode internal = new InternalNode();
+				//each child is four bytes in length
 				int a = buff.getInt(1);
 				int c = buff.getInt(5);
 				int g = buff.getInt(9);
@@ -1117,6 +1249,7 @@ public class DNATrie
 				LeafNode leaf = (LeafNode) stuff;
 				ret = new byte[7];
 				buff = ByteBuffer.allocate(4);
+				//first byte is the isLeaf flag, true for LeafNodes
 				ret[0] = 1;
 				int length = leaf.getLiteralLength();
 				buff.putShort((short) length);
@@ -1131,12 +1264,17 @@ public class DNATrie
 			else if (stuff.isFlyweight())
 			{
 				ret = new byte[1];
+				//use -2 as arbitrary value for FLYWEIGHTS
 				ret[0] = -2;
 			}
 			else
 			{
 				InternalNode internal = (InternalNode) stuff;
 				ret = new byte[21];
+				//while a larger allocation could be specified, this buffer will
+				//only be dealing with 4 bytes per subtree address, so a few
+				//bytes can be saved by instead reinserting in the buffer at 
+				//index 0
 				buff = ByteBuffer.allocate(4);
 				ret[0] = 0;
 				buff.putInt(internal.A.getAddress());
