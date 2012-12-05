@@ -86,6 +86,7 @@ public class MemManager
 	{
 		//Important! Request an additional 2 bytes for the 2-byte size sequence
 		MemHandle insertHandle = freeBlocks.getSpace(stuff.length + 2);
+		System.out.println("\t" + insertHandle.getAddress());
 		if (insertHandle.getAddress() >= 0)
 		{
 			pool.insert(stuff, insertHandle.getAddress());
@@ -130,9 +131,6 @@ public class MemManager
 		//store the actual record, not including the size sequence prefix, so
 		//add 2 to the reclaim space request
 		freeBlocks.reclaimSpace(h, ret + 2);
-		//find block referenced by h
-		//remove from mem pool; get size bytes first
-		//modify free list to include recently freed space
 		return ret;
 	}
 

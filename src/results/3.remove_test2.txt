@@ -1,19 +1,128 @@
+	encoding flyweight
+	0
+Inserted class DNATrie$FLYWEIGHT (1 bytes) starting at position 0
+	3
+	6
 
-Successfully inserted new record "ACGT" of 3 bytes (4 characters) starting at position 6
+Successfully inserted new record "ACGT" of 3 bytes (4 characters) starting at position 3
+	15
+	18
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 18
+	27
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 27
+	36
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 36
+	45
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 45
+	68
 
-Successfully inserted new record "AAAA" of 3 bytes (4 characters) starting at position 27
+Successfully inserted new record "AAAA" of 3 bytes (4 characters) starting at position 15
+	91
+	94
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 94
+	103
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 103
+	112
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 112
+	135
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 135
+	158
 
-Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 126
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 91
+	181
+	187
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 187
+	196
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 196
+	205
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 205
+	228
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 228
+	251
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 251
+	274
 
-Successfully inserted new record "AAACCCCGGTGAAAACGTA" of 6 bytes (19 characters) starting at position 239
+Successfully inserted new record "AAACCCCGGTGAAAACGTA" of 6 bytes (19 characters) starting at position 181
+	297
+	301
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 301
+	310
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 310
+	319
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 319
+	342
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 342
+	365
 
-Successfully inserted new record "ACTGGGAA" of 4 bytes (8 characters) starting at position 378
+Successfully inserted new record "ACTGGGAA" of 4 bytes (8 characters) starting at position 297
+	388
+	392
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 392
+	401
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 401
+	410
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 410
+	433
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 433
+	456
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 456
+	479
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 479
+	502
 
-Successfully inserted new record "AAAACCCTGCCC" of 4 bytes (12 characters) starting at position 492
+Successfully inserted new record "AAAACCCTGCCC" of 4 bytes (12 characters) starting at position 388
+	525
+	530
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 530
+	539
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 539
+	548
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 548
+	557
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 557
+	566
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 566
+	575
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 575
+	584
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 584
+	593
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 593
+	616
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 616
+	639
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 639
+	662
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 662
+	685
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 685
+	708
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 708
+	731
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 731
+	754
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 754
+	777
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 777
+	800
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 800
+	823
 
-Successfully inserted new record "AAAACCCTGCATGC" of 5 bytes (14 characters) starting at position 652
+Successfully inserted new record "AAAACCCTGCATGC" of 5 bytes (14 characters) starting at position 525
 
-Deleted old record "ACGT" of 3 bytes (4 characters) from position 6
+Deleted old record "ACGT" of 3 bytes (4 characters) from position 3
+	encoding flyweight
+	846
+Inserted class DNATrie$FLYWEIGHT (1 bytes) starting at position 846
+	-1
+	849
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 849
+	-1
+	1124
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 1124
+	-1
+	1224
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 1224
 I
   I
     I
@@ -71,10 +180,37 @@ I
   E
   E
 
+	3
+	-1
+	1324
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 1324
+	-1
+	1424
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 1424
+	-1
+	1524
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 1524
+	-1
+	1624
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 1624
+	-1
+	1724
 
-Successfully inserted new record "ACCTT" of 3 bytes (5 characters) starting at position 6
+Successfully inserted new record "ACCTT" of 3 bytes (5 characters) starting at position 3
 
-Deleted old record "AA" of 3 bytes (2 characters) from position 126
+Deleted old record "AA" of 3 bytes (2 characters) from position 91
+	encoding flyweight
+	3
+Inserted class DNATrie$FLYWEIGHT (1 bytes) starting at position 3
+	-1
+	1824
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 1824
+	-1
+	1924
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 1924
+	-1
+	2024
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 2024
 I
   I
     I
@@ -138,7 +274,25 @@ I
   E
 
 
-Deleted old record "AAAA" of 3 bytes (4 characters) from position 27
+Deleted old record "AAAA" of 3 bytes (4 characters) from position 15
+	encoding flyweight
+	3
+Inserted class DNATrie$FLYWEIGHT (1 bytes) starting at position 3
+	-1
+	2124
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 2124
+	-1
+	2224
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 2224
+	-1
+	2324
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 2324
+	-1
+	2424
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 2424
+	-1
+	2524
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 2524
 I
   I
     I
@@ -201,6 +355,24 @@ I
   E
   E
 
+	encoding flyweight
+	3
+Inserted class DNATrie$FLYWEIGHT (1 bytes) starting at position 3
+	-1
+	2624
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 2624
+	-1
+	2724
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 2724
+	-1
+	2824
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 2824
+	-1
+	2924
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 2924
+	-1
+	3024
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 3024
 I
   I
     I
@@ -264,7 +436,43 @@ I
   E
 
 
-Deleted old record "AAAACCCTGCCC" of 4 bytes (12 characters) from position 492
+Deleted old record "AAAACCCTGCCC" of 4 bytes (12 characters) from position 388
+	encoding flyweight
+	3
+Inserted class DNATrie$FLYWEIGHT (1 bytes) starting at position 3
+	-1
+	3124
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 3124
+	-1
+	3224
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 3224
+	-1
+	3324
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 3324
+	-1
+	3424
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 3424
+	-1
+	3524
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 3524
+	-1
+	3624
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 3624
+	-1
+	3724
+Inserted class DNATrie$LeafNode (7 bytes) starting at position 3724
+	-1
+	3824
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 3824
+	-1
+	3924
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 3924
+	-1
+	4024
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 4024
+	-1
+	4124
+Inserted class DNATrie$InternalNode (21 bytes) starting at position 4124
 I
   I
     I

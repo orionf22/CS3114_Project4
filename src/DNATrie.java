@@ -80,7 +80,7 @@ public class DNATrie
 		this.manager = manager;
 		this.codec = new NodeCodec();
 		this.DNACodec = new DNACodec();
-		FLYWEIGHT = manager.insert(codec.encode(new FLYWEIGHT()));
+		FLYWEIGHT = saveNode(new FLYWEIGHT());
 		root = FLYWEIGHT;
 	}
 
@@ -171,6 +171,10 @@ public class DNATrie
 	 */
 	public boolean fetch(DNASequence sequence)
 	{
+		if (size == 0)
+		{
+			return false;
+		}
 		sequence.terminate();
 		TrieNode rt = loadNode(root);
 		TrieNode got = fetch(rt, sequence);
@@ -406,10 +410,10 @@ public class DNATrie
 			else
 			{
 				//retrieve the root node from disk and insert on it
-				TrieNode rt = codec.decode(manager.get(root));
+				TrieNode rt = loadNode(root);
 				rt = insert(rt, newHandle, sequence, sequence.literalLength(), 0);
 				//return root node to disk, updating the root handle
-				root = manager.insert(codec.encode(rt));
+				root = saveNode(rt);
 				DNAFile.output.println("\nSuccessfully inserted new "
 						+ "record \"" + sequence + "\" of "
 						+ (bytes.length + 2) + " bytes ("
@@ -782,7 +786,13 @@ public class DNATrie
 	 */
 	private TrieNode loadNode(MemHandle h)
 	{
-		return codec.decode(manager.get(h));
+		System.out.println("\t\t" + h.getAddress());
+		TrieNode ret = codec.decode(manager.get(h));
+		if (!h.equals(FLYWEIGHT))
+		{
+			//manager.remove(h);
+		}
+		return ret;
 	}
 
 	/**
@@ -796,7 +806,11 @@ public class DNATrie
 	 */
 	private MemHandle saveNode(TrieNode node)
 	{
-		return manager.insert(codec.encode(node));
+		byte[] bytes = codec.encode(node);
+		MemHandle ret = manager.insert(bytes);
+		System.out.println("Inserted " + node.getClass()
+				+ " (" + bytes.length + " bytes) starting at position " + ret.getAddress());
+		return ret;
 	}
 
 	/**
@@ -950,7 +964,7 @@ public class DNATrie
 		 */
 		public TrieNode getA()
 		{
-			return codec.decode(manager.get(A));
+			return loadNode(A);
 		}
 
 		/**
@@ -961,7 +975,7 @@ public class DNATrie
 		 */
 		public void setA(TrieNode node)
 		{
-			this.A = manager.insert(codec.encode(node));
+			this.A = saveNode(node);
 		}
 
 		/**
@@ -981,7 +995,7 @@ public class DNATrie
 		 */
 		public TrieNode getC()
 		{
-			return codec.decode(manager.get(C));
+			return loadNode(C);
 		}
 
 		/**
@@ -992,7 +1006,7 @@ public class DNATrie
 		 */
 		public void setC(TrieNode node)
 		{
-			this.C = manager.insert(codec.encode(node));
+			this.C = saveNode(node);
 		}
 
 		/**
@@ -1012,7 +1026,7 @@ public class DNATrie
 		 */
 		public TrieNode getG()
 		{
-			return codec.decode(manager.get(G));
+			return loadNode(G);
 		}
 
 		/**
@@ -1023,7 +1037,7 @@ public class DNATrie
 		 */
 		public void setG(TrieNode node)
 		{
-			this.G = manager.insert(codec.encode(node));
+			this.G = saveNode(node);
 		}
 
 		/**
@@ -1043,7 +1057,7 @@ public class DNATrie
 		 */
 		public TrieNode getT()
 		{
-			return codec.decode(manager.get(T));
+			return loadNode(T);
 		}
 
 		/**
@@ -1054,7 +1068,7 @@ public class DNATrie
 		 */
 		public void setT(TrieNode node)
 		{
-			this.T = manager.insert(codec.encode(node));
+			this.T = saveNode(node);
 		}
 
 		/**
@@ -1074,7 +1088,7 @@ public class DNATrie
 		 */
 		public TrieNode get$()
 		{
-			return codec.decode(manager.get($));
+			return loadNode($);
 		}
 
 		/**
@@ -1085,7 +1099,7 @@ public class DNATrie
 		 */
 		public void set$(TrieNode node)
 		{
-			this.$ = manager.insert(codec.encode(node));
+			this.$ = saveNode(node);
 		}
 
 		/**
@@ -1199,6 +1213,11 @@ public class DNATrie
 		@Override
 		public DNATrie.TrieNode decode(byte[] bytes)
 		{
+			if (bytes == null || bytes.length == 0)
+			{
+				System.out.println("null or zero-length decode request");
+				return null;
+			}
 			TrieNode ret = null;
 			//go ahead and allocate enough space for the entire byte array
 			ByteBuffer buff = ByteBuffer.allocate(bytes.length);
