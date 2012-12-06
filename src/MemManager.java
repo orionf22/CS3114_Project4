@@ -30,6 +30,7 @@ public class MemManager
 	 */
 	private MemoryPool pool;
 	private BufferPool bufferPool;
+	private int BLOCK_SIZE;
 	/**
 	 * The {@link FreeBlockList} managed by this {@code MemManager}. Free space
 	 * is monitored here.
@@ -43,6 +44,7 @@ public class MemManager
 	 */
 	public MemManager(int poolSize, int blockSize, int buffers, File file)
 	{
+		BLOCK_SIZE = blockSize;
 		this.pool = new MemoryPool(poolSize);
 		this.bufferPool = new BufferPool(buffers, file, blockSize);
 		this.freeBlocks = new FreeBlockList(poolSize);
@@ -86,7 +88,7 @@ public class MemManager
 	{
 		//Important! Request an additional 2 bytes for the 2-byte size sequence
 		MemHandle insertHandle = freeBlocks.getSpace(stuff.length + 2);
-		System.out.println("\t" + insertHandle.getAddress());
+		System.out.println(freeBlocks.blocksToString());
 		if (insertHandle.getAddress() >= 0)
 		{
 			pool.insert(stuff, insertHandle.getAddress());
@@ -96,7 +98,7 @@ public class MemManager
 		else
 		{
 			//add 100 bytes
-			int increaseSize = 100;
+			int increaseSize = BLOCK_SIZE;
 			int oldSize = pool.getSize();
 			//Create a new MemoryPool with increased size
 			MemoryPool newPool = new MemoryPool(oldSize + increaseSize);

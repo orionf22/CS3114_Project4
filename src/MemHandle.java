@@ -32,4 +32,29 @@ public class MemHandle
 	{
 		return this.address;
 	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if (o == null || !(o instanceof MemHandle))
+		{
+			return false;
+		}
+		else
+		{
+			MemHandle other = (MemHandle) o;
+			if (other.address == this.address)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int hash = 7 * address;
+		return hash;
+	}
 }

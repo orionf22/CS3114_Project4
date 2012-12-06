@@ -553,19 +553,22 @@ public class DNATrie
 	 */
 	public String printTrie(int request)
 	{
+		String ret = "";
+		TrieNode rt = loadNode(root);
 		if (request == JUST_DO_IT_SON)
 		{
-			return printTrie(loadNode(root), 0);
+			ret = printTrie(rt, 0);
 		}
 		else if (request == BY_LENGTH)
 		{
-			return printTrieByLength(loadNode(root), 0);
+			ret = printTrieByLength(rt, 0);
 		}
 		else if (request == BY_STATS)
 		{
-			return printTrieByStats(loadNode(root), 0);
+			ret = printTrieByStats(rt, 0);
 		}
-		return "";
+		root = saveNode(rt);
+		return ret;
 	}
 
 	/**
@@ -786,12 +789,8 @@ public class DNATrie
 	 */
 	private TrieNode loadNode(MemHandle h)
 	{
-		System.out.println("\t\t" + h.getAddress());
+		System.out.println("\t\tinserting at: " + h.getAddress());
 		TrieNode ret = codec.decode(manager.get(h));
-		if (!h.equals(FLYWEIGHT))
-		{
-			//manager.remove(h);
-		}
 		return ret;
 	}
 
@@ -808,8 +807,8 @@ public class DNATrie
 	{
 		byte[] bytes = codec.encode(node);
 		MemHandle ret = manager.insert(bytes);
-		System.out.println("Inserted " + node.getClass()
-				+ " (" + bytes.length + " bytes) starting at position " + ret.getAddress());
+		System.out.println("Saved " + node.getClass()
+				+ " (" + (bytes.length + 2) + " bytes) starting at position " + ret.getAddress());
 		return ret;
 	}
 
@@ -975,6 +974,10 @@ public class DNATrie
 		 */
 		public void setA(TrieNode node)
 		{
+			if (!A.equals(FLYWEIGHT))
+			{
+				manager.remove(A);
+			}
 			this.A = saveNode(node);
 		}
 
@@ -1006,6 +1009,10 @@ public class DNATrie
 		 */
 		public void setC(TrieNode node)
 		{
+			if (!C.equals(FLYWEIGHT))
+			{
+				manager.remove(C);
+			}
 			this.C = saveNode(node);
 		}
 
@@ -1037,6 +1044,10 @@ public class DNATrie
 		 */
 		public void setG(TrieNode node)
 		{
+			if (!G.equals(FLYWEIGHT))
+			{
+				manager.remove(G);
+			}
 			this.G = saveNode(node);
 		}
 
@@ -1068,6 +1079,10 @@ public class DNATrie
 		 */
 		public void setT(TrieNode node)
 		{
+			if (!T.equals(FLYWEIGHT))
+			{
+				manager.remove(T);
+			}
 			this.T = saveNode(node);
 		}
 
@@ -1099,6 +1114,10 @@ public class DNATrie
 		 */
 		public void set$(TrieNode node)
 		{
+			if (!$.equals(FLYWEIGHT))
+			{
+				manager.remove($);
+			}
 			this.$ = saveNode(node);
 		}
 

@@ -89,8 +89,6 @@ public class DNAFile
 	public static void main(String[] args) throws IOException
 	{
 		output = new PrintWriter(System.out, true);
-		MemManager manager = new MemManager(1024, BLOCK_SIZE, buffers, BIN_DAT);
-		controller = new Controller(new DNATrie(manager));
 		//parse the command line arguments. the program cannot operate if any 
 		//arguments are invalid
 		if (!parseArgs(args))
@@ -98,6 +96,8 @@ public class DNAFile
 			output.println("Program initialization failed.");
 			System.exit(1);
 		}
+		MemManager manager = new MemManager(BLOCK_SIZE, BLOCK_SIZE, buffers, BIN_DAT);
+		controller = new Controller(new DNATrie(manager));
 		String line;
 		input = new BufferedReader(new FileReader(inputFile));
 		while ((line = input.readLine()) != null)
