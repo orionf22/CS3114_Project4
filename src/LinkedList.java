@@ -79,95 +79,92 @@ public class LinkedList<E>
 		/**
 		 * New iterators start at the first Node in the list.
 		 */
-		private Node<E> current = head.next;
+		private Node<E> next;
+		private Node<E> lastReturned = null;
 		/**
 		 * Current iteration index within this list.
 		 */
-		private int index = 0;
+		private int nextIndex = 0;
+		
+		FreeListIterator()
+		{
+			next = head.next;
+		}
 
 		@Override
 		public void add(E item)
 		{
 			Node<E> newNode = new Node<>(item);
 			// Empty List
-			if (size == 0)
+			lastReturned = null;
+			if (next == null)
 			{
 				head.next = newNode;
 				head.prev = newNode;
 				newNode.prev = head;
 				newNode.next = head;
 			}
-			// Not empty, but added to end
-			else if (current.next == head)
-			{
-				current.next = newNode;
-				newNode.prev = current;
-				newNode.next = head;
-				head.prev = newNode;
-			}
-			// Add in the middle
 			else
 			{
-				Node<E> oldnext = current.next;
-				current.next = newNode;
-				oldnext.prev = newNode;
-				newNode.prev = current;
-				newNode.next = oldnext;
+				Node<E> oldPrev = next.prev;
+				
+				oldPrev.next = newNode;
+				newNode.next = next;
+				next.prev = newNode;
+				newNode.prev = oldPrev;
 			}
-			current = newNode;
 			// Increment Size
 			size++;
-			canremove = true;
+			nextIndex++;
 		}
 
 		@Override
 		public boolean hasNext()
 		{
-			return current.next != head;
+			return nextIndex < size;
 		}
 
 		@Override
 		public boolean hasPrevious()
 		{
-			return current.prev != head;
+			return nextIndex > 0;
 		}
 
 		@Override
 		public E next()
 		{
-			E returning = current.value;
-			if (current.next == head)
+			lastReturned = next;
+			if (!hasNext())
 			{
-				current = head.next;
+				next = head.next;
 			}
 			else
 			{
-				current = current.next;
+				next = next.next;
 			}
-			canremove = true;
-			index++;
-			return returning;
+			nextIndex++;
+			return lastReturned.value;
 		}
 
 		@Override
 		public int nextIndex()
 		{
-			return index + 1;
+			return nextIndex;
 		}
 
 		@Override
 		public E previous()
 		{
-			E returning = current.value;
-			if (current.prev == head)
+			E returning = next.value;
+			if (next.prev == head)
 			{
-				current = head.prev;
-				index = size - 1;
+				next = head.prev;
+				nextIndex = size - 1;
 			}
 			else
 			{
-				current = current.prev;
-				index--;
+				next = next.prev;
+				nextIndex--;
 			}
 
 
@@ -177,36 +174,33 @@ public class LinkedList<E>
 		@Override
 		public int previousIndex()
 		{
-			return index - 1;
+			return nextIndex - 1;
 		}
 
 		@Override
 		public void remove()
 		{
-			assert (canremove == true);
-			if (size == 1)
+			assert (lastReturned != null);
+			Node<E> lastNext = lastReturned.next;
+			Node<E> prev = lastReturned.prev;
+			prev.next = lastNext;
+			lastNext.prev = prev;
+			if (next == lastReturned)
 			{
-				head.next = head;
-				head.prev = head;
-				current = head;
-
+				next = lastNext;
 			}
 			else
 			{
-			    Node<E> toremove = current.prev;
-				toremove.prev.next = toremove.next;
-				toremove.next.prev = toremove.prev;
-				current = toremove.prev;
+				nextIndex--;
 			}
 			size--;
-			canremove = false;
-
+			lastReturned = null;
 		}
 
 		@Override
 		public void set(E val)
 		{
-			current.value = val;
+			next.value = val;
 		}
 	}
 
