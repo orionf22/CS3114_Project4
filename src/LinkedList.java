@@ -184,23 +184,23 @@ public class LinkedList<E>
 		public void remove()
 		{
 			assert (canremove == true);
+			if (size == 1)
 			{
-				if (size == 1)
-				{
-					head.next = head;
-					head.prev = head;
-					current = head;
+				head.next = head;
+				head.prev = head;
+				current = head;
 
-				}
-				else
-				{
-					current.prev.next = current.next;
-					current.next.prev = current.prev;
-					current = current.prev;
-				}
-				size--;
-				canremove = false;
 			}
+			else
+			{
+			    Node<E> toremove = current.prev;
+				toremove.prev.next = toremove.next;
+				toremove.next.prev = toremove.prev;
+				current = toremove.prev;
+			}
+			size--;
+			canremove = false;
+
 		}
 
 		@Override
