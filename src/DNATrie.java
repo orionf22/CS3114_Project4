@@ -789,7 +789,7 @@ public class DNATrie
 	 */
 	private TrieNode loadNode(MemHandle h)
 	{
-		System.out.println("\t\tinserting at: " + h.getAddress());
+		//System.out.println("\t\tinserting at: " + h.getAddress());
 		TrieNode ret = codec.decode(manager.get(h));
 		return ret;
 	}

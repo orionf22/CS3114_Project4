@@ -1,3 +1,4 @@
+
 import java.util.ListIterator;
 
 /**
@@ -26,18 +27,18 @@ public class LinkedList<E>
 	 */
 	LinkedList()
 	{
-	    head = new Node<>(null);
-	    head.next = head;
-	    head.prev = head;
-	    size = 0;
+		head = new Node<>(null);
+		head.next = head;
+		head.prev = head;
+		size = 0;
 	}
 
 	@Override
-    public String toString()
-    {
-        return null;
-	    // TODO Work it!
-    }
+	public String toString()
+	{
+		return null;
+		// TODO Work it!
+	}
 
 	/**
 	 * Helper class that represents a Node within a doubly-linked list.
@@ -57,177 +58,171 @@ public class LinkedList<E>
 		}
 	}
 
-
 	@Override
-    public FreeListIterator iterator()
-    {
-        return new FreeListIterator();
-    }
+	public FreeListIterator iterator()
+	{
+		return new FreeListIterator();
+	}
 
 	// -------------------------------------------------------------------------
 	/**
-	 *  Returns a ListIterator for this LinkedList
-	 *
-	 *  @author Anthony Rinaldi, Ryan Merkel
-	 *  @version Dec 5, 2012
+	 * Returns a ListIterator for this LinkedList
+	 * <p/>
+	 * @author Anthony Rinaldi, Ryan Merkel
+	 * @version Dec 5, 2012
 	 */
 	protected class FreeListIterator
-    implements ListIterator<E>
+			implements ListIterator<E>
 	{
-	    boolean canremove = false;
 
-        /**
-         * New iterators start at the first Node in the list.
-         */
-        private Node<E> current = head.next;
-        /**
-         * Current iteration index within this list.
-         */
-        private int index = 0;
+		boolean canremove = false;
+		/**
+		 * New iterators start at the first Node in the list.
+		 */
+		private Node<E> current = head.next;
+		/**
+		 * Current iteration index within this list.
+		 */
+		private int index = 0;
 
-        @Override
-        public void add(E item)
-        {
-            Node<E> newNode = new Node<>(item);
-            // Empty List
-            if (size == 0)
-            {
-                head.next = newNode;
-                head.prev = newNode;
-                newNode.prev = head;
-                newNode.next = head;
-            }
-            // Not empty, but added to end
-            else if (current.next == head)
-            {
-                current.next = newNode;
-                newNode.prev = current;
-                newNode.next = head;
-                head.prev = newNode;
-            }
-            // Add in the middle
-            else
-            {
-                Node<E> oldnext = current.next;
-                current.next = newNode;
-                oldnext.prev = newNode;
-                newNode.prev = current;
-                newNode.next = oldnext;
-            }
+		@Override
+		public void add(E item)
+		{
+			Node<E> newNode = new Node<>(item);
+			// Empty List
+			if (size == 0)
+			{
+				head.next = newNode;
+				head.prev = newNode;
+				newNode.prev = head;
+				newNode.next = head;
+			}
+			// Not empty, but added to end
+			else if (current.next == head)
+			{
+				current.next = newNode;
+				newNode.prev = current;
+				newNode.next = head;
+				head.prev = newNode;
+			}
+			// Add in the middle
+			else
+			{
+				Node<E> oldnext = current.next;
+				current.next = newNode;
+				oldnext.prev = newNode;
+				newNode.prev = current;
+				newNode.next = oldnext;
+			}
+			current = newNode;
+			// Increment Size
+			size++;
+			canremove = true;
+		}
 
-            // Increment Size
-            size++;
-            canremove = true;
-        }
+		@Override
+		public boolean hasNext()
+		{
+			return current.next != head;
+		}
 
-        @Override
-        public boolean hasNext()
-        {
-            return current.next != head;
-        }
+		@Override
+		public boolean hasPrevious()
+		{
+			return current.prev != head;
+		}
 
-        @Override
-        public boolean hasPrevious()
-        {
-            return current.prev != head;
-        }
+		@Override
+		public E next()
+		{
+			E returning = current.value;
+			if (current.next == head)
+			{
+				current = head.next;
+			}
+			else
+			{
+				current = current.next;
+			}
+			canremove = true;
+			index++;
+			return returning;
+		}
 
-        @Override
-        public E next()
-        {
-            E returning = current.value;
-            if (current.next == head)
-            {
-                current = head.next;
-            } else
-            {
-                current = current.next;
-            }
-            canremove = true;
-            index++;
-            return returning;
-        }
+		@Override
+		public int nextIndex()
+		{
+			return index + 1;
+		}
 
-        @Override
-        public int nextIndex()
-        {
-            return index + 1;
-        }
-
-        @Override
-        public E previous()
-        {
-            E returning = current.value;
-            if (current.prev == head)
-            {
-                current = head.prev;
-                index = size - 1;
-            } else
-            {
-                current = current.prev;
-                index--;
-            }
-
-
-            return returning;
-        }
-
-        @Override
-        public int previousIndex()
-        {
-            return index - 1;
-        }
-
-        @Override
-        public void remove()
-        {
-            assert (canremove == true);
-            {
-                if (size == 1)
-                {
-                    head.next = head;
-                    head.prev = head;
-                    current = head;
-
-                }
-                else
-                {
-                    current.prev.next = current.next;
-                    current.next.prev = current.prev;
-                    current = current.prev;
-
-                }
-                size--;
-                canremove = false;
-            }
+		@Override
+		public E previous()
+		{
+			E returning = current.value;
+			if (current.prev == head)
+			{
+				current = head.prev;
+				index = size - 1;
+			}
+			else
+			{
+				current = current.prev;
+				index--;
+			}
 
 
-        }
+			return returning;
+		}
 
-        @Override
-        public void set(E val)
-        {
-            current.value = val;
+		@Override
+		public int previousIndex()
+		{
+			return index - 1;
+		}
 
-        }
+		@Override
+		public void remove()
+		{
+			assert (canremove == true);
+			{
+				if (size == 1)
+				{
+					head.next = head;
+					head.prev = head;
+					current = head;
 
+				}
+				else
+				{
+					current.prev.next = current.next;
+					current.next.prev = current.prev;
+					current = current.prev;
+				}
+				size--;
+				canremove = false;
+			}
+		}
+
+		@Override
+		public void set(E val)
+		{
+			current.value = val;
+		}
 	}
 
+	// ----------------------------------------------------------
+	/**
+	 * Gives the size
+	 * <p/>
+	 * @return size
+	 */
+	public int size()
+	{
+		return size;
+	}
 
-
-    // ----------------------------------------------------------
-    /**
-     * Gives the size
-     * @return size
-     */
-    public int size()
-    {
-        return size;
-    }
-
-
-    public boolean isEmpty()
-    {
-        return size == 0;
-    }
+	public boolean isEmpty()
+	{
+		return size == 0;
+	}
 }
