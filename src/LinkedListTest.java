@@ -71,4 +71,22 @@ public class LinkedListTest
         assertEquals(llist.isEmpty(), true);
     }
 
+    @Test
+    public void testIter()
+    {
+        assertEquals(llist.isEmpty(), true);
+        iter.add("Test1");
+        assertEquals(llist.isEmpty(), false);
+        assertEquals(iter.next().equals("Test1"), true);
+        assertEquals(iter.next().equals("Test1"), true);
+        assertEquals(iter.next().equals("Test1"), true);
+        assertEquals(llist.size(), 1);
+        iter.add("Test2");
+        assertEquals(llist.size(), 1);
+        assertEquals(iter.next().equals("Test1"), true);
+        assertEquals(iter.next().equals("Test2"), true);
+        assertEquals(iter.next().equals("Test1"), true);
+        assertEquals(iter.next().equals("Test2"), true);
+    }
+
 }
