@@ -113,6 +113,10 @@ public class LinkedList<E>
 				next.prev = newNode;
 				newNode.prev = oldPrev;
 			}
+			if (size == 0)
+			{
+				next = newNode;
+			}
 			// Increment Size
 			size++;
 			nextIndex++;

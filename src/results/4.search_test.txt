@@ -1,114 +1,141 @@
-	encoding flyweight
-	0
-Inserted class DNATrie$FLYWEIGHT (1 bytes) starting at position 0
-	encoding flyweight
-	3
-Inserted class DNATrie$FLYWEIGHT (1 bytes) starting at position 3
+*3:4093
+Saved class DNATrie$FLYWEIGHT (3 bytes) starting at position 0
+*6:4090
+Saved class DNATrie$FLYWEIGHT (3 bytes) starting at position 3
 
 Nodes visited: 1
 sequence "T" not found
-	encoding flyweight
-	6
-Inserted class DNATrie$FLYWEIGHT (1 bytes) starting at position 6
+*9:4087
+Saved class DNATrie$FLYWEIGHT (3 bytes) starting at position 6
 
 Nodes visited: 1
 sequence "T$" not found
-	9
-	12
+*12:4084
+*21:4075
+Saved class DNATrie$LeafNode (9 bytes) starting at position 12
 
 Successfully inserted new record "A" of 3 bytes (1 characters) starting at position 9
-	21
-	24
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 24
-	33
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 33
-	42
+*30:4066
+Saved class DNATrie$LeafNode (9 bytes) starting at position 21
+*33:4063
+*42:4054
+Saved class DNATrie$LeafNode (9 bytes) starting at position 33
+*51:4045
+Saved class DNATrie$LeafNode (9 bytes) starting at position 42
+*74:4022
+Saved class DNATrie$InternalNode (23 bytes) starting at position 51
 
-Successfully inserted new record "G" of 3 bytes (1 characters) starting at position 21
-	65
-	68
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 68
-	77
+Successfully inserted new record "G" of 3 bytes (1 characters) starting at position 30
+*97:3999
+Saved class DNATrie$InternalNode (23 bytes) starting at position 74
+*100:3996
+*109:3987
+Saved class DNATrie$LeafNode (9 bytes) starting at position 100
+*132:3964
+Saved class DNATrie$InternalNode (23 bytes) starting at position 109
 
-Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 65
-	100
-	103
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 103
-	112
+Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 97
+*155:3941
+Saved class DNATrie$InternalNode (23 bytes) starting at position 132
+*158:3938
+*167:3929
+Saved class DNATrie$LeafNode (9 bytes) starting at position 158
+*190:3906
+Saved class DNATrie$InternalNode (23 bytes) starting at position 167
 
-Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 100
-	135
-	138
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 138
-	147
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 147
-	156
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 156
-	179
+Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 155
+*213:3883
+Saved class DNATrie$InternalNode (23 bytes) starting at position 190
+*216:3880
+*225:3871
+Saved class DNATrie$LeafNode (9 bytes) starting at position 216
+*234:3862
+Saved class DNATrie$LeafNode (9 bytes) starting at position 225
+257:3839, *42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 234
+280:3816, *42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 257
 
-Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 135
-	202
-	205
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 205
-	214
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 214
-	223
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 223
-	246
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 246
-	269
+Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 213
+303:3793, *42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 280
+306:3790, *42:9
+315:3781, *42:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 306
+324:3772, *42:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 315
+347:3749, *216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 324
+370:3726, *234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 347
+393:3703, *234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 370
 
-Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 202
-	292
-	295
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 295
-	304
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 304
-	313
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 313
-	336
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 336
-	359
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 359
-	382
+Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 303
+416:3680, *234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 393
+419:3677, *234:23, 216:9, 42:9
+428:3668, *234:23, 216:9, 42:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 419
+437:3659, *234:23, 216:9, 42:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 428
+460:3636, *315:9, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 437
+483:3613, *315:32, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 460
+506:3590, *315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 483
+529:3567, *315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 506
 
-Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 292
-	405
-	408
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 408
-	417
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 417
-	440
+Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 416
+552:3544, *315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 529
+555:3541, *315:55, 234:23, 216:9, 42:9
+564:3532, *315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 555
+587:3509, *483:23, 315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 564
+610:3486, *483:23, 315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 587
 
-Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 405
-	463
-	466
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 466
-	475
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 475
-	498
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 498
-	521
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 552
+633:3463, *483:23, 315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 610
+636:3460, *483:23, 315:55, 234:23, 216:9, 42:9
+645:3451, *483:23, 315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 636
+668:3428, *460:46, 315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 645
+691:3405, *564:23, 460:46, 315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 668
+714:3382, *564:23, 460:46, 315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 691
 
-Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 463
-	544
-	547
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 547
-	556
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 556
-	565
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 565
-	588
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 633
+737:3359, *564:23, 460:46, 315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 714
+740:3356, *564:23, 460:46, 315:55, 234:23, 216:9, 42:9
+749:3347, *564:23, 460:46, 315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 740
+758:3338, *564:23, 460:46, 315:55, 234:23, 216:9, 42:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 749
+781:3315, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 758
+804:3292, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 781
 
-Successfully inserted new record "GTC" of 3 bytes (3 characters) starting at position 544
-	611
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 611
+Successfully inserted new record "GTC" of 3 bytes (3 characters) starting at position 737
+827:3269, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 804
 
 Nodes visited: 13
 sequence: AACA
 sequence: AACT
 sequence: AAGG
 sequence: AA
+850:3246, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 827
 I
   I
     I
@@ -136,8 +163,8 @@ I
   T
   E
 
-	634
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 634
+873:3223, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 850
 
 Nodes visited: 17
 sequence: AACA
@@ -146,37 +173,39 @@ sequence: AAGG
 sequence: AA
 sequence: AGGT
 sequence: A
-	657
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 657
+896:3200, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 873
 
 Nodes visited: 4
 sequence: AA
-	680
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 680
+919:3177, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 896
 
 Nodes visited: 7
 sequence: GTC
 sequence: G
-	703
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 703
+942:3154, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 919
 
 Nodes visited: 3
 sequence: G
-	726
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 726
+965:3131, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 942
 
 Nodes visited: 3
 sequence: GTC
-	749
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 749
+988:3108, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 965
 
 Nodes visited: 2
 sequence "CT" not found
-	772
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 772
+1011:3085, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 988
 
 Nodes visited: 4
 sequence "AAA$" not found
+1034:3062, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1011
 I
   I
     I
@@ -204,30 +233,38 @@ I
   T
   E
 
-	795
-	798
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 798
-	807
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 807
-	830
+1057:3039, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1034
+1060:3036, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+1069:3027, *33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 1060
+1092:3004, *668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1069
+1115:2981, *668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1092
 
-Successfully inserted new record "ATC" of 3 bytes (3 characters) starting at position 795
-	853
-	857
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 857
-	866
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 866
-	875
-Inserted class DNATrie$LeafNode (7 bytes) starting at position 875
-	884
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 884
-	907
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 907
-	930
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 930
-	953
+Successfully inserted new record "ATC" of 3 bytes (3 characters) starting at position 1057
+1138:2958, *668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1115
+1142:2954, *668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+1151:2945, *668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 1142
+1160:2936, *668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 1151
+1169:2927, *668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$LeafNode (9 bytes) starting at position 1160
+1192:2904, *1142:9, 668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1169
+1215:2881, *1060:9, 1142:9, 668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1192
+1238:2858, *1060:32, 1142:9, 668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1215
+1261:2835, *1060:32, 1142:9, 668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1238
 
-Successfully inserted new record "ATCGTT" of 4 bytes (6 characters) starting at position 853
+Successfully inserted new record "ATCGTT" of 4 bytes (6 characters) starting at position 1138
+1284:2812, *1060:32, 1142:9, 668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1261
 I
   I
     I
@@ -265,20 +302,19 @@ I
   T
   E
 
-	976
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 976
+1307:2789, *1060:32, 1142:9, 668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1284
 
 Nodes visited: 13
 sequence: ATCGTT
 sequence: ATC
-	999
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 999
+1330:2766, *1060:32, 1142:9, 668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1307
 
 Nodes visited: 4
 sequence "AT$" not found
-	-1
-	1022
-Inserted class DNATrie$InternalNode (21 bytes) starting at position 1022
+1353:2743, *1060:32, 1142:9, 668:23, 33:18, 564:23, 460:46, 315:55, 234:23, 216:9
+Saved class DNATrie$InternalNode (23 bytes) starting at position 1330
 
 Nodes visited: 5
 sequence: ATC
