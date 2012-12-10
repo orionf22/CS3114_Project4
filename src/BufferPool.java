@@ -123,10 +123,8 @@ public class BufferPool
 	 *                       array
 	 * <p/>
 	 * @return a byte array containing the bytes from the source
-	 * <p/>
-	 * @throws IOException
 	 */
-	public byte[] get(int start, int requestSize) throws IOException
+	public byte[] get(int start, int requestSize)
 	{
 		byte[] ret = new byte[requestSize];
 		int retIndex = 0;
@@ -134,7 +132,15 @@ public class BufferPool
 		{
 			//determine which Buffer to look at
 			int blockNum = i / BLOCK_SIZE;
-			Buffer buff = retrieve(blockNum, blockNum * BLOCK_SIZE);
+			Buffer buff = null;
+			try
+			{
+				buff = retrieve(blockNum, blockNum * BLOCK_SIZE);
+			}
+			catch (IOException ex)
+			{
+				Logger.getLogger(BufferPool.class.getName()).log(Level.SEVERE, null, ex);
+			}
 			ret[retIndex] = buff.get(i - (blockNum * BLOCK_SIZE));
 			retIndex++;
 		}
@@ -155,14 +161,20 @@ public class BufferPool
 	 * <p/>
 	 * @param bytes the bytes to assign to a {@link Buffer}
 	 * @param start the starting index in the source at which to overwrite
-	 * <p/>
-	 * @throws IOException
 	 */
-	public void set(byte[] bytes, int start) throws IOException
+	public void set(byte[] bytes, int start)
 	{
 		//Determine which Buffer to get
 		int blockNum = start / BLOCK_SIZE;
-		Buffer buff = retrieve(blockNum, blockNum * BLOCK_SIZE);
+		Buffer buff = null;
+		try
+		{
+			buff = retrieve(blockNum, blockNum * BLOCK_SIZE);
+		}
+		catch (IOException ex)
+		{
+			Logger.getLogger(BufferPool.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		int newStart = start;
 		//this check ensures the request index is always relative to the 
 		//Buffer's byte array, NOT the source's array. Without this check, a
@@ -400,7 +412,7 @@ public class BufferPool
 		String ret = "";
 		while (iter.hasNext())
 		{
-			ret += "";
+			ret += "" + iter.next().getNumber();
 		}
 		return ret;
 	}

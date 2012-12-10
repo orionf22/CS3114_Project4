@@ -809,6 +809,7 @@ public class DNATrie
 		MemHandle ret = manager.insert(bytes);
 		System.out.println("Saved " + node.getClass()
 				+ " (" + (bytes.length + 2) + " bytes) starting at position " + ret.getAddress());
+		System.out.println(manager.getFreeBlocks());
 		return ret;
 	}
 

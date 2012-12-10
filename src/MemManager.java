@@ -28,9 +28,14 @@ public class MemManager
 	 * The {@link MemoryPool} managed by this {@code MemManager}. Actual data is
 	 * stored here.
 	 */
-	private MemoryPool pool;
+	//private MemoryPool pool;
 	private BufferPool bufferPool;
 	private int BLOCK_SIZE;
+	/**
+	 * The current maximum size, in bytes, of this manager. This value is
+	 * updated if additional space is required and allocated to the manager.
+	 */
+	private int size;
 	/**
 	 * The {@link FreeBlockList} managed by this {@code MemManager}. Free space
 	 * is monitored here.
@@ -44,8 +49,9 @@ public class MemManager
 	 */
 	public MemManager(int poolSize, int blockSize, int buffers, File file)
 	{
+		size = blockSize;
 		BLOCK_SIZE = blockSize;
-		this.pool = new MemoryPool(poolSize);
+		//this.pool = new MemoryPool(poolSize);
 		this.bufferPool = new BufferPool(buffers, file, blockSize);
 		this.freeBlocks = new FreeBlockList(poolSize);
 	}
@@ -88,28 +94,32 @@ public class MemManager
 	{
 		//Important! Request an additional 2 bytes for the 2-byte size sequence
 		MemHandle insertHandle = freeBlocks.getSpace(stuff.length + 2);
-		System.out.println(freeBlocks.blocksToString());
+		//System.out.println(freeBlocks.blocksToString());
 		if (insertHandle.getAddress() >= 0)
 		{
-			pool.insert(stuff, insertHandle.getAddress());
+			//pool.insert(stuff, insertHandle.getAddress());
+			bufferPool.set(sizeToBytes((short)stuff.length), insertHandle.getAddress());
+			bufferPool.set(stuff, insertHandle.getAddress() + 2);
 		}
-		//Insufficient free space; continue to add 100 bytes until enough space 
-		//exists
+		//Insufficient free space; continue to add BLOCK_SIZE bytes until enough
+		//space exists
 		else
 		{
-			//add 100 bytes
+			System.out.println("\t\t\t\texpanding pool");
 			int increaseSize = BLOCK_SIZE;
-			int oldSize = pool.getSize();
-			//Create a new MemoryPool with increased size
-			MemoryPool newPool = new MemoryPool(oldSize + increaseSize);
-			//Copy the data from the original pool to the new pool
-			newPool.copyPoolFrom(pool);
-			//Set pool to be the new pool
-			pool = newPool;
-			//Add the additional space to the FreeBlockList; important to NOT 
-			//add 1 to the space request as the size (oldSize) is NOT zero-based 
-			//but the freelist and pool ARe zero-based, thus making the +1 
-			//unnecessary and incorrect
+			int oldSize = size;
+			size += increaseSize;
+//			int oldSize = pool.getSize();
+//			//Create a new MemoryPool with increased size
+//			MemoryPool newPool = new MemoryPool(oldSize + increaseSize);
+//			//Copy the data from the original pool to the new pool
+//			newPool.copyPoolFrom(pool);
+//			//Set pool to be the new pool
+//			pool = newPool;
+//			//Add the additional space to the FreeBlockList; important to NOT 
+//			//add 1 to the space request as the size (oldSize) is NOT zero-based 
+//			//but the freelist and pool ARE zero-based, thus making the +1 
+//			//unnecessary and incorrect
 			freeBlocks.reclaimSpace(new MemHandle(oldSize), increaseSize);
 			//Size increased; recursively call insert again till sufficient space
 			return insert(stuff);
@@ -128,7 +138,8 @@ public class MemManager
 	 */
 	public int remove(MemHandle h)
 	{
-		int ret = pool.remove(h);
+		//int ret = pool.remove(h);
+		int ret = bytesToSize(bufferPool.get(h.getAddress(), 2));
 		//removing from the pool only returns the number of bytes needed to
 		//store the actual record, not including the size sequence prefix, so
 		//add 2 to the reclaim space request
@@ -147,22 +158,42 @@ public class MemManager
 	 */
 	public byte[] get(MemHandle h)
 	{
-		return pool.get(h);
+		//return pool.get(h);
+		int request = bytesToSize(bufferPool.get(h.getAddress(), 2));
+		return bufferPool.get(h.getAddress() + 2, request);
 	}
-
+	
 	/**
-	 * Gets only the two-byte size sequence as an int value. This is used when
-	 * only the byte size of a memory request is needed, not the actual data
-	 * itself.
+	 * Converts a {@code short} value, {@code s}, to a two-byte size sequence.
+	 * This is used as a prefix to all stored data byte arrays to denote the
+	 * actual byte length of stored data. All {@link MemHandle} references
+	 * address this two-byte sequence and higher functions use the size to
+	 * determine how many bytes belong to the pertinent data request.
 	 * <p/>
-	 * @param h the {@link MemHandle} addressing the two-byte size sequence to
-	 *             return
+	 * @param s the size of the stored data
 	 * <p/>
-	 * @return the int size
+	 * @return a two-byte sequence of the converted size
 	 */
-	public int getByteSizeSequence(MemHandle h)
+	public static byte[] sizeToBytes(short s)
 	{
-		return pool.getByteSizeSquence(h);
+		byte[] ret = new byte[2];
+		ret[0] = (byte) (s >> 8);
+		ret[1] = (byte) (s);
+		return ret;
+	}
+	
+	/**
+	 * Converts a two-byte array marking the size of stored data to a primitive
+	 * {@code int}. {@code s} should be, at minimum, of size 2, and preferably
+	 * no larger.
+	 * <p/>
+	 * @param s the two-byte size sequence
+	 * <p/>
+	 * @return the {@code int} size
+	 */
+	public static int bytesToSize(byte[] s)
+	{
+		return (s[0] << 8) + s[1];
 	}
 
 	/**
