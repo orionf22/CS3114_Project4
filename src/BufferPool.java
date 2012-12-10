@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.logging.Level;
@@ -39,6 +40,7 @@ import java.util.logging.Logger;
  */
 public class BufferPool
 {
+
 	/**
 	 * This {@code BufferPool's} {@link LinkedList}.
 	 */
@@ -164,28 +166,34 @@ public class BufferPool
 	 */
 	public void set(byte[] bytes, int start)
 	{
-		//Determine which Buffer to get
-		int blockNum = start / BLOCK_SIZE;
-		Buffer buff = null;
-		try
+		int insertAt = 0;
+		//System.out.println("Set at " + start + ": " + Arrays.toString(bytes));
+		for (int i = start; i < start + bytes.length; i++)
 		{
-			buff = retrieve(blockNum, blockNum * BLOCK_SIZE);
+			//Determine which Buffer to get
+			int blockNum = i / BLOCK_SIZE;
+			Buffer buff = null;
+			try
+			{
+				buff = retrieve(blockNum, blockNum * BLOCK_SIZE);
+			}
+			catch (IOException ex)
+			{
+				Logger.getLogger(BufferPool.class.getName()).log(Level.SEVERE, null, ex);
+			}
+//			int newStart = i;
+//			//this check ensures the request index is always relative to the 
+//			//Buffer's byte array, NOT the source's array. Without this check, a
+//			//request to position 5000 (in Buffer 01) would result in a request in
+//			//Buffer 01's byte array at 5000, generating an out of bounds exception
+//			if (blockNum != 0)
+//			{
+//				newStart = i % BLOCK_SIZE;
+//			}
+			buff.setByte(bytes[insertAt], i - (blockNum * BLOCK_SIZE));
+			buff.makeDirty();
+			insertAt++;
 		}
-		catch (IOException ex)
-		{
-			Logger.getLogger(BufferPool.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		int newStart = start;
-		//this check ensures the request index is always relative to the 
-		//Buffer's byte array, NOT the source's array. Without this check, a
-		//request to position 5000 (in Buffer 01) would result in a request in
-		//Buffer 01's byte array at 5000, generating an out of bounds exception
-		if (blockNum != 0)
-		{
-			newStart = start % BLOCK_SIZE;
-		}
-		buff.setBytes(bytes, newStart);
-		buff.makeDirty();
 	}
 
 	/**

@@ -1,5 +1,6 @@
 
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -714,6 +715,7 @@ public class DNATrie
 	public String retrieve(MemHandle h, int length)
 	{
 		byte[] got = manager.get(h);
+		//System.out.println(Arrays.toString(got) + "; " + h.getAddress());
 		//if got is null, no sequence exists in memory referenced by h
 		if (got != null)
 		{
@@ -807,8 +809,8 @@ public class DNATrie
 	{
 		byte[] bytes = codec.encode(node);
 		MemHandle ret = manager.insert(bytes);
-		System.out.println("Saved " + node.getClass()
-				+ " (" + (bytes.length + 2) + " bytes) starting at position " + ret.getAddress());
+//		System.out.println("Saved " + node.getClass()
+//				+ " (" + (bytes.length + 2) + " bytes) starting at position " + ret.getAddress());
 		System.out.println(manager.getFreeBlocks());
 		return ret;
 	}

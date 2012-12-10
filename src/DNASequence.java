@@ -126,7 +126,7 @@ public class DNASequence
 	 */
 	public void terminate()
 	{
-		if (!sequence.endsWith("$"))
+		if (!sequence.endsWith("$") && !current.endsWith("$"))
 		{
 			current += "$";
 		}

@@ -1,6 +1,7 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * The {@code MemManager} class controls how information is stored in memory.
@@ -98,6 +99,7 @@ public class MemManager
 		if (insertHandle.getAddress() >= 0)
 		{
 			//pool.insert(stuff, insertHandle.getAddress());
+			//System.out.println("insert size: " + stuff.length);
 			bufferPool.set(sizeToBytes((short)stuff.length), insertHandle.getAddress());
 			bufferPool.set(stuff, insertHandle.getAddress() + 2);
 		}
@@ -159,7 +161,8 @@ public class MemManager
 	public byte[] get(MemHandle h)
 	{
 		//return pool.get(h);
-		int request = bytesToSize(bufferPool.get(h.getAddress(), 2));
+		byte[] got = bufferPool.get(h.getAddress(), 2);
+		int request = bytesToSize(got);
 		return bufferPool.get(h.getAddress() + 2, request);
 	}
 	

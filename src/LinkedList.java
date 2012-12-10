@@ -125,7 +125,7 @@ public class LinkedList<E>
 		@Override
 		public boolean hasNext()
 		{
-			return nextIndex < size;
+			return next.next != head;
 		}
 
 		@Override

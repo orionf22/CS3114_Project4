@@ -75,6 +75,17 @@ public class Buffer
 	}
 
 	/**
+	 * Sets one {@code byte} at position {@code pos}.
+	 * <p/>
+	 * @param b   the byte to set
+	 * @param pos the position at which to set
+	 */
+	public void setByte(byte b, int pos)
+	{
+		bytes[pos] = b;
+	}
+
+	/**
 	 * Sets the number of this {@code Buffer}. This allows a {@code Buffer}
 	 * object to be recycled rather than garbage collected when pool replacement
 	 * occurs.
