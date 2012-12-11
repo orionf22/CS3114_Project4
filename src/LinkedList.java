@@ -5,9 +5,10 @@ import java.util.ListIterator;
 /**
  * Simple doubly-linked and circular list. Makes use of a Node subclass.
  * <p/>
+ * @param <E> generic data type
+ * <p/>
  * @author orionf22
  * @author rinaldi1
- * @param <E> Generic
  */
 public class LinkedList<E>
 		implements Iterable<E>
@@ -22,7 +23,6 @@ public class LinkedList<E>
 	 */
 	private Node<E> head;
 
-	// ----------------------------------------------------------
 	/**
 	 * LinkedList constructor: Creates empty linked list.
 	 */
@@ -33,20 +33,26 @@ public class LinkedList<E>
 		head.prev = head;
 		size = 0;
 	}
-
-	@Override
-	public String toString()
+	
+	/**
+	 * Returns the size of this list.
+	 * <p/>
+	 * @return the size
+	 */
+	public int size()
 	{
-	    /*String returning;
-		Iterator iter = this.iterator();
-		for (returning = ""; iter;)
-		{
-			returning += iter.next().toString();
-		}
+		return size;
+	}
 
-        return returning;*/
-	    return null;
-
+	/**
+	 * Determines if this list is empty or not.
+	 * <p/>
+	 * @return {@code true} is this list is empty (size of
+	 *            {@code zero}, {@code false} otherwise
+	 */
+	public boolean isEmpty()
+	{
+		return size == 0;
 	}
 
 	/**
@@ -56,8 +62,17 @@ public class LinkedList<E>
 	 */
 	private class Node<Q>
 	{
+		/**
+		 * This node's next node reference.
+		 */
 		private Node<Q> next;
+		/**
+		 * This node's previous node reference.
+		 */
 		private Node<Q> prev;
+		/**
+		 * This node's value.
+		 */
 		private Q value;
 
 		private Node(Q val)
@@ -76,18 +91,20 @@ public class LinkedList<E>
 	/**
 	 * Returns a ListIterator for this LinkedList
 	 * <p/>
-	 * @author Anthony Rinaldi, Ryan Merkel
-	 * @version Dec 5, 2012
+	 * @author orionf22
+	 * @author rinaldi1
 	 */
 	protected class FreeListIterator
 			implements ListIterator<E>
 	{
 
-		boolean canremove = false;
 		/**
 		 * New iterators start at the first Node in the list.
 		 */
 		private Node<E> next;
+		/**
+		 * The last returned node.
+		 */
 		private Node<E> lastReturned = null;
 		/**
 		 * Current iteration index within this list.
@@ -103,8 +120,8 @@ public class LinkedList<E>
 		public void add(E item)
 		{
 			Node<E> newNode = new Node<>(item);
-			// Empty List
 			lastReturned = null;
+			//empty list
 			if (next == null)
 			{
 				head.next = newNode;
@@ -115,12 +132,12 @@ public class LinkedList<E>
 			else
 			{
 				Node<E> oldPrev = next.prev;
-
 				oldPrev.next = newNode;
 				newNode.next = next;
 				next.prev = newNode;
 				newNode.prev = oldPrev;
 			}
+			//only update next if the list is empty
 			if (size == 0)
 			{
 				next = newNode;
@@ -215,21 +232,5 @@ public class LinkedList<E>
 		{
 			next.value = val;
 		}
-	}
-
-	// ----------------------------------------------------------
-	/**
-	 * Gives the size
-	 * <p/>
-	 * @return size
-	 */
-	public int size()
-	{
-		return size;
-	}
-
-	public boolean isEmpty()
-	{
-		return size == 0;
 	}
 }
