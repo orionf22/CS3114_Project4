@@ -1,26 +1,25 @@
-				expanding pool
 
-Successfully inserted new record "A" of 3 bytes (1 characters) starting at position 4099
+Successfully inserted new record "A" of 3 bytes (1 characters) starting at position 3
 
-Successfully inserted new record "G" of 3 bytes (1 characters) starting at position 4120
+Successfully inserted new record "G" of 3 bytes (1 characters) starting at position 24
 
-Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 4187
+Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 91
 
-Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 4245
+Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 149
 
-Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 4303
+Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 207
 
-Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 4132
+Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 36
 
-Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 4135
+Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 39
 
-Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 4138
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 42
 
-Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 4604
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 508
 INSERT: Cannot insert duplicate record "AGGT".
 INSERT: Cannot insert duplicate record "AA".
 
-Deleted old record "A" of 3 bytes (1 characters) from position 4099
+Deleted old record "A" of 3 bytes (1 characters) from position 3
 I
   I
     I
@@ -44,9 +43,9 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Deleted old record "G" of 3 bytes (1 characters) from position 4120
+Deleted old record "G" of 3 bytes (1 characters) from position 24
 I
   I
     I
@@ -70,9 +69,9 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Deleted old record "AGGT" of 3 bytes (4 characters) from position 4138
+Deleted old record "AGGT" of 3 bytes (4 characters) from position 42
 I
   I
     I
@@ -96,9 +95,9 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Deleted old record "C" of 3 bytes (1 characters) from position 4245
+Deleted old record "C" of 3 bytes (1 characters) from position 149
 I
   I
     I
@@ -122,9 +121,9 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Deleted old record "AAGG" of 3 bytes (4 characters) from position 4132
+Deleted old record "AAGG" of 3 bytes (4 characters) from position 36
 I
   I
     I
@@ -148,9 +147,9 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Deleted old record "AACT" of 3 bytes (4 characters) from position 4303
+Deleted old record "AACT" of 3 bytes (4 characters) from position 207
 I
   I
     I
@@ -169,9 +168,9 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Deleted old record "T" of 3 bytes (1 characters) from position 4187
+Deleted old record "T" of 3 bytes (1 characters) from position 91
 I
   I
     I
@@ -190,4 +189,4 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 

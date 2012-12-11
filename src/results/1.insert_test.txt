@@ -1,26 +1,25 @@
-				expanding pool
 
-Successfully inserted new record "A" of 3 bytes (1 characters) starting at position 4099
+Successfully inserted new record "A" of 3 bytes (1 characters) starting at position 3
 A
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Successfully inserted new record "G" of 3 bytes (1 characters) starting at position 4129
+Successfully inserted new record "G" of 3 bytes (1 characters) starting at position 33
 
-Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 4196
+Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 100
 
-Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 4254
+Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 158
 
-Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 4312
+Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 216
 
-Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 4141
+Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 45
 
-Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 4144
+Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 48
 
-Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 4147
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 51
 
-Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 4613
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 517
 I
   I
     I
@@ -44,7 +43,7 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 INSERT: Cannot insert duplicate record "AGGT".
 I
   I
@@ -69,7 +68,7 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 INSERT: Cannot insert duplicate record "AA".
 I
   I
@@ -94,9 +93,9 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Successfully inserted new record "CT" of 3 bytes (2 characters) starting at position 4786
+Successfully inserted new record "CT" of 3 bytes (2 characters) starting at position 690
 I
   I
     I
@@ -125,11 +124,11 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Successfully inserted new record "ATC" of 3 bytes (3 characters) starting at position 4257
+Successfully inserted new record "ATC" of 3 bytes (3 characters) starting at position 161
 
-Successfully inserted new record "ATCGTT" of 4 bytes (6 characters) starting at position 4260
+Successfully inserted new record "ATCGTT" of 4 bytes (6 characters) starting at position 164
 I
   I
     I
@@ -168,9 +167,9 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Successfully inserted new record "AAAACCCTGCCC" of 4 bytes (12 characters) starting at position 4954
+Successfully inserted new record "AAAACCCTGCCC" of 4 bytes (12 characters) starting at position 858
 I
   I
     I
@@ -209,9 +208,9 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 
-Successfully inserted new record "AAAACCCTGCATGC" of 5 bytes (14 characters) starting at position 4958
+Successfully inserted new record "AAAACCCTGCATGC" of 5 bytes (14 characters) starting at position 862
 I
   I
     I
@@ -290,7 +289,7 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 
 I
   I
     I
@@ -369,4 +368,4 @@ I
   E
 
 BufferPool IDs:
-[0]: 1; 
+[0]: 0; 

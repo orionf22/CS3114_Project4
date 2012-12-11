@@ -54,7 +54,7 @@ public class MemManager
 	 */
 	public MemManager(int blockSize, int buffers, File file)
 	{
-		size = blockSize;
+		size = 0;
 		BLOCK_SIZE = blockSize;
 		this.bufferPool = new BufferPool(buffers, file, blockSize);
 		this.freeBlocks = new FreeBlockList(0);
