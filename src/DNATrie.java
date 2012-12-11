@@ -1,6 +1,5 @@
 
 import java.nio.ByteBuffer;
-import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -45,7 +44,13 @@ public class DNATrie
 	 * {@link MemManager}.
 	 */
 	private MemManager manager;
+	/**
+	 * The {@link NodeCodec} used by this tree.
+	 */
 	private NodeCodec codec;
+	/**
+	 * The {@link DNACodec} used by this tree.
+	 */
 	private DNACodec DNACodec;
 	/**
 	 * The size of this tree.
@@ -107,8 +112,10 @@ public class DNATrie
 	 */
 	public int get(DNASequence sequence, Collection<String> c)
 	{
+		//load the root
 		TrieNode rt = loadNode(root);
 		int ret = get(rt, sequence, c);
+		//done operating on the tree; save the root
 		root = saveNode(rt);
 		return ret;
 	}
@@ -162,7 +169,8 @@ public class DNATrie
 
 	/**
 	 * Attempts to fetch a {@link TrieNode} with a {@link MemHandle} referencing
-	 * {@code sequence}.
+	 * {@code sequence}. If the tree's {@code size} is {@code zero} this method
+	 * returns {@code false} right away.
 	 * <p/>
 	 * @param sequence the {@link DNASequence} to find
 	 * <p/>
@@ -255,7 +263,9 @@ public class DNATrie
 	public void remove(DNASequence sequence)
 	{
 		sequence.terminate();
+		//load the root
 		TrieNode rt = loadNode(root);
+		//done operating on the tree; save the root
 		rt = remove(rt, sequence);
 		root = saveNode(rt);
 	}
@@ -293,8 +303,9 @@ public class DNATrie
 				size--;
 
 				int s = manager.remove(leaf.getHandle()); //remove from pool
-				DNAFile.output.println("\nDeleted old record \"" + sequence + "\" "
-						+ "of " + (s + 2) + " bytes (" + leaf.getLiteralLength() + " characters)"
+				DNAFile.output.println("\nDeleted old record \"" + sequence 
+						+ "\" " + "of " + (s + 2) + " bytes (" 
+						+ leaf.getLiteralLength() + " characters)" 
 						+ " from position " + leaf.getHandle().getAddress());
 				return node;
 			}
@@ -332,28 +343,38 @@ public class DNATrie
 			//These if blocks determine if collpasing should occur. Nodes should
 			//collapse iff there is only one LeafNode linked to node. If there
 			//is more than one leaf, no collpasing occurs.
-			if (internal.getA().isLeaf() && internal.getC().isFlyweight() && internal.getG().isFlyweight()
-					&& internal.getT().isFlyweight() && internal.get$().isFlyweight())
+			if (internal.getA().isLeaf() && internal.getC().isFlyweight() 
+					&& internal.getG().isFlyweight() 
+					&& internal.getT().isFlyweight() 
+					&& internal.get$().isFlyweight())
 			{
 				node = internal.getA();
 			}
-			else if (internal.getC().isLeaf() && internal.getA().isFlyweight() && internal.getG().isFlyweight()
-					&& internal.getT().isFlyweight() && internal.get$().isFlyweight())
+			else if (internal.getC().isLeaf() && internal.getA().isFlyweight() 
+					&& internal.getG().isFlyweight()
+					&& internal.getT().isFlyweight() 
+					&& internal.get$().isFlyweight())
 			{
 				node = internal.getC();
 			}
-			else if (internal.getG().isLeaf() && internal.getA().isFlyweight() && internal.getC().isFlyweight()
-					&& internal.getT().isFlyweight() && internal.get$().isFlyweight())
+			else if (internal.getG().isLeaf() && internal.getA().isFlyweight() 
+					&& internal.getC().isFlyweight()
+					&& internal.getT().isFlyweight() 
+					&& internal.get$().isFlyweight())
 			{
 				node = internal.getG();
 			}
-			else if (internal.getT().isLeaf() && internal.getA().isFlyweight() && internal.getC().isFlyweight()
-					&& internal.getG().isFlyweight() && internal.get$().isFlyweight())
+			else if (internal.getT().isLeaf() && internal.getA().isFlyweight() 
+					&& internal.getC().isFlyweight()
+					&& internal.getG().isFlyweight() 
+					&& internal.get$().isFlyweight())
 			{
 				node = internal.getT();
 			}
-			else if (internal.get$().isLeaf() && internal.getA().isFlyweight() && internal.getC().isFlyweight()
-					&& internal.getG().isFlyweight() && internal.getT().isFlyweight())
+			else if (internal.get$().isLeaf() && internal.getA().isFlyweight() 
+					&& internal.getC().isFlyweight()
+					&& internal.getG().isFlyweight() 
+					&& internal.getT().isFlyweight())
 			{
 				node = internal.get$();
 			}
@@ -555,6 +576,7 @@ public class DNATrie
 	public String printTrie(int request)
 	{
 		String ret = "";
+		//load the root
 		TrieNode rt = loadNode(root);
 		if (request == JUST_DO_IT_SON)
 		{
@@ -568,6 +590,7 @@ public class DNATrie
 		{
 			ret = printTrieByStats(rt, 0);
 		}
+		//done getting data; save the root
 		root = saveNode(rt);
 		return ret + "\nBufferPool IDs:\n" + manager.getBlockIDs();
 	}
@@ -606,11 +629,11 @@ public class DNATrie
 		else
 		{
 			InternalNode internal = (InternalNode) node;
-			builder.append("I\n").append(printTrie(internal.getA(), depth + 1)).append(
-					printTrie(internal.getC(), depth + 1)).append(
-					printTrie(internal.getG(), depth + 1)).append(
-					printTrie(internal.getT(), depth + 1)).append(
-					printTrie(internal.get$(), depth + 1));
+			builder.append("I\n").append(printTrie(internal.getA(), depth + 1)).
+					append(printTrie(internal.getC(), depth + 1)).
+					append(printTrie(internal.getG(), depth + 1)).
+					append(printTrie(internal.getT(), depth + 1)).
+					append(printTrie(internal.get$(), depth + 1));
 		}
 		return builder.toString();
 	}
@@ -644,17 +667,19 @@ public class DNATrie
 		{
 			LeafNode leaf = (LeafNode) node;
 			int literal = leaf.getLiteralLength();
-			builder.append(retrieve(leaf.getHandle(), literal)).append(": length ").append(literal).append(" \n");
+			builder.append(retrieve(leaf.getHandle(), literal)).
+					append(": length ").append(literal).append(" \n");
 		}
 		//InternalNodes are printed as I and have their nodes examined via DFS
 		else
 		{
 			InternalNode internal = (InternalNode) node;
-			builder.append("I\n").append(printTrieByLength(internal.getA(), depth + 1)).append(
-					printTrieByLength(internal.getC(), depth + 1)).append(
-					printTrieByLength(internal.getG(), depth + 1)).append(
-					printTrieByLength(internal.getT(), depth + 1)).append(
-					printTrieByLength(internal.get$(), depth + 1));
+			builder.append("I\n").
+					append(printTrieByLength(internal.getA(), depth + 1)).
+					append(printTrieByLength(internal.getC(), depth + 1)).
+					append(printTrieByLength(internal.getG(), depth + 1)).
+					append(printTrieByLength(internal.getT(), depth + 1)).
+					append(printTrieByLength(internal.get$(), depth + 1));
 		}
 		return builder.toString();
 	}
@@ -687,7 +712,8 @@ public class DNATrie
 		else if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			DNASequence seq = new DNASequence(retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			DNASequence seq = new DNASequence(
+					retrieve(leaf.getHandle(), leaf.getLiteralLength()));
 			builder.append(seq.getSequence()).append(" ").
 					append(seq.getStats()).append("\n");
 		}
@@ -695,11 +721,12 @@ public class DNATrie
 		else
 		{
 			InternalNode internal = (InternalNode) node;
-			builder.append("I\n").append(printTrieByStats(internal.getA(), depth + 1)).append(
-					printTrieByStats(internal.getC(), depth + 1)).append(
-					printTrieByStats(internal.getG(), depth + 1)).append(
-					printTrieByStats(internal.getT(), depth + 1)).append(
-					printTrieByStats(internal.get$(), depth + 1));
+			builder.append("I\n").
+					append(printTrieByStats(internal.getA(), depth + 1)).
+					append(printTrieByStats(internal.getC(), depth + 1)).
+					append(printTrieByStats(internal.getG(), depth + 1)).
+					append(printTrieByStats(internal.getT(), depth + 1)).
+					append(printTrieByStats(internal.get$(), depth + 1));
 		}
 		return builder.toString();
 	}
@@ -715,7 +742,6 @@ public class DNATrie
 	public String retrieve(MemHandle h, int length)
 	{
 		byte[] got = manager.get(h);
-		//System.out.println(Arrays.toString(got) + "; " + h.getAddress());
 		//if got is null, no sequence exists in memory referenced by h
 		if (got != null)
 		{
@@ -791,7 +817,6 @@ public class DNATrie
 	 */
 	private TrieNode loadNode(MemHandle h)
 	{
-		//System.out.println("\t\tinserting at: " + h.getAddress());
 		TrieNode ret = codec.decode(manager.get(h));
 		return ret;
 	}
@@ -809,9 +834,6 @@ public class DNATrie
 	{
 		byte[] bytes = codec.encode(node);
 		MemHandle ret = manager.insert(bytes);
-//		System.out.println("Saved " + node.getClass()
-//				+ " (" + (bytes.length + 2) + " bytes) starting at position " + ret.getAddress());
-//		System.out.println(manager.getFreeBlocks());
 		return ret;
 	}
 
@@ -841,15 +863,18 @@ public class DNATrie
 		else if (node.isLeaf())
 		{
 			LeafNode leaf = (LeafNode) node;
-			DNASequence seq = new DNASequence(retrieve(leaf.getHandle(), leaf.getLiteralLength()));
+			DNASequence seq = new DNASequence(
+					retrieve(leaf.getHandle(), leaf.getLiteralLength()));
 			c.add(seq.getSequence());
 			return 1;
 		}
 		else
 		{
 			InternalNode internal = (InternalNode) node;
-			return 1 + loadPrefixes(internal.getA(), c) + loadPrefixes(internal.getC(), c)
-					+ loadPrefixes(internal.getG(), c) + loadPrefixes(internal.getT(), c)
+			return 1 + loadPrefixes(internal.getA(), c) 
+					+ loadPrefixes(internal.getC(), c)
+					+ loadPrefixes(internal.getG(), c) 
+					+ loadPrefixes(internal.getT(), c)
 					+ loadPrefixes(internal.get$(), c);
 		}
 	}
@@ -890,6 +915,9 @@ public class DNATrie
 	/**
 	 * Flyweight design; all empty (and thus {@code null}) nodes point to a
 	 * single {@code FLYWEIGHT} node, {@link DNATrie#FLYWEIGHT}.
+	 * 
+	 * @author orionf22
+	 * @author rinaldi1
 	 */
 	private class FLYWEIGHT
 			implements TrieNode
@@ -971,7 +999,8 @@ public class DNATrie
 
 		/**
 		 * Sets this node's A subtree to {@code node} by inserting it into the
-		 * {@link MemManager}.
+		 * {@link MemManager}. The previous reference is first removed if said
+		 * reference is not the {@link FLYWEIGHT}.
 		 * <p/>
 		 * @param node the new A subtree
 		 */
@@ -1006,7 +1035,8 @@ public class DNATrie
 
 		/**
 		 * Sets this node's C subtree to {@code node} by inserting it into the
-		 * {@link MemManager}.
+		 * {@link MemManager}. The previous reference is first removed if said
+		 * reference is not the {@link FLYWEIGHT}.
 		 * <p/>
 		 * @param node the new C subtree
 		 */
@@ -1041,7 +1071,8 @@ public class DNATrie
 
 		/**
 		 * Sets this node's G subtree to {@code node} by inserting it into the
-		 * {@link MemManager}.
+		 * {@link MemManager}. The previous reference is first removed if said
+		 * reference is not the {@link FLYWEIGHT}.
 		 * <p/>
 		 * @param node the new G subtree
 		 */
@@ -1076,7 +1107,8 @@ public class DNATrie
 
 		/**
 		 * Sets this node's T subtree to {@code node} by inserting it into the
-		 * {@link MemManager}.
+		 * {@link MemManager}. The previous reference is first removed if said
+		 * reference is not the {@link FLYWEIGHT}.
 		 * <p/>
 		 * @param node the new T subtree
 		 */
@@ -1111,7 +1143,8 @@ public class DNATrie
 
 		/**
 		 * Sets this node's $ subtree to {@code node} by inserting it into the
-		 * {@link MemManager}.
+		 * {@link MemManager}. The previous reference is first removed if said
+		 * reference is not the {@link FLYWEIGHT}.
 		 * <p/>
 		 * @param node the new $ subtree
 		 */

@@ -15,9 +15,9 @@ public class CommandParser
 {
 
 	/**
-	 * The current command in the process of parsing. If input is fed one line
-	 * at a time, this value will also match up with the line number within the
-	 * input source (such as a file). This can be helpful when debugging an
+	 * The current command number in the process of parsing. If input is fed one
+	 * line at a time, this value will also match up with the line number within
+	 * the input source (such as a file). This can be helpful when debugging an
 	 * unrecognized/invalid command.
 	 */
 	private static int commandNum;
@@ -101,7 +101,7 @@ public class CommandParser
 								+ "\"stats\", or \"lengths\".");
 				}
 				break;
-				//A search command was encountered
+			//A search command was encountered
 			case "search":
 				String param = "";
 				//Check if DNA sequence exists

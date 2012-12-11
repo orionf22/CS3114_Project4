@@ -38,6 +38,9 @@ import java.io.PrintWriter;
  * expected to be a valid abstract pathname which will be used to create a new
  * file.
  * <p/>
+ * Developed using NetBeans IDE 7.2.1, using JDK 1.7, on Mac OS X 10.8.2. Tested
+ * using same services. Compiled through terminal using standard javac command.
+ * <p/>
  * @author orionf22
  * @author rinaldi1
  */
@@ -75,15 +78,13 @@ public class DNAFile
 	/**
 	 * The {@code .dat} file containing all data necessary for execution. This
 	 * includes, but is not limited to, {@link TrieNode} contents and
-	 * {@link DNATrie} data. This file serves as the {@link MemoryPool} used by
-	 * the {@link MemManager}.
+	 * {@link DNATrie} data. This file serves as the source file used by the
+	 * {@link MemManager}.
 	 */
 	public static File BIN_DAT = new File("p4bin.dat");
 
 	/**
 	 * @param args the command line arguments
-	 * <p/>
-	 * @throws HeapException
 	 */
 	public static void main(String[] args) throws IOException
 	{
@@ -95,7 +96,7 @@ public class DNAFile
 			output.println("Program initialization failed.");
 			System.exit(1);
 		}
-		MemManager manager = new MemManager(BLOCK_SIZE, BLOCK_SIZE, buffers, BIN_DAT);
+		MemManager manager = new MemManager(BLOCK_SIZE, buffers, BIN_DAT);
 		controller = new Controller(new DNATrie(manager));
 		String line;
 		input = new BufferedReader(new FileReader(inputFile));

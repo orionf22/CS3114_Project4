@@ -3,29 +3,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * The {@code Controller} class manages memory requests and allocation. It uses
- * a {@link DNATrie} to maintain a proper database of stored and available
- * records (data) and delegates further memory management to a
- * {@link MemManager}.
- * <p/>
- * Data reading/writing (aka encoding/decoding) is handled via a provided
- * {@link Codec}. Any class properly implementing {@link Codec} can be supplied
- * to this {@code Controller} for the purposes of translating given information
- * into bytes and back again.
- * <p/>
- * In the step-by-step process of handling memory record requests: <ul><li>The
- * {@code Controller} queries its {@link MemManager} to see if it can honor a
- * new storage request.</li> <li>If space is available, the {@link MemManager}
- * will then request enough free space from its {@link FreeBlockList}.</li><li>
- * If there is enough free space, it is removed from the {@link FreeBlockList}
- * and a new block of memory is passed to the {@link MemoryPool}.</li><li>The
- * memory pool uses the newly allocated space to store the request and the
- * {@link MemManager} passes up a {@link MemHandle} that can be used by
- * higher-level classes to retrieve information stored in the
- * {@link MemoryPool}.</li><li>The {@link DNATrie} receives the
- * {@link MemHandle} and an integer representing the true length of the stored
- * data. These objects are stored in {@link LeafNode} objects for later
- * retrieval.</li> </ul>
+ * The {@code Controller} class manages records via a {@link DNATrie} to
+ * maintain a proper database of stored and available records (data). Various
+ * commands are sent here for execution.
  * <p/>
  * @author rinaldi1
  * @author orionf22
@@ -97,9 +77,6 @@ public class Controller
 	public void print(PrintCommand c)
 	{
 		DNAFile.output.println(tree.printTrie(c.getRequest()));
-		//also print the free list and BufferPool status
-		//DNAFile.output.println("\nFreeblock list:\n" + manager.getFreeBlocks()
-		//		+ "\nBuffer Pool:\n" + bufferPool.getBlockIDs());
 	}
 
 	/**

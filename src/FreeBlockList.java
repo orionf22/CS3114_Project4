@@ -48,7 +48,6 @@ public class FreeBlockList
 	{
 		freeList = new LinkedList<>();
 		iter = freeList.iterator();
-		//freeList.insert(new MemBlock(0, s));
 		iter.add(new MemBlock(0, s));
 	}
 
@@ -60,27 +59,6 @@ public class FreeBlockList
 	public int capacity()
 	{
 		return freeList.size();
-	}
-	
-	public boolean verify()
-	{
-		ListIterator<MemBlock> ver = freeList.iterator();
-		int[] vals = new int[freeList.size()];
-		int j = 0;
-		while (j < freeList.size())
-		{
-			MemBlock got = ver.next();
-			vals[j] = got.getAddress();
-			j++;
-		}
-		for (int i = 0; i < vals.length - 1; i++)
-		{
-			if (vals[i] == vals[++i])
-			{
-				return false;
-			}
-		}
-		return true;
 	}
 
 	/**
@@ -115,7 +93,6 @@ public class FreeBlockList
 	 */
 	public MemHandle getSpace(int s)
 	{
-		verify();
 		if (!freeList.isEmpty())
 		{
 			MemBlock first = iter.next();
@@ -129,7 +106,6 @@ public class FreeBlockList
 					MemBlock remainder = new MemBlock(ret + s,
 							current.getSize() - s);
 					iter.add(remainder);
-					verify();
 					return new MemHandle(ret);
 				}
 			}
@@ -157,12 +133,13 @@ public class FreeBlockList
 	 * In each case, appropriate action is taken, merging affected free blocks
 	 * if necessary, but ultimately adding the new free block into the list.
 	 * <p/>
+	 * This method is the inverse of {@link #getSpace(int)}.
+	 * <p/>
 	 * @param h the {@link MemHandle} marking the address of the free space
 	 * @param s the size of the new free space
 	 */
 	public void reclaimSpace(MemHandle h, int s)
 	{
-		verify();
 		ListIterator<MemBlock> newIter = freeList.iterator();
 		//left and right denote free blocks adjacent to the new free block being
 		//added
@@ -218,8 +195,8 @@ public class FreeBlockList
 		}
 		//construct a new MemBlock then insert
 		newBlock = new MemBlock(start, size);
+		//add to newIter, NOT iter!
 		newIter.add(newBlock);
-		verify();
 	}
 
 	/**
@@ -260,17 +237,5 @@ public class FreeBlockList
 			}
 		}
 		return val;
-	}
-	
-	private class Node<Q>
-	{
-		Q value;
-		Node<Q> next;
-		Node<Q> prev;
-		
-		private Node(Q val)
-		{
-			this.value = val;
-		}
 	}
 }

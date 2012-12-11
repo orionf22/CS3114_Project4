@@ -1,11 +1,10 @@
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * The {@code MemManager} class controls how information is stored in memory.
- * They make use of a {@link MemoryPool} that stores the actual bytes of
+ * They make use of a {@link BufferPool} that stores the actual bytes of
  * information and a {@link FreeBlockList} that keeps track of free space.
  * <p/>
  * In the step-by-step process of handling memory requests: <ul><li>The
@@ -13,11 +12,11 @@ import java.util.Arrays;
  * new record.</li> <li>If space is available, the {@code MemManager} will
  * request enough free space from its {@link FreeBlockList}.</li><li>If there is
  * enough free space, it is removed from the {@link FreeBlockList} and a new
- * block of memory is passed to the {@link MemoryPool}.</li><li>The memory pool
+ * block of memory is passed to the {@link BufferPool}.</li><li>The memory pool
  * uses the newly allocated space to store the request and the
  * {@code MemManager} passes up a {@link MemHandle} that can be used by
  * higher-level classes to retrieve information stored in the
- * {@link MemoryPool}.</li> </ul>
+ * {@link BufferPool}.</li> </ul>
  * <p/>
  * @author orionf22
  * @author rinaldi1
@@ -26,11 +25,16 @@ public class MemManager
 {
 
 	/**
-	 * The {@link MemoryPool} managed by this {@code MemManager}. Actual data is
+	 * The {@link BufferPool} managed by this {@code MemManager}. Actual data is
 	 * stored here.
 	 */
-	//private MemoryPool pool;
+	//private BufferPool pool;
 	private BufferPool bufferPool;
+	/**
+	 * The size of memory blocks ({@link MemBlock} objects) managed by the
+	 * {@link BufferPool} as a {@link Buffer}. This is also the amount by which
+	 * the manager will attempt to expand the pool when space runs out.
+	 */
 	private int BLOCK_SIZE;
 	/**
 	 * The current maximum size, in bytes, of this manager. This value is
@@ -48,13 +52,12 @@ public class MemManager
 	 * <p/>
 	 * @param poolSize the size in bytes of this {@code MemManager}
 	 */
-	public MemManager(int poolSize, int blockSize, int buffers, File file)
+	public MemManager(int blockSize, int buffers, File file)
 	{
 		size = blockSize;
 		BLOCK_SIZE = blockSize;
-		//this.pool = new MemoryPool(poolSize);
 		this.bufferPool = new BufferPool(buffers, file, blockSize);
-		this.freeBlocks = new FreeBlockList(poolSize);
+		this.freeBlocks = new FreeBlockList(0);
 	}
 
 	/**
@@ -77,7 +80,7 @@ public class MemManager
 	 * {@link RecordArray} can store this request. The {@link FreeBlockList} is
 	 * then queried for a free block large enough to store the request. If
 	 * enough space exists, a {@link MemHandle} is passed up marking the address
-	 * of this newly allocated memory. The {@link MemoryPool} then uses this
+	 * of this newly allocated memory. The {@link BufferPool} then uses this
 	 * address to begin inserting the two-byte size sequence and actual data.
 	 * <p/>
 	 * In the event that there is insufficient space within {@code pool}, 100
@@ -98,8 +101,6 @@ public class MemManager
 		//System.out.println(freeBlocks.blocksToString());
 		if (insertHandle.getAddress() >= 0)
 		{
-			//pool.insert(stuff, insertHandle.getAddress());
-			//System.out.println("insert size: " + stuff.length);
 			bufferPool.set(sizeToBytes((short) stuff.length), insertHandle.getAddress());
 			bufferPool.set(stuff, insertHandle.getAddress() + 2);
 		}
@@ -111,17 +112,10 @@ public class MemManager
 			int increaseSize = BLOCK_SIZE;
 			int oldSize = size;
 			size += increaseSize;
-//			int oldSize = pool.getSize();
-//			//Create a new MemoryPool with increased size
-//			MemoryPool newPool = new MemoryPool(oldSize + increaseSize);
-//			//Copy the data from the original pool to the new pool
-//			newPool.copyPoolFrom(pool);
-//			//Set pool to be the new pool
-//			pool = newPool;
-//			//Add the additional space to the FreeBlockList; important to NOT 
-//			//add 1 to the space request as the size (oldSize) is NOT zero-based 
-//			//but the freelist and pool ARE zero-based, thus making the +1 
-//			//unnecessary and incorrect
+			//Add the additional space to the FreeBlockList; important to NOT 
+			//add 1 to the space request as the size (oldSize) is NOT zero-based 
+			//but the freelist and pool ARE zero-based, thus making the +1 
+			//unnecessary and incorrect
 			freeBlocks.reclaimSpace(new MemHandle(oldSize), increaseSize);
 			//Size increased; recursively call insert again till sufficient space
 			return insert(stuff);
@@ -130,7 +124,7 @@ public class MemManager
 	}
 
 	/**
-	 * Removes an existing sequence of bytes from the {@code MemoryPool}.
+	 * Removes an existing sequence of bytes from the {@code BufferPool}.
 	 * Instead of visiting each byte and clearing it, the two-byte size sequence
 	 * is set to zero. This means any bytes previously owned by the data are now
 	 * virtually inaccessible; they can be overwritten as needed.
@@ -140,7 +134,6 @@ public class MemManager
 	 */
 	public int remove(MemHandle h)
 	{
-		//int ret = pool.remove(h);
 		int ret = bytesToSize(bufferPool.get(h.getAddress(), 2));
 		//removing from the pool only returns the number of bytes needed to
 		//store the actual record, not including the size sequence prefix, so
@@ -150,7 +143,7 @@ public class MemManager
 	}
 
 	/**
-	 * Retrieves a byte sequence from the {@link MemoryPool} addressed by
+	 * Retrieves a byte sequence from the {@link BufferPool} addressed by
 	 * {@code h}.
 	 * <p/>
 	 * @param h the {@link MemHandle} addressing the two-byte size sequence of
@@ -160,7 +153,6 @@ public class MemManager
 	 */
 	public byte[] get(MemHandle h)
 	{
-		//return pool.get(h);
 		byte[] got = bufferPool.get(h.getAddress(), 2);
 		int request = bytesToSize(got);
 		return bufferPool.get(h.getAddress() + 2, request);

@@ -62,37 +62,4 @@ public class DNACodec
 		//nothing in the string pertains to a valid DNA sequence, so return null
 		return null;
 	}
-
-	/**
-	 * Converts a given number to a rounded up value of bytes needed to store a
-	 * DNAString. Because each character is represented as two bits, one byte
-	 * can store up to four characters. If a DNAString has a length evenly
-	 * divisible by four, then the number of bytes needed to store it is equal
-	 * to the length of the String divided by four. Otherwise, the number of
-	 * bytes needed is the length divided by four, plus one. Any remainder from
-	 * dividing by four means additional bits are needed, but not a full byte.
-	 * However, a full additional byte is used and extra bits within said byte
-	 * are ignored.
-	 * <p/>
-	 * Examples: <ul>String length = 8; bytes needed = 2
-	 * <p/>
-	 * String length = 9; bytes needed = 3</ul>
-	 * <p/>
-	 * @param num the number to always round up
-	 * <p/>
-	 * @return the rounded up value
-	 */
-	private static int toByteSize(int num)
-	{
-		int holder = num / 4;
-		double size = (double) num / 4;
-		if (size > (double) holder)
-		{
-			return holder + 1;
-		}
-		else
-		{
-			return (int) size;
-		}
-	}
 }

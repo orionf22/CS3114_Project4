@@ -3,7 +3,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.logging.Level;
@@ -154,7 +153,9 @@ public class BufferPool
 	 * been made elsewhere and needs to be stored in the source. When bytes are
 	 * assigned to a {@link Buffer}, it is marked as {@code dirty} and will
 	 * result in {@code bytes} overwriting the bytes in the corresponding
-	 * position in the source.
+	 * position in the source. Bytes are written byte-by-byte ensuring that
+	 * overwriting occurs not only at the right position within the source, but
+	 * through the right {@link Buffer}.
 	 * <p/>
 	 * {@code start} denotes the location within the source at which bytes will
 	 * be overwritten by the information contained within {@code bytes}.
@@ -167,7 +168,6 @@ public class BufferPool
 	public void set(byte[] bytes, int start)
 	{
 		int insertAt = 0;
-		//System.out.println("Set at " + start + ": " + Arrays.toString(bytes));
 		for (int i = start; i < start + bytes.length; i++)
 		{
 			//Determine which Buffer to get
@@ -181,17 +181,8 @@ public class BufferPool
 			{
 				Logger.getLogger(BufferPool.class.getName()).log(Level.SEVERE, null, ex);
 			}
-//			int newStart = i;
-//			//this check ensures the request index is always relative to the 
-//			//Buffer's byte array, NOT the source's array. Without this check, a
-//			//request to position 5000 (in Buffer 01) would result in a request in
-//			//Buffer 01's byte array at 5000, generating an out of bounds exception
-//			if (blockNum != 0)
-//			{
-//				newStart = i % BLOCK_SIZE;
-//			}
 			buff.setByte(bytes[insertAt], i - (blockNum * BLOCK_SIZE));
-			buff.makeDirty();
+			buff.soil();
 			insertAt++;
 		}
 	}
@@ -224,13 +215,14 @@ public class BufferPool
 	}
 
 	/**
-	 * Get the right {@link Buffer} from the pool given {@code blockNum}. If the
-	 * desired {@link Buffer} is not already in the pool, it must be fetched. If
-	 * the pool is already holding the maximum number of {@link Buffer Buffers},
-	 * as defined by {@link BufferPool#POOL_COUNT POOL_COUNT}, then the
-	 * {@link Buffer} at the end of the list is removed and the new
-	 * {@link Buffer} added to the front. If the removed {@link Buffer} is
-	 * marked as {@code dirty}, bytes in the source are modified.
+	 * Gets the right {@link Buffer} from the pool given {@code blockNum}. If
+	 * the desired {@link Buffer} is not already in the pool, it must be
+	 * fetched. If the pool is already holding the maximum number of
+	 * {@link Buffer Buffers}, as defined by
+	 * {@link BufferPool#POOL_COUNT POOL_COUNT}, then the {@link Buffer} at the
+	 * end of the list is removed and the new {@link Buffer} added to the front.
+	 * If the removed {@link Buffer} is marked as {@code dirty}, bytes in the
+	 * source are modified.
 	 * <p/>
 	 * If the desired {@link Buffer} is already in the pool, a {@code cache hit}
 	 * occurs. {@link BufferPool#CACHE_HITS CACHE_HITS} is incremented.

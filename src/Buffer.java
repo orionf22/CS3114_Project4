@@ -124,7 +124,7 @@ public class Buffer
 	 * Marks this {@code Buffer} as {@code dirty}, indicating that changes have
 	 * been made to its managed bytes that need to be reflected in the source.
 	 */
-	public void makeDirty()
+	public void soil()
 	{
 		this.isDirty = true;
 	}
