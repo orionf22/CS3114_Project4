@@ -1,5 +1,4 @@
 
-import java.util.Iterator;
 import java.util.ListIterator;
 
 /**
@@ -37,16 +36,8 @@ public class LinkedList<E>
 	@Override
 	public String toString()
 	{
-	    /*String returning;
-		Iterator iter = this.iterator();
-		for (returning = ""; iter;)
-		{
-			returning += iter.next().toString();
-		}
-
-        return returning;*/
-	    return null;
-
+		return null;
+		// TODO Work it!
 	}
 
 	/**
@@ -56,6 +47,7 @@ public class LinkedList<E>
 	 */
 	private class Node<Q>
 	{
+
 		private Node<Q> next;
 		private Node<Q> prev;
 		private Q value;
@@ -89,6 +81,7 @@ public class LinkedList<E>
 		 */
 		private Node<E> next;
 		private Node<E> lastReturned = null;
+		private Node<E> current;
 		/**
 		 * Current iteration index within this list.
 		 */
@@ -126,7 +119,6 @@ public class LinkedList<E>
 				next = newNode;
 			}
 			// Increment Size
-			lastReturned = null;
 			size++;
 			nextIndex++;
 		}
@@ -134,7 +126,7 @@ public class LinkedList<E>
 		@Override
 		public boolean hasNext()
 		{
-			return next.next != head;
+			return next != head;
 		}
 
 		@Override
@@ -146,7 +138,7 @@ public class LinkedList<E>
 		@Override
 		public E next()
 		{
-			lastReturned = next;
+			lastReturned = ;
 			if (!hasNext())
 			{
 				next = head.next;
