@@ -108,7 +108,6 @@ public class MemManager
 		//space exists
 		else
 		{
-			System.out.println("\t\t\t\texpanding pool");
 			int increaseSize = BLOCK_SIZE;
 			int oldSize = size;
 			size += increaseSize;

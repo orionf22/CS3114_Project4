@@ -1,25 +1,26 @@
+				expanding pool
 
-Successfully inserted new record "A" of 3 bytes (1 characters) starting at position 3
+Successfully inserted new record "A" of 3 bytes (1 characters) starting at position 4099
 A
 
 BufferPool IDs:
-0
+[0]: 1; 
 
-Successfully inserted new record "G" of 3 bytes (1 characters) starting at position 33
+Successfully inserted new record "G" of 3 bytes (1 characters) starting at position 4129
 
-Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 100
+Successfully inserted new record "T" of 3 bytes (1 characters) starting at position 4196
 
-Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 158
+Successfully inserted new record "C" of 3 bytes (1 characters) starting at position 4254
 
-Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 216
+Successfully inserted new record "AACT" of 3 bytes (4 characters) starting at position 4312
 
-Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 45
+Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at position 4141
 
-Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 219
+Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 4144
 
-Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 222
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 4147
 
-Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 225
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 4613
 I
   I
     I
@@ -43,7 +44,7 @@ I
   E
 
 BufferPool IDs:
-0
+[0]: 1; 
 INSERT: Cannot insert duplicate record "AGGT".
 I
   I
@@ -68,7 +69,7 @@ I
   E
 
 BufferPool IDs:
-0
+[0]: 1; 
 INSERT: Cannot insert duplicate record "AA".
 I
   I
@@ -93,9 +94,9 @@ I
   E
 
 BufferPool IDs:
-0
+[0]: 1; 
 
-Successfully inserted new record "CT" of 3 bytes (2 characters) starting at position 48
+Successfully inserted new record "CT" of 3 bytes (2 characters) starting at position 4786
 I
   I
     I
@@ -124,9 +125,9 @@ I
   E
 
 BufferPool IDs:
-0
+[0]: 1; 
 
-Deleted old record "AA" of 3 bytes (2 characters) from position 225
+Deleted old record "AA" of 3 bytes (2 characters) from position 4613
 I
   I
     I
@@ -155,9 +156,9 @@ I
   E
 
 BufferPool IDs:
-0
+[0]: 1; 
 
-Deleted old record "T" of 3 bytes (1 characters) from position 100
+Deleted old record "T" of 3 bytes (1 characters) from position 4196
 
 Nodes visited: 17
 sequence: AACA
@@ -196,7 +197,7 @@ I
   E
 
 BufferPool IDs:
-0
+[0]: 1; 
 I
   I
     I
@@ -225,4 +226,4 @@ I
   E
 
 BufferPool IDs:
-0
+[0]: 1; 
