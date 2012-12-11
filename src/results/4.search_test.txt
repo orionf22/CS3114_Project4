@@ -19,4 +19,152 @@ Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at po
 
 Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 216
 
-Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 335
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 219
+
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 222
+
+Successfully inserted new record "GTC" of 3 bytes (3 characters) starting at position 45
+
+Nodes visited: 13
+sequence: AACA
+sequence: AACT
+sequence: AAGG
+sequence: AA
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    E
+    A
+  C
+  I
+    E
+    E
+    E
+    GTC
+    G
+  T
+  E
+
+BufferPool IDs:
+0
+
+Nodes visited: 17
+sequence: AACA
+sequence: AACT
+sequence: AAGG
+sequence: AA
+sequence: AGGT
+sequence: A
+
+Nodes visited: 4
+sequence: AA
+
+Nodes visited: 7
+sequence: GTC
+sequence: G
+
+Nodes visited: 3
+sequence: G
+
+Nodes visited: 3
+sequence: GTC
+
+Nodes visited: 2
+sequence "CT" not found
+
+Nodes visited: 4
+sequence "AAA$" not found
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    E
+    A
+  C
+  I
+    E
+    E
+    E
+    GTC
+    G
+  T
+  E
+
+BufferPool IDs:
+0
+
+Successfully inserted new record "ATC" of 3 bytes (3 characters) starting at position 33
+
+Successfully inserted new record "ATCGTT" of 4 bytes (6 characters) starting at position 36
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    I
+      E
+      I
+        E
+        E
+        ATCGTT
+        E
+        ATC
+      E
+      E
+      E
+    A
+  C
+  I
+    E
+    E
+    E
+    GTC
+    G
+  T
+  E
+
+BufferPool IDs:
+0
+
+Nodes visited: 13
+sequence: ATCGTT
+sequence: ATC
+
+Nodes visited: 4
+sequence "AT$" not found
+
+Nodes visited: 5
+sequence: ATC

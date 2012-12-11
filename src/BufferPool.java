@@ -418,9 +418,11 @@ public class BufferPool
 	{
 		ListIterator<Buffer> iter = pool.listIterator();
 		String ret = "";
+		int index = 0;
 		while (iter.hasNext())
 		{
-			ret += "" + iter.next().getNumber();
+			ret += "[" + index + "]: " + iter.next().getNumber() + "; ";
+			index++;
 		}
 		return ret;
 	}

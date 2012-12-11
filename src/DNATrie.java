@@ -569,7 +569,7 @@ public class DNATrie
 			ret = printTrieByStats(rt, 0);
 		}
 		root = saveNode(rt);
-		return ret;
+		return ret + "\nBufferPool IDs:\n" + manager.getBlockIDs();
 	}
 
 	/**
@@ -811,7 +811,7 @@ public class DNATrie
 		MemHandle ret = manager.insert(bytes);
 //		System.out.println("Saved " + node.getClass()
 //				+ " (" + (bytes.length + 2) + " bytes) starting at position " + ret.getAddress());
-		System.out.println(manager.getFreeBlocks());
+//		System.out.println(manager.getFreeBlocks());
 		return ret;
 	}
 

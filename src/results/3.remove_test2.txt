@@ -7,4 +7,298 @@ Successfully inserted new record "AA" of 3 bytes (2 characters) starting at posi
 
 Successfully inserted new record "AAACCCCGGTGAAAACGTA" of 6 bytes (19 characters) starting at position 68
 
-Successfully inserted new record "ACTGGGAA" of 4 bytes (8 characters) starting at position 155
+Successfully inserted new record "ACTGGGAA" of 4 bytes (8 characters) starting at position 178
+
+Successfully inserted new record "AAAACCCTGCCC" of 4 bytes (12 characters) starting at position 182
+
+Successfully inserted new record "AAAACCCTGCATGC" of 5 bytes (14 characters) starting at position 265
+
+Deleted old record "ACGT" of 3 bytes (4 characters) from position 3
+I
+  I
+    I
+      I
+        I
+          E
+          I
+            E
+            I
+              E
+              I
+                E
+                E
+                E
+                I
+                  E
+                  E
+                  I
+                    E
+                    I
+                      AAAACCCTGCATGC
+                      AAAACCCTGCCC
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                  E
+                  E
+                E
+              E
+              E
+              E
+            E
+            E
+            E
+          E
+          E
+          AAAA
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      AA
+    ACTGGGAA
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+BufferPool IDs:
+0
+
+Successfully inserted new record "ACCTT" of 3 bytes (5 characters) starting at position 74
+
+Deleted old record "AA" of 3 bytes (2 characters) from position 27
+I
+  I
+    I
+      I
+        I
+          E
+          I
+            E
+            I
+              E
+              I
+                E
+                E
+                E
+                I
+                  E
+                  E
+                  I
+                    E
+                    I
+                      AAAACCCTGCATGC
+                      AAAACCCTGCCC
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                  E
+                  E
+                E
+              E
+              E
+              E
+            E
+            E
+            E
+          E
+          E
+          AAAA
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    I
+      E
+      ACCTT
+      E
+      ACTGGGAA
+      E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+BufferPool IDs:
+0
+
+Deleted old record "AAAA" of 3 bytes (4 characters) from position 24
+I
+  I
+    I
+      I
+        I
+          E
+          I
+            E
+            I
+              E
+              I
+                E
+                E
+                E
+                I
+                  E
+                  E
+                  I
+                    E
+                    I
+                      AAAACCCTGCATGC
+                      AAAACCCTGCCC
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                  E
+                  E
+                E
+              E
+              E
+              E
+            E
+            E
+            E
+          E
+          E
+          E
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    I
+      E
+      ACCTT
+      E
+      ACTGGGAA
+      E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+BufferPool IDs:
+0
+I
+  I
+    I
+      I
+        I
+          E
+          I
+            E
+            I
+              E
+              I
+                E
+                E
+                E
+                I
+                  E
+                  E
+                  I
+                    E
+                    I
+                      AAAACCCTGCATGC
+                      AAAACCCTGCCC
+                      E
+                      E
+                      E
+                    E
+                    E
+                    E
+                  E
+                  E
+                E
+              E
+              E
+              E
+            E
+            E
+            E
+          E
+          E
+          E
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    I
+      E
+      ACCTT
+      E
+      ACTGGGAA
+      E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+BufferPool IDs:
+0
+
+Deleted old record "AAAACCCTGCCC" of 4 bytes (12 characters) from position 182
+I
+  I
+    I
+      I
+        AAAACCCTGCATGC
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      E
+    I
+      E
+      ACCTT
+      E
+      ACTGGGAA
+      E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+BufferPool IDs:
+0

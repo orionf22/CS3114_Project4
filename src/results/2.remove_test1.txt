@@ -13,4 +13,180 @@ Successfully inserted new record "AAGG" of 3 bytes (4 characters) starting at po
 
 Successfully inserted new record "AACA" of 3 bytes (4 characters) starting at position 210
 
-Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 329
+Successfully inserted new record "AGGT" of 3 bytes (4 characters) starting at position 213
+
+Successfully inserted new record "AA" of 3 bytes (2 characters) starting at position 216
+INSERT: Cannot insert duplicate record "AGGT".
+INSERT: Cannot insert duplicate record "AA".
+
+Deleted old record "A" of 3 bytes (1 characters) from position 3
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    E
+    E
+  C
+  G
+  T
+  E
+
+BufferPool IDs:
+0
+
+Deleted old record "G" of 3 bytes (1 characters) from position 24
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    AGGT
+    E
+    E
+  C
+  E
+  T
+  E
+
+BufferPool IDs:
+0
+
+Deleted old record "AGGT" of 3 bytes (4 characters) from position 213
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    E
+    E
+    E
+  C
+  E
+  T
+  E
+
+BufferPool IDs:
+0
+
+Deleted old record "C" of 3 bytes (1 characters) from position 149
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      AAGG
+      E
+      AA
+    E
+    E
+    E
+    E
+  E
+  E
+  T
+  E
+
+BufferPool IDs:
+0
+
+Deleted old record "AAGG" of 3 bytes (4 characters) from position 36
+I
+  I
+    I
+      E
+      I
+        AACA
+        E
+        E
+        AACT
+        E
+      E
+      E
+      AA
+    E
+    E
+    E
+    E
+  E
+  E
+  T
+  E
+
+BufferPool IDs:
+0
+
+Deleted old record "AACT" of 3 bytes (4 characters) from position 207
+I
+  I
+    I
+      E
+      AACA
+      E
+      E
+      AA
+    E
+    E
+    E
+    E
+  E
+  E
+  T
+  E
+
+BufferPool IDs:
+0
+
+Deleted old record "T" of 3 bytes (1 characters) from position 91
+I
+  I
+    I
+      E
+      AACA
+      E
+      E
+      AA
+    E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+
+BufferPool IDs:
+0

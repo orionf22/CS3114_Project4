@@ -100,7 +100,7 @@ public class MemManager
 		{
 			//pool.insert(stuff, insertHandle.getAddress());
 			//System.out.println("insert size: " + stuff.length);
-			bufferPool.set(sizeToBytes((short)stuff.length), insertHandle.getAddress());
+			bufferPool.set(sizeToBytes((short) stuff.length), insertHandle.getAddress());
 			bufferPool.set(stuff, insertHandle.getAddress() + 2);
 		}
 		//Insufficient free space; continue to add BLOCK_SIZE bytes until enough
@@ -165,7 +165,7 @@ public class MemManager
 		int request = bytesToSize(got);
 		return bufferPool.get(h.getAddress() + 2, request);
 	}
-	
+
 	/**
 	 * Converts a {@code short} value, {@code s}, to a two-byte size sequence.
 	 * This is used as a prefix to all stored data byte arrays to denote the
@@ -184,7 +184,7 @@ public class MemManager
 		ret[1] = (byte) (s);
 		return ret;
 	}
-	
+
 	/**
 	 * Converts a two-byte array marking the size of stored data to a primitive
 	 * {@code int}. {@code s} should be, at minimum, of size 2, and preferably
@@ -208,5 +208,17 @@ public class MemManager
 	public String getFreeBlocks()
 	{
 		return freeBlocks.blocksToString();
+	}
+
+	/**
+	 * Returns a String representation (Buffer ID) of all currently in-memory
+	 * {@link Buffer} objects in {@code bufferPool}.
+	 * <p/>
+	 * @see BufferPool#getBlockIDs()
+	 * @return the String representation of Buffer IDs
+	 */
+	public String getBlockIDs()
+	{
+		return bufferPool.getBlockIDs();
 	}
 }

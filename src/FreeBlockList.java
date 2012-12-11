@@ -61,6 +61,27 @@ public class FreeBlockList
 	{
 		return freeList.size();
 	}
+	
+	public boolean verify()
+	{
+		ListIterator<MemBlock> ver = freeList.iterator();
+		int[] vals = new int[freeList.size()];
+		int j = 0;
+		while (j < freeList.size())
+		{
+			MemBlock got = ver.next();
+			vals[j] = got.getAddress();
+			j++;
+		}
+		for (int i = 0; i < vals.length - 1; i++)
+		{
+			if (vals[i] == vals[++i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 
 	/**
 	 * Request a new memory block allocation of size {@code s} from this
@@ -94,6 +115,7 @@ public class FreeBlockList
 	 */
 	public MemHandle getSpace(int s)
 	{
+		verify();
 		if (!freeList.isEmpty())
 		{
 			MemBlock first = iter.next();
@@ -107,6 +129,7 @@ public class FreeBlockList
 					MemBlock remainder = new MemBlock(ret + s,
 							current.getSize() - s);
 					iter.add(remainder);
+					verify();
 					return new MemHandle(ret);
 				}
 			}
@@ -139,6 +162,7 @@ public class FreeBlockList
 	 */
 	public void reclaimSpace(MemHandle h, int s)
 	{
+		verify();
 		ListIterator<MemBlock> newIter = freeList.iterator();
 		//left and right denote free blocks adjacent to the new free block being
 		//added
@@ -194,7 +218,8 @@ public class FreeBlockList
 		}
 		//construct a new MemBlock then insert
 		newBlock = new MemBlock(start, size);
-		iter.add(newBlock);
+		newIter.add(newBlock);
+		verify();
 	}
 
 	/**
@@ -235,5 +260,17 @@ public class FreeBlockList
 			}
 		}
 		return val;
+	}
+	
+	private class Node<Q>
+	{
+		Q value;
+		Node<Q> next;
+		Node<Q> prev;
+		
+		private Node(Q val)
+		{
+			this.value = val;
+		}
 	}
 }
