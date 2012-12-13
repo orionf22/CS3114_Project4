@@ -57,4 +57,10 @@ public class MemHandle
 		int hash = 7 * address;
 		return hash;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return this.address + "";
+	}
 }
